@@ -1,0 +1,46 @@
+.dct {
+  height: 250px;
+  padding: 20px;
+
+  .dct-background {
+    height: 230px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 10px;
+    font-family: 'Hind Siliguri', sans-serif;
+
+    .dr {
+      margin: 0;
+      color: #050203;
+
+      &-details {
+        position: relative;
+      }
+
+      &-name {
+        font-size: 1.5em;
+        font-weight: 600;
+        padding: 0;
+      }
+
+      &-profession, &-hospital {
+        font-size: 1.1em;
+        font-weight: 500;
+      }
+    }
+
+    .switch {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
+
+    .badge {
+      &-online {
+        background-color: #3ff600 !important;
+      }
+      &-offline {
+        background-color: #f70000 !important;
+      }
+    }
+  }
+}
