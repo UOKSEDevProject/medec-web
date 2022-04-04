@@ -19,7 +19,7 @@ const DctList = () => {
     });
 
     return (
-        <Container fluid={false}>
+        <Container className="dc-list" fluid={false}>
             <Row>
                 {data.map((dr, index) => (
                     <Doctor
@@ -32,7 +32,7 @@ const DctList = () => {
                         imageSrc={dr.imageSrc}
                         no={index}
                         onToggleChange={onToggleChange}/>
-                ))})}
+                ))}
             </Row>
         </Container>
     );
