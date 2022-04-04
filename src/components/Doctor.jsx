@@ -17,7 +17,7 @@ const Doctor = (props) => {
     };
 
     return (
-        <Col xs={4} className='dct'>
+        <Col xs={12} md={6} lg={4} className='dct'>
             <Row className='dct-background'>
                 <Col xs={6} className='align-items-center d-flex'>
                     <Image src={imageSrc} fluid={true} />
