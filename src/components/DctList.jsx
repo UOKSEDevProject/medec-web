@@ -1,7 +1,6 @@
 import {Container, Row} from 'react-bootstrap';
 import Doctor from './Doctor';
 import {DrData} from "../temp/data-store";
-import $ from "jquery";
 import {useState} from "react";
 
 const DctList = () => {
@@ -13,10 +12,6 @@ const DctList = () => {
 
         setData(dataList);
     }
-
-    $.each(data, (_, dr) => {
-        dr['onToggleChange'] = onToggleChange.bind(dr);
-    });
 
     return (
         <Container className="dc-list" fluid={false}>
@@ -31,7 +26,8 @@ const DctList = () => {
                         status={dr.status}
                         imageSrc={dr.imageSrc}
                         no={index}
-                        onToggleChange={onToggleChange}/>
+                        onToggleChange={onToggleChange}
+                    />
                 ))}
             </Row>
         </Container>

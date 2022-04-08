@@ -1,6 +1,7 @@
 .dct {
   height: 250px;
   padding: 20px;
+  position: relative;
 
   .dct-background {
     height: 230px;
@@ -11,10 +12,6 @@
     .dr {
       margin: 0;
       color: #050203;
-
-      &-details {
-        position: relative;
-      }
 
       &-name {
         font-size: 1.5em;
@@ -28,12 +25,6 @@
       }
     }
 
-    .switch {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-    }
-
     .badge {
       &-online {
         background-color: #3ff600 !important;
@@ -42,5 +33,11 @@
         background-color: #f70000 !important;
       }
     }
+  }
+
+  .switch {
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
 }
