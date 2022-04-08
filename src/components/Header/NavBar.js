@@ -1,7 +1,7 @@
 import {Container, Image, Nav, Navbar} from "react-bootstrap";
-import logo from '../assets/images/MEDEC logo  nav.png';
-import {userProfile} from "../temp/data-store";
-import pp from '../assets/images/defaultprofilepic.png'
+import logo from '../../assets/images/MEDEC logo  nav.png';
+import {userProfile} from "../../temp/data-store";
+import pp from '../../assets/images/defaultprofilepic.png'
 
 const NavBar = () => {
   return(
