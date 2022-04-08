@@ -1,12 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import './assets/css/main.scss';
+import Client from './Client';
 
 function App() {
-  return (
-    <div className="App">
-      <h1>MEDEC</h1>
-    </div>
-  );
+    return (
+        <div>
+            <Client/>
+        </div>
+    );
 }
 
 export default App;
