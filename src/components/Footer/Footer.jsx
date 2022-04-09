@@ -17,7 +17,7 @@ const Footer = () => {
           <div className='footer-copyright col-lg-6'>
             <p>©2021 CODEPIRATEZ</p>
           </div>
-          <div className=' col-lg-6'>
+          <div className='col-lg-6'>
             <img src={logo} alt={"medec"} />
           </div>
         </div>
