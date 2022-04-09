@@ -1,7 +1,7 @@
 import {Container, Image, Nav, Navbar} from 'react-bootstrap';
-import logo from '../assets/images/MEDEC logo  nav.png';
-import {userProfile} from '../temp/data-store';
-import defaultProfilePicture from '../assets/images/defaultprofilepic.png'
+import logo from '../../assets/images/MEDEC logo  nav.png';
+import {userProfile} from '../../temp/data-store';
+import defaultProfilePicture from '../../assets/images/defaultprofilepic.png'
 
 const NavBar = () => {
     return (
@@ -16,7 +16,7 @@ const NavBar = () => {
                         <Nav.Link href='#home'>Home</Nav.Link>
                         <Nav.Link href='#myAppointments'>My Appointments</Nav.Link>
                         <a href='#userProfile'><Image  className='profile-picture' fluid={true} roundedCircle={true}
-                               src={userProfile.profilePicture != null ? userProfile.profilePicture : defaultProfilePicture} alt='Profile'/>
+                                                       src={userProfile.profilePicture != null ? userProfile.profilePicture : defaultProfilePicture} alt='Profile'/>
                         </a>
                     </Nav>
                 </Navbar.Collapse>

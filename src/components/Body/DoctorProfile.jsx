@@ -1,5 +1,5 @@
 import {Image} from 'react-bootstrap';
-import {doctorProfile} from '../temp/data-store';
+import {doctorProfile} from '../../temp/data-store';
 import SessionCard from "./SessionCard";
 
 const DoctorProfile = () => {
