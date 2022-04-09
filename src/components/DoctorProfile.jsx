@@ -1,12 +1,10 @@
 import {Image} from 'react-bootstrap';
 import {doctorProfile} from '../temp/data-store';
-import NavBar from "./NavBar";
 import SessionCard from "./SessionCard";
 
 const DoctorProfile = () => {
     return (
         <div className='dct'>
-            <NavBar/>
             <div className='dct-profile-body'>
                 <div className='dct-profile-details'>
                     <Image className='dct-Profile-Picture' src={doctorProfile.profilePicture} fluid={true} alt='profile'/>
