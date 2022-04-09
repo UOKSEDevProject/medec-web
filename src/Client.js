@@ -1,11 +1,11 @@
 import DctList from './components/DctList';
-import NavBar from './components/NavBar';
+import DoctorProfile from './components/DoctorProfile';
 
 const Client = () => {
     return (
         <div className='client'>
-            <NavBar/>
-            <DctList/>
+            {/*<DctList/>*/}
+            <DoctorProfile/>
         </div>
     );
 };
