@@ -1,5 +1,5 @@
 import DctList from './components/DctList';
-import NavBar from "./components/NavBar";
+import NavBar from './components/NavBar';
 
 const Client = () => {
     return (
