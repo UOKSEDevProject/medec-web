@@ -1,13 +1,11 @@
-import DctList from './components/DctList';
-import DoctorProfile from './components/DoctorProfile';
-import NavBar from './components/NavBar';
+import NavBar from "./components/Header/NavBar";
+import Body from "./components/Body";
 
 const Client = () => {
     return (
         <div className='client'>
             <NavBar/>
-            {/*<DctList/>*/}
-            <DoctorProfile/>
+            <Body/>
         </div>
     );
 };
