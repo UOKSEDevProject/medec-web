@@ -1,0 +1,17 @@
+.session-card-body{
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: white;
+  background-color: rgba(1,1,1,0.3);
+  min-width: 200px;
+  box-shadow: 10px 10px rgba(1,1,1,0.1) ;
+  border-radius: 10px;
+  margin: 20px;
+  padding: 20px;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
+}
+.session-card-body > h3{
+  margin: 10px;
+}
