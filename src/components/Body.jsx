@@ -8,7 +8,7 @@ const Body = () => {
   return (
       <div className='body-container'>
           <Container fluid={false}>
-              <Search/>
+              {/*<Search/>*/}
               {/*<DctList/>*/}
               {/*<DoctorProfile/>*/}
               <PatientProfile/>

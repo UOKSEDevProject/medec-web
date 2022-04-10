@@ -34,23 +34,23 @@ function PatientProfile(props) {
                     </div>
                     <div className='patient-profile-form'>
                        <Row className="mb-3">
-                           <Col className='patient-profile-details-labels' sm={3}>Date Of Birth</Col>
-                           <Col className='patient-profile-details' sm={3}><div>{profile.birthDate}</div></Col>
+                           <Col className='patient-profile-details-labels' xs={6}>Date Of Birth</Col>
+                           <Col className='patient-profile-details' xs={6}><div>{profile.birthDate}</div></Col>
                        </Row>
                         <Row className="mb-3">
-                            <Col className='patient-profile-details-labels' sm={3}>Blood Group</Col>
-                            <Col className='patient-profile-details' sm={1}><div>{profile.bloodGroup}</div></Col>
+                            <Col className='patient-profile-details-labels' xs={6}>Blood Group</Col>
+                            <Col className='patient-profile-details' xs={6}><div>{profile.bloodGroup}</div></Col>
                         </Row>
                             <Row className="mb-3">
-                                <Col className='patient-profile-details-labels' sm={3}>phone Number</Col>
-                                <Col className='patient-profile-details' sm={3}><div>{profile.phoneNumber}</div></Col>
+                                <Col className='patient-profile-details-labels' xs={6}>phone Number</Col>
+                                <Col className='patient-profile-details' xs={6}><div>{profile.phoneNumber}</div></Col>
                             </Row>
                             <Row  className="mb-3">
-                                <Col className='patient-profile-details-labels patient-profile-address' sm={3}>Address</Col>
+                                <Col className='patient-profile-details-labels patient-profile-address' xs={6}>Address</Col>
                                 <Col className='patient-profile-details'><div>{profile.address}</div></Col>
                             </Row>
                             <Row className="mb-3">
-                                <Col className='patient-profile-details-labels patient-profile-description' sm={3}>Description</Col>
+                                <Col className='patient-profile-details-labels patient-profile-description' xs={6}>Description</Col>
                                 <Col className='patient-profile-details'><div>{profile.description}</div></Col>
                             </Row>
                         <Button variant="primary"  onClick={()=>setModalShow(true)}>Edit</Button>
