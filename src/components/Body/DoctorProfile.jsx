@@ -4,7 +4,7 @@ import SessionCard from "./SessionCard";
 
 const DoctorProfile = () => {
     return (
-        <div className='dct'>
+        <div className='dct-profile'>
             <div className='dct-profile-body'>
                 <div className='dct-profile-details'>
                     <Image className='dct-Profile-Picture' src={doctorProfile.profilePicture} fluid={true} alt='profile'/>
