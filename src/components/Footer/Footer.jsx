@@ -31,17 +31,20 @@ const Footer = () => {
           <div className='col-lg-4'></div>
           <div className='col-lg-4 footer-social-media footer-link'>
             <a href='#'>
-              <FontAwesomeIcon icon={faFacebook} size='1x' color='black' />
+              <FontAwesomeIcon icon={faFacebook} size='2x' color='black' />
             </a>
             <a href='#'>
-              <FontAwesomeIcon icon={faTwitter} size='1x' color='black' />
+              <FontAwesomeIcon icon={faTwitter} size='2x' color='black' />
             </a>
             <a href='#'>
-              <FontAwesomeIcon icon={faYoutube} size='1x' color='black' />
+              <FontAwesomeIcon icon={faYoutube} size='2x' color='black' />
             </a>
             <a href='#'>
-              <FontAwesomeIcon icon={faInstagram} size='1x' color='black' />
+              <FontAwesomeIcon icon={faInstagram} size='2x' color='black' />
             </a>
+          </div>
+          <div className='footer-copyright col-lg-6'>
+            <p> Powered by ©2021 CODEPIRATEZ</p>
           </div>
         </div>
       </Container>
