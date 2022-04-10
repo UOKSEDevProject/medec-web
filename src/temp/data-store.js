@@ -82,3 +82,9 @@ export const doctorProfile ={
         }
     ]
 }
+
+export const searchList = [
+    {label: 'hello', value: 'kekek'},
+    {label: 'Hisks', value: 'asasa'},
+    {label: 'helasaslo', value: 'saassd'},
+]
