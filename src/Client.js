@@ -4,7 +4,7 @@ import Footer from "./components/Footer/Footer";
 
 const Client = () => {
   return (
-    <div className="client">
+    <div className='client'>
       <NavBar />
       <Body />
       <Footer />
