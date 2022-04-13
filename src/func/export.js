@@ -11,7 +11,7 @@ export const exportPdf = (imgUrl) => {
     img.src = imgUrl;
 
     img.onload = () => {
-        const doc = new jsPDF({orientation: "portrait", unit: 'px', format: 'letter', hotfixes: ['px_scaling']});
+        const doc = new jsPDF({orientation: "portrait", unit: 'px', format: 'letter', hotfixes: ['px_scaling'], compress: true});
         const pageWidth = doc.internal.pageSize.getWidth();
         const pageHeight = doc.internal.pageSize.getHeight();
         const pageHeaderHeight = pageHeight * pageHeaderPct;
