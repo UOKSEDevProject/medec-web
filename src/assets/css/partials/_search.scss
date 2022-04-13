@@ -1,0 +1,32 @@
+@import 'layout-breakpoint';
+@import '../colors';
+
+.search-btn {
+  background-color: $search-btn-color;
+  height: 100%;
+  width: 125px;
+  border-radius: 0 25px 25px 0;
+  border: none;
+
+  &:hover {
+    background-color: $search-btn-color;
+  }
+
+  svg {
+    display: none;
+  }
+}
+
+@media (max-width: $layout-breakpoint-sm) {
+  .search-btn {
+    width: 75px;
+
+    span {
+      display: none;
+    }
+
+    svg {
+      display: inline;
+    }
+  }
+}
