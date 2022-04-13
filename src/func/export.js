@@ -38,8 +38,14 @@ export const exportPdf = (imgUrl) => {
         doc.setFont("helvetica", "bold");
         doc.text(`Report`, pageWidth / 2, pageHeaderHeight + 80, {align: 'center'});
 
-        const pdfImageHeight = pageHeight - pageHeaderHeight - pageFooterHeight - 90;
-        const pdfImageWidth = pdfImageHeight * imgRatio;
+        let pdfImageHeight = pageHeight - pageHeaderHeight - pageFooterHeight - 90;
+        let pdfImageWidth = pdfImageHeight * imgRatio;
+
+        // when landscape image
+        if (pdfImageWidth > pageWidth) {
+            pdfImageWidth = pageWidth - 20;
+            pdfImageHeight = pdfImageWidth / imgRatio;
+        }
 
         doc.addImage(img, 'PNG', (pageWidth - pdfImageWidth) / 2, pageHeaderHeight + 90, pdfImageWidth, pdfImageHeight);
 
