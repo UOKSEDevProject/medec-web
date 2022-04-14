@@ -7,7 +7,7 @@ import PatientProfile from './Body/PatientProfile';
 const Body = () => {
   return (
       <div className='body-container'>
-          <Container fluid={false}>
+          <Container fluid={true}>
               {/*<Search/>*/}
               {/*<DctList/>*/}
               {/*<DoctorProfile/>*/}

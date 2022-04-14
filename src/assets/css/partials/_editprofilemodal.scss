@@ -1,0 +1,27 @@
+.modal-header{
+  border-bottom: none;
+}
+
+.modal-title {
+  margin-bottom: 0;
+  line-height: 1.5;
+  flex: 4;
+  text-align: center;
+}
+
+.modal-body{
+  max-height: 50vh;
+  overflow-y: scroll;
+  padding: 20px;
+  margin: 0 50px 0 50px;
+}
+
+.form-error{
+  color: #d0021b;
+  background-image: none;
+  padding-left: 4px;
+  padding-top: 2px;
+  font-size: 12px;
+  text-align: left;
+  display: block;
+}
