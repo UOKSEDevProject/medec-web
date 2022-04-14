@@ -1,8 +1,8 @@
-import DctList from "./Body/DctList";
+import DctList from "./body/DctList";
 import { Container } from "react-bootstrap";
-import Search from "./Body/Search";
-import DoctorProfile from "./Body/DoctorProfile";
-import PatientProfile from './Body/PatientProfile';
+import Search from "./body/Search";
+import DoctorProfile from "./body/DoctorProfile";
+import PatientProfile from './body/PatientProfile';
 
 const Body = () => {
   return (
