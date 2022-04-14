@@ -1,6 +1,6 @@
-import NavBar from "./components/header/NavBar";
+import NavBar from "./components/Header/NavBar";
 import Body from "./components/Body";
-import Footer from "./components/footer/Footer";
+import Footer from "./components/Footer/Footer";
 
 const Client = () => {
   return (

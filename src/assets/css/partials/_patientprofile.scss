@@ -1,0 +1,121 @@
+.patient-profile{
+  font-family: 'Roboto', sans-serif;
+  padding-top: 20px;
+}
+
+.patient-profile-body{
+  margin: auto;
+  min-width: 450px;
+  max-width: 70vw;
+  background-color: rgba(1,1,1,0.2);
+  padding: 40px;
+  display: flex;
+  flex-direction:row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  border-radius: 20px;
+}
+
+.patient-profile-image-section{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 1;
+  align-items: center;
+}
+
+.patient-profile-detailsSection{
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+  flex: 2;
+  align-items: stretch;
+}
+
+.patient-profile-nameContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.patient-profile-profilePicture{
+  width: 200px;
+  margin: 20px;
+}
+
+.patient-profile-qr{
+  border-radius: 10px;
+  border: 1px solid  black;
+  width: 200px;
+  margin: 20px 20px 0 20px ;
+}
+
+.patient-profile-qrTopic{
+  font-weight: 500;
+  font-size: 1.2rem;
+  color: white;
+  text-align: center;
+}
+
+.patient-profile-name{
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.patient-profile-form{
+  background-color: rgba(1,1,1,0.3);
+  border-radius: 20px;
+  padding: 20px 20px 20px 60px;
+  margin-top: 10px;
+  min-width: 200px;
+  color: white;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.patient-profile-details{
+  background-color: white;
+  color: black;
+  padding: 5px 5px 5px 15px;
+  margin-top: 5px;
+  border-radius: 20px;
+}
+
+.patient-profile-details-labels{
+  padding: 5px;
+  margin-top: 5px;
+}
+
+.patient-profile-address{
+  height: 70px;
+}
+
+.patient-profile-description{
+  height: 100px;
+}
+
+.modalBtn{
+  display: flex;
+  justify-content: space-around;
+}
+
+.patient-profile-modal-popup-btn{
+  margin: 10px;
+  padding: 5px 40px 5px 40px;
+  border-radius: 20px;
+  color: white;
+  background-color: $footer-navlinkTX;
+  border-color: $footer-navlinkTX;
+}
+
+.patient-profile-historyBtn{
+  margin: 10px;
+  padding: 5px 40px 5px 40px;
+  border-radius: 20px;
+  color: white;
+  background-color: $footer-navlinkTX;
+  border-color: $footer-navlinkTX;
+}

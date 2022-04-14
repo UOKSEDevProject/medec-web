@@ -9,9 +9,17 @@ export const DrData = [
     {firstName: 'Chanaka', lastName: 'Madushan', mediCenter: 'NineWells Hospital', specialties: 'General Practitioner', status: true, imageSrc: 'https://docs.google.com/uc?id=1Tey5rRf84gaJyR2e-fJJN_J015bAW-KN'},
 ];
 export const userProfile ={
+    tittle:'Mr',
     firstName:'Ovindu',
     lastName:'Archana',
-    profilePicture:'https://docs.google.com/uc?id=1shwxCvYocBMX-XM_knl-vyaSgxv0_lN7'
+    bloodGroup:'O+',
+    country:'+94',
+    phoneNumber:'771 230 708',
+    birthDate:'2013-01-08',
+    address:'Gabada weediya, Matara',
+    description:'mama ovindu',
+    profilePicture:'https://docs.google.com/uc?id=1shwxCvYocBMX-XM_knl-vyaSgxv0_lN7',
+    QRCode:'https://docs.google.com/uc?id=1d2poPvYq9ZgiHis0MK4CWC_96WoNxjTE'
 }
 export const doctorProfile ={
     firstName:'Thilina',
