@@ -1,12 +1,6 @@
 import React from "react";
 import logo from "../../assets/images/image-footerLogo.png";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faYoutube,
-  faFacebook,
-  faTwitter,
-  faInstagram,
-} from "@fortawesome/free-brands-svg-icons";
+import { FaFacebook, FaLinkedin, FaInstagram, FaTwitter } from "react-icons/fa";
 import { Container } from "react-bootstrap";
 
 const Footer = () => {
@@ -31,16 +25,16 @@ const Footer = () => {
           <div className='col-lg-4'></div>
           <div className='col-lg-4 footer-social-media footer-link'>
             <a href='#'>
-              <FontAwesomeIcon icon={faFacebook} size='2x' color='black' />
+              <FaFacebook color='black' size={"2rem"} />
             </a>
             <a href='#'>
-              <FontAwesomeIcon icon={faTwitter} size='2x' color='black' />
+              <FaLinkedin color='black' size={"2rem"} />
             </a>
             <a href='#'>
-              <FontAwesomeIcon icon={faYoutube} size='2x' color='black' />
+              <FaInstagram color='black' size={"2rem"} />
             </a>
             <a href='#'>
-              <FontAwesomeIcon icon={faInstagram} size='2x' color='black' />
+              <FaTwitter color='black' size={"2rem"} />
             </a>
           </div>
           <div className='footer-copyright col-lg-6'>
