@@ -1,3 +1,8 @@
+import availableDc from '../assets/images/available-doctors.png';
+import calender from '../assets/images/calendar.png';
+import qr from '../assets/images/qr.png';
+import labReport from '../assets/images/lab-report-portal.png';
+
 export const DrData = [
     {firstName: 'Chanaka', lastName: 'Madushan', mediCenter: 'NineWells Hospital', specialties: 'General Practitioner', status: true, imageSrc: 'https://docs.google.com/uc?id=1Tey5rRf84gaJyR2e-fJJN_J015bAW-KN'},
     {firstName: 'Chanaka', lastName: 'Madushan', mediCenter: 'NineWells Hospital', specialties: 'General Practitioner', status: true, imageSrc: 'https://docs.google.com/uc?id=1Tey5rRf84gaJyR2e-fJJN_J015bAW-KN'},
@@ -88,4 +93,11 @@ export const searchList = [
     {label: 'hello', value: 'kekek'},
     {label: 'Hisks', value: 'asasa'},
     {label: 'helasaslo', value: 'saassd'},
+]
+
+export const homeContent = [
+    {title: 'Add Doctors', content : 'Find doctors who are currently in hospitals near you', imgUrl: availableDc},
+    {title: 'Add Lab Report', content : 'View your lab reports from one place', imgUrl: labReport},
+    {title: 'Make an Appointment', content : 'Channel your doctor from here', imgUrl: calender},
+    {title: 'Manage Doctor', content : 'View your lab reports from one place', imgUrl: qr},
 ]
