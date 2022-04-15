@@ -1,0 +1,62 @@
+@import "layout-breakpoint";
+@import "../colors";
+
+.home-page {
+  button {
+    background: $home-page-aboutus-btn;
+    padding-left: 35px;
+    padding-right: 35px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1em;
+  }
+
+  &-title {
+    font-size: 2.5em;
+    color: $home-page-title;
+    font-family: "Times New Roman", Times, serif;
+  }
+
+  &-content {
+    &-image {
+      img {
+        border: 3px solid $home-page-content-image-border;
+        border-radius: 35px;
+        width: 120px;
+        cursor: pointer;
+      }
+    }
+
+    &-title {
+      font-family: 'Hind Siliguri', sans-serif;
+      font-size: 1.5em;
+      font-weight: 600;
+      color: $home-page-content-title;
+    }
+
+    &-content {
+      color: $home-page-content;
+      font-family: "Roboto", sans-serif;
+      font-weight: 500;
+      font-size: 1em;
+    }
+  }
+}
+
+@media (min-width: $layout-breakpoint-md) and (max-width: $layout-breakpoint-lg) {
+  .home-page {
+    &-title {
+      font-size: 1.5em;
+    }
+  }
+}
+
+@media (max-width: $layout-breakpoint-md) {
+  .home-page {
+    font-size: .8em;
+
+    &-title {
+      font-size: 1.8em;
+    }
+  }
+}
