@@ -16,8 +16,23 @@ export const tittle =[
 ]
 
 export const CHECKOUT_FIELDS ={
-    FIRST_NAME: "firstName",
-        LAST_NAME: "lastName",
-        ADDRESS: "address",
-        PHONE_NUMBER: "phoneNumber"
+    FIRST_NAME: 'firstName',
+    LAST_NAME: 'lastName',
+    ADDRESS: 'address',
+    PHONE_NUMBER: 'phoneNumber',
+    Full_Name: 'fullName',
+    Email: 'email',
+    Gender:'gender',
+    Specialization:'specialization',
+    MedicalCouncilNumber:'medicalCouncilNumber',
 }
+
+export const genders = [
+    {gender:'Male'},
+    {gender:'Female'},
+]
+
+export const specializations =[
+    {specialization:'General Practitioner'},
+    {specialization:'Cardiologist'}
+]

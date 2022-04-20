@@ -2,8 +2,8 @@ import React, {useState} from 'react';
 import {Col, Image, Row} from 'react-bootstrap';
 import {userProfile} from '../../temp/data-store';
 import defaultProfilePicture from '../../assets/images/defaultprofilepic.png'
-import EditProfileModal from "./EditProfileModal/editProfileModal";
-import {stringFormatter} from "./EditProfileModal/editProfileUtility";
+import EditProfileModal from "./editProfileModal";
+import {stringFormatter} from "../../func/formUtility";
 
 function PatientProfile(props) {
     const [modalShow, setModalShow] = useState(false);
