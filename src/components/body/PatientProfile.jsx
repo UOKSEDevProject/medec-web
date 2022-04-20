@@ -4,6 +4,7 @@ import {userProfile} from '../../temp/data-store';
 import defaultProfilePicture from '../../assets/images/defaultprofilepic.png'
 import EditProfileModal from "./editProfileModal";
 import {stringFormatter} from "../../func/formUtility";
+import camera from "../../assets/images/camera.png";
 
 function PatientProfile(props) {
     const [modalShow, setModalShow] = useState(false);
@@ -28,6 +29,10 @@ function PatientProfile(props) {
         setModalShow(false);
     }
 
+    function dpUpload() {
+        //image upload
+    }
+
     return (
         <div className='patient-profile'>
             <div className='patient-profile-body'>
@@ -37,6 +42,8 @@ function PatientProfile(props) {
                         src={profile.profilePicture ? profile.profilePicture : defaultProfilePicture}
                         roundedCircle={true}
                         alt='Profile'/>
+                    <Image className='patient-profile-profilePicture-selectIcon' src={camera}
+                           roundedCircle={true} onClick={dpUpload}/>
                     <div>
                         <Image className='patient-profile-qr' src={profile.QRCode} alt='QR'/>
                         <div className='patient-profile-qrTopic'>MY QR</div>

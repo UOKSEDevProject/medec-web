@@ -84,7 +84,7 @@ export function validateMedicalCouncilNumber(mcValue, errors) {
 
 export function validateGender(value, errors) {
     if (value === '') {
-        errors["gender"] = "Please select gender";
+        errors["gender"] = "Please select a gender";
     }else {
             delete errors.gender;
     }
@@ -92,8 +92,40 @@ export function validateGender(value, errors) {
 
 export function validateSpecialization(value, errors) {
     if (value === '') {
-        errors["specialization"] = "Please select specialization";
+        errors["specialization"] = "Please select a specialization";
     }else {
         delete errors.specialization;
+    }
+}
+
+export function validateBirtDate(value, errors) {
+    if (value === '') {
+        errors["birthDate"] = "Please select a birth date";
+    }else {
+        delete errors.birthDate;
+    }
+}
+
+export function validateBloodGroup(value, errors) {
+    if (value === '') {
+        errors["bloodGroup"] = "Please select a blood group";
+    }else {
+        delete errors.birthDate;
+    }
+}
+
+export function validateTitle(value, errors) {
+    if (value === '') {
+        errors["tittle"] = "Please select tittle";
+    }else {
+        delete errors.tittle;
+    }
+}
+
+export function validateCountry(value, errors) {
+    if (value === '') {
+        errors["country"] = "Please select country";
+    }else {
+        delete errors.country;
     }
 }

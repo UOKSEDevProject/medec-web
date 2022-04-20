@@ -3,7 +3,13 @@ import {
     validateFirstName,
     validateLastName,
     validateFullName,
-    validatePhone, validateEmail, validateMedicalCouncilNumber, validateGender, validateSpecialization
+    validatePhone,
+    validateEmail,
+    validateMedicalCouncilNumber,
+    validateGender,
+    validateSpecialization,
+    validateTitle,
+    validateCountry, validateBirtDate, validateBloodGroup
 } from "./clientSideValidation";
 import {CHECKOUT_FIELDS} from "../const/const";
 
@@ -35,6 +41,18 @@ export const setErrors=(event, errors)=> {
             break;
         case CHECKOUT_FIELDS.Specialization:
             validateSpecialization(event.target.value,errors)
+            break;
+        case CHECKOUT_FIELDS.Title:
+            validateTitle(event.target.value,errors)
+            break;
+        case CHECKOUT_FIELDS.Country:
+            validateCountry(event.target.value,errors)
+            break;
+        case CHECKOUT_FIELDS.Birthdate:
+            validateBirtDate(event.target.value,errors)
+            break;
+        case CHECKOUT_FIELDS.BloodGroup:
+            validateBloodGroup(event.target.value,errors)
             break;
     }
     return errors;
