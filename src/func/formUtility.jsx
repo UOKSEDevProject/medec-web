@@ -1,5 +1,11 @@
-import {validateAddress, validateFirstName, validateLastName, validatePhone} from "./clientSideValidation";
-import {CHECKOUT_FIELDS} from "../../../const/const";
+import {
+    validateAddress,
+    validateFirstName,
+    validateLastName,
+    validateFullName,
+    validatePhone, validateEmail, validateMedicalCouncilNumber, validateGender, validateSpecialization
+} from "./clientSideValidation";
+import {CHECKOUT_FIELDS} from "../const/const";
 
 export const setErrors=(event, errors)=> {
     switch (event.target.name) {
@@ -14,6 +20,21 @@ export const setErrors=(event, errors)=> {
             break;
         case CHECKOUT_FIELDS.PHONE_NUMBER:
             validatePhone(event.target.value, errors);
+            break;
+        case CHECKOUT_FIELDS.Full_Name:
+            validateFullName(event.target.value, errors);
+            break;
+        case CHECKOUT_FIELDS.Email:
+            validateEmail(event.target.value, errors);
+            break;
+        case CHECKOUT_FIELDS.MedicalCouncilNumber:
+            validateMedicalCouncilNumber(event.target.value,errors)
+            break;
+        case CHECKOUT_FIELDS.Gender:
+            validateGender(event.target.value,errors)
+            break;
+        case CHECKOUT_FIELDS.Specialization:
+            validateSpecialization(event.target.value,errors)
             break;
     }
     return errors;

@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Button, Col, Form, Image, Modal, Row} from "react-bootstrap";
-import {bloodGroups, tittle} from "../../../const/const";
-import {checkForm, formatPhoneNumber, setErrors} from "./editProfileUtility";
-import defaultProfilePicture from "../../../assets/images/defaultprofilepic.png";
+import {bloodGroups, tittle} from "../../const/const";
+import {checkForm, formatPhoneNumber, setErrors} from "../../func/formUtility";
+import defaultProfilePicture from "../../assets/images/defaultprofilepic.png";
 
 function EditProfileModal(props) {
 
@@ -25,7 +25,6 @@ function EditProfileModal(props) {
       let formElements = document.querySelectorAll("[aria-required='true']");
       let isFormFiled = checkForm(formElements);
       if (isFormFiled){
-          console.log(errors)
           return(!hasEdit || Object.keys(errors).length>1)
       } else {
           return (hasEdit || !Object.keys(errors).length>1)
@@ -230,7 +229,7 @@ function EditProfileModal(props) {
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={props.closeModal}>
+                    <Button variant="secondary" onClick={props.closeModal} disabled={!isSaveDisabled()}>
                         Discard
                     </Button>
                     <Button variant="primary" onClick={()=>{props.updateProfile(profile)}} disabled={isSaveDisabled()}>
