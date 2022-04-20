@@ -11,14 +11,14 @@ const Body = () => {
       <div>
           <div className='body-container'>
               <Container fluid={true}>
-                  {/*<Search/>
+                {/*  <Search/>
                   <DctList/>
-                  <DoctorProfile/>
-                  <PatientProfile/>*/}
-                  <DoctorRegistration/>
+                  <DoctorProfile/>*/}
+                  <PatientProfile/>
+                  {/*<DoctorRegistration/>*/}
               </Container>
           </div>
-        {/*  <div className='home-page-container'>
+          {/*<div className='home-page-container'>
               <Container fluid={true}>
                   <Home/>
               </Container>

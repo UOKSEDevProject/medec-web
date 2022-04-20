@@ -25,3 +25,26 @@
   text-align: left;
   display: block;
 }
+
+.dev{
+  width: 200px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+
+.edit-profile-modal-profilePicture{
+  width: 200px;
+}
+
+.edit-profile-modal-profilePicture-selectIcon{
+  position: absolute;
+  margin: 140px  100px 100px 160px;
+  padding: 5px;
+  background-color: $doctor-registration-dp-upload-background;
+  width: 40px;
+  &:hover{
+    cursor: pointer;
+  }
+}

@@ -23,7 +23,6 @@ export const userProfile ={
     birthDate:'2013-01-08',
     address:'Gabada weediya, Matara',
     description:'mama ovindu',
-    profilePicture:'https://docs.google.com/uc?id=1shwxCvYocBMX-XM_knl-vyaSgxv0_lN7',
     QRCode:'https://docs.google.com/uc?id=1d2poPvYq9ZgiHis0MK4CWC_96WoNxjTE'
 }
 export const doctorProfile ={
