@@ -1,0 +1,83 @@
+.doctor-registration{
+  font-family: 'Roboto', sans-serif;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.doctor-registration-form-container{
+  margin: auto;
+  min-width: 300px;
+  max-width: 70vw;
+  background-color: $doctor-registration-BG;
+  padding: 40px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.doctor-registration-savebtn{
+  margin: 30px auto auto auto;
+  width: 150px;
+  border-radius: 20px;
+  background-color: $doctor-registration-Save-btn;
+  border-color: $doctor-registration-Save-btn;
+  &:disabled{
+    background-color: $doctor-registration-Save-btn;
+    border-color: $doctor-registration-Save-btn;
+  }
+}
+
+.doctor-registration-form{
+  display: flex;
+  flex-direction:row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.doctor-registration-form-section1{
+  padding-top: 40px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex: 1;
+  align-items: center;
+}
+.doctor-registration-form-section1-image{
+  width: 150px;
+  background-color: $doctor-registration-dp-background;
+}
+
+.doctor-registration-form-section1-image-selectIcon{
+  position: absolute;
+  margin: 130px 100px 100px 60px;
+  padding: 5px;
+  background-color: $doctor-registration-dp-upload-background;
+  width: 30px;
+  &:hover{
+    cursor: pointer;
+  }
+}
+
+.doctor-registration-form-section2{
+  margin-left: 40px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  flex: 5;
+  justify-content: space-evenly;
+}
+.doctor-registration-form-section2 #input{
+  padding-left: 20px;
+  border-radius: 20px;
+}
+
+.doctor-registration-form-section2-part1{
+  max-width: 350px;
+  padding-left: 20px;
+  border-left: 2px solid whitesmoke;
+}
+
+.doctor-registration-form-section2-part2{
+  max-width: 350px;
+  padding-left: 20px;
+  border-left: 2px solid $doctor-registration-leftBorder;
+}
