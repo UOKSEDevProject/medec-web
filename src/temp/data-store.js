@@ -101,3 +101,6 @@ export const homeContent = [
     {title: 'Make an Appointment', content : 'Channel your doctor from here', imgUrl: calender},
     {title: 'Manage Doctor', content : 'View your lab reports from one place', imgUrl: qr},
 ]
+
+export const availableDoctor = {name : "Dr. Ovindu Archana"}
+
