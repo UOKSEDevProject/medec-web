@@ -25,6 +25,10 @@ export const CHECKOUT_FIELDS ={
     Gender:'gender',
     Specialization:'specialization',
     MedicalCouncilNumber:'medicalCouncilNumber',
+    Title:'tittle',
+    Birthdate:'birthDate',
+    Country:'country',
+    BloodGroup:'bloodGroup',
 }
 
 export const genders = [
