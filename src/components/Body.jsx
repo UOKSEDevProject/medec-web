@@ -5,6 +5,7 @@ import DoctorProfile from "./body/DoctorProfile";
 import PatientProfile from './body/PatientProfile';
 import Home from './body/Home';
 import DoctorRegistration from "./body/DoctorRegistration";
+import MedicalCNumberSearch from "./body/MedicalCNumberSearch";
 
 const Body = () => {
   return (
@@ -13,9 +14,10 @@ const Body = () => {
               <Container fluid={true}>
                 {/*  <Search/>
                   <DctList/>
-                  <DoctorProfile/>*/}
+                  <DoctorProfile/>
                   <PatientProfile/>
-                  {/*<DoctorRegistration/>*/}
+                  <DoctorRegistration/>*/}
+                  <MedicalCNumberSearch/>
               </Container>
           </div>
           {/*<div className='home-page-container'>
