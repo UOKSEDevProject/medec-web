@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Button} from "react-bootstrap";
 import {availableDoctor} from "../../temp/data-store";
+import {GoSearch} from "react-icons/go";
 
 const MedicalCNumberSearch = () => {
 
@@ -36,7 +37,7 @@ const MedicalCNumberSearch = () => {
                 <div >
                     <input className='search-MC-num-search-box' type="text" name="CouncilNumber"
                            placeholder={"MBBS225522"}/>
-                    <Button className='default-btn' onClick={searchDoctor}>Search</Button>
+                    <Button className='default-btn' onClick={searchDoctor}><GoSearch/> &nbsp; Search</Button>
                 </div>
                 <div  hidden={isFirstTime}>
                     <div className='search-MC-num-search-result'hidden={isDoctorAvailable}>
