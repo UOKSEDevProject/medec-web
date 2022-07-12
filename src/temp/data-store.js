@@ -103,3 +103,22 @@ export const homeContent = [
 
 export const availableDoctor = {name : "Dr. Ovindu Archana"}
 
+export const qrCodeDetails = {
+    //number should come from saved list
+    number: '03',
+    name: 'Nimal Siriwardena',
+    age: 25,
+    gender: 'Male',
+    tp: '0771231235',
+    profilePicture:'https://docs.google.com/uc?id=1qII4n9Up8Of7LjNf8GaaqE7sf5QxWHkh',
+    reportList:[
+        {name:'FBC'},
+        {name:'Dengue Antibody'},
+        {name:'FBS'},
+        {name:'Lipid Profile'},
+        {name:'Dengue Antibody'},
+        {name:'FBS'},
+        {name:'Lipid Profile'}
+    ],
+}
+
