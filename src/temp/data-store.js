@@ -94,12 +94,23 @@ export const searchList = [
     {label: 'helasaslo', value: 'saassd'},
 ]
 
-export const homeContent = [
-    {title: 'Add Doctors', content : 'Find doctors who are currently in hospitals near you', imgUrl: availableDc},
-    {title: 'Add Lab Report', content : 'View your lab reports from one place', imgUrl: labReport},
-    {title: 'Make an Appointment', content : 'Channel your doctor from here', imgUrl: calender},
-    {title: 'Manage Doctor', content : 'View your lab reports from one place', imgUrl: qr},
-]
+export const homeContent = {
+    chanCenter: [
+        {title: 'Add Doctors', content : 'Find doctors who are currently in hospitals near you', imgUrl: availableDc},
+        {title: 'Add Lab Report', content : 'View your lab reports from one place', imgUrl: labReport},
+        {title: 'Make an Appointment', content : 'Channel your doctor from here', imgUrl: calender},
+        {title: 'Manage Doctor', content : 'View your lab reports from one place', imgUrl: qr},
+    ],
+    lab: [
+        {title: 'Scan QR', content : 'Get required lab test list from here', imgUrl: qr},
+        {title: 'Upload', content : 'View customer list and upload the reports', imgUrl: labReport}
+    ],
+    user: [
+        {title: 'View available doctors', content : 'Find doctors who are currently in hospitals near you', imgUrl: availableDc},
+        {title: 'Lab report portal', content : 'View your lab reports from one place', imgUrl: labReport},
+        {title: 'Make an Appointment', content : 'Channel your doctor from here', imgUrl: calender}
+    ]
+}
 
 export const availableDoctor = {name : "Dr. Ovindu Archana"}
 

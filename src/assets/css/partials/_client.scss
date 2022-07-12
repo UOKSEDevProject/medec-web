@@ -1,3 +1,5 @@
+@import 'layout-breakpoint';
+
 body {
   font-size: 1em;
 }
@@ -10,5 +12,14 @@ body {
 .home-page-container {
   background-image: url('../../images/home-page.jpg');
   margin-top: 90px;
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: $layout-breakpoint-sm) {
+  .home-page-container {
+    min-height: 60vh;
+  }
 }
 
