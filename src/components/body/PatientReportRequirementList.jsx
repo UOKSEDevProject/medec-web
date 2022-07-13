@@ -9,7 +9,6 @@ function PatientReportRequirementList() {
     const [reports,setReports] = useState(qrCodeDetails.reportList);
 
     const setRequirement = (index,report) =>{
-
       setReports(reports=>[...reports]);
         reports[index]= {
             name: report.name,
@@ -17,7 +16,7 @@ function PatientReportRequirementList() {
         };
     }
     const completeTask = () => {
-
+//have to save reports array with qr code details in backend
     }
 
     return (
