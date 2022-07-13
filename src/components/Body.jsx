@@ -1,5 +1,5 @@
 import DctList from "./body/DctList";
-import { Container } from 'react-bootstrap';
+import { Container } from "react-bootstrap";
 import Search from "./body/Search";
 import DoctorProfile from "./body/DoctorProfile";
 import PatientProfile from './body/PatientProfile';
@@ -11,22 +11,22 @@ import PatientReportRequirementList from "./body/PatientReportRequirementList";
 const Body = () => {
   return (
       <div>
-          <div className='body-container'>
+          {/*<div className='body-container'>
               <Container fluid={true}>
-                {/*  <Search/>
+                  <Search/>
                   <DctList/>
                   <DoctorProfile/>
                   <PatientProfile/>
                   <DoctorRegistration/>
-                  <MedicalCNumberSearch/>*/}
+                  <MedicalCNumberSearch/>
                   <PatientReportRequirementList/>
               </Container>
-          </div>
-          {/*<div className='home-page-container'>
+          </div>*/}
+          <div className='home-page-container'>
               <Container fluid={true}>
                   <Home/>
               </Container>
-          </div>*/}
+          </div>
       </div>
   );
 };
