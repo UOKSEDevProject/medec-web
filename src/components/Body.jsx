@@ -10,21 +10,21 @@ import MedicalCNumberSearch from "./body/MedicalCNumberSearch";
 const Body = () => {
   return (
       <div>
-          <div className='body-container'>
+          {/*<div className='body-container'>
               <Container fluid={true}>
-                {/*  <Search/>
+                  <Search/>
                   <DctList/>
                   <DoctorProfile/>
                   <PatientProfile/>
-                  <DoctorRegistration/>*/}
+                  <DoctorRegistration/>
                   <MedicalCNumberSearch/>
               </Container>
-          </div>
-          {/*<div className='home-page-container'>
+          </div>*/}
+          <div className='home-page-container'>
               <Container fluid={true}>
                   <Home/>
               </Container>
-          </div>*/}
+          </div>
       </div>
   );
 };

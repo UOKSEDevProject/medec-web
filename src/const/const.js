@@ -40,3 +40,9 @@ export const specializations =[
     {specialization:'General Practitioner'},
     {specialization:'Cardiologist'}
 ]
+
+export const component = {
+    chanCenter: 'CHAN_CENTER',
+    laboratory: 'LABORATORY',
+    user: 'USER'
+}

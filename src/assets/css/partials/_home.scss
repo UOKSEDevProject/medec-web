@@ -60,3 +60,14 @@
     }
   }
 }
+
+@media (max-width: $layout-breakpoint-sm) {
+  .home-page {
+    font-size: .8em;
+
+    &-title {
+      font-size: 1.8em;
+      margin-top: 12px;
+    }
+  }
+}
