@@ -1,28 +1,12 @@
-import React, {useRef, useState} from "react";
-import {Col, Row, Offcanvas, Button, Container, Image} from "react-bootstrap";
+import React, { useState} from "react";
+import {Image} from "react-bootstrap";
 import {ptList} from "../../temp/data-store";
-import {AiOutlineLeft, AiOutlineRight} from "react-icons/ai";
 
-const PatientList = (props) => {
+const PatientList = () => {
     const [index, setIndex] = useState(1);
 
     const onComplete = () => {
         index + 1 < 20 && setIndex((index) => (index = index + 1));
-    };
-
-    const [isExpanded, setIsExpanded] = useState(false);
-    const tabbar = useRef();
-
-    const onExpanding = () => {
-        tabbar.current.style.transition = "transform ease-in-out 0.8s";
-        tabbar.current.style.transform = `translateX(${-((tabbar.current.clientWidth / 11.7) * 10)}px)`;
-        setIsExpanded(true);
-    };
-
-    const onUnexpanding = () => {
-        tabbar.current.style.transition = "transform ease-in-out 0.8s";
-        tabbar.current.style.transform = `translateX(${0}px)`;
-        setIsExpanded(false);
     };
 
     return (
