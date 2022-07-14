@@ -1,0 +1,35 @@
+.add-appointment-form{
+  min-width: 500px;
+  background-color: rgba(1,1,1,0.2);
+  border-radius: 16px;
+  padding: 2rem 3rem;
+}
+
+.add-appointment-form-label{
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-left: 15px;
+}
+
+.add-appointment-form input{
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+
+.button {
+  width: 200px;
+  margin: 10px auto;
+  background-color: rgb(3, 13, 46);
+  color: white;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.button:hover{
+  background-color: rgb(3, 13, 46);
+}
