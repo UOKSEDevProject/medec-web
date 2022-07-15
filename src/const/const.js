@@ -29,6 +29,8 @@ export const CHECKOUT_FIELDS ={
     Birthdate:'birthDate',
     Country:'country',
     BloodGroup:'bloodGroup',
+    Name:"name",
+    Age:"age"
 }
 
 export const genders = [

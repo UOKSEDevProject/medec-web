@@ -1,19 +1,45 @@
 import React, {useEffect, useState} from "react";
 import {Button, Form, Image, Row} from "react-bootstrap";
 import {doctorProfile} from "../../temp/data-store";
+import {setErrors} from "../../func/formUtility";
 
 const AddManualAppointment = () => {
-    const [appointment, setAppointment] = useState({});
-    const [errors, setErrors] = useState({});
+    const [appointment, setAppointment] = useState({
+        name: undefined,
+        age: undefined,
+        phoneNumber: undefined,
+        address: undefined
+    });
+    const [errors, seterrors] = useState({});
     const [isFirstSubmit, setIsFirstSubmit] = useState(false)
 
-    const onChange = (e) => {
-        setAppointment({...appointment, [e.target.name]: e.target.value})
+    const validateFormFields = (e) => {
+        if (e === undefined) {
+            for (let name in appointment) {
+                let error = setErrors({target: {name: name, value: appointment[name]}}, errors);
+            }
+        } else {
+            let error = setErrors(e, errors);
+            seterrors({...errors, error});
+        }
     }
-    const onSubmit = (e) => {
+
+    const onChange = (e) => {
+        validateFormFields(e);
+        setAppointment({...appointment, [e.target.name]: e.target.value});
+    }
+
+    const onSubmit = () => {
         if (!isFirstSubmit) {
+            validateFormFields();
             setIsFirstSubmit(true);
         }
+        if (Object.keys(errors).length === 0) {
+            saveAppointmentDetails();
+        }
+    }
+
+    function saveAppointmentDetails() {
     }
 
     return (
@@ -28,13 +54,10 @@ const AddManualAppointment = () => {
                     <Form.Group className="mb-3">
                         <Form.Label className="add-appointment-form-label">Name</Form.Label>
                         <Form.Control
-                            id='input'
                             type='text'
                             name='name'
                             placeholder={'Enter Patient Name'}
                             value={appointment.name}
-                            aria-required={true}
-                            aria-describedby='name'
                             onChange={onChange}
                         />
                         {isFirstSubmit && <span id='name' className='form-error' role='status'>{errors.name}</span>}
@@ -42,13 +65,10 @@ const AddManualAppointment = () => {
                     <Form.Group className="mb-3">
                         <Form.Label className="add-appointment-form-label">Age</Form.Label>
                         <Form.Control
-                            id='input'
-                            type='text'
+                            type='number'
                             name='age'
                             placeholder={'Enter Patient Age'}
                             value={appointment.age}
-                            aria-required={true}
-                            aria-describedby='age'
                             onChange={onChange}
                         />
                         {isFirstSubmit && <span id='age' className='form-error' role='status'>{errors.age}</span>}
@@ -56,30 +76,26 @@ const AddManualAppointment = () => {
                     <Form.Group className="mb-3">
                         <Form.Label className="add-appointment-form-label">Contact Number</Form.Label>
                         <Form.Control
-                            id='input'
                             type='text'
-                            name='contactNumber'
+                            name='phoneNumber'
                             placeholder={'Enter Patient Contact Number'}
-                            value={appointment.contactNumber}
-                            aria-required={true}
-                            aria-describedby='contactNumber'
+                            value={appointment.phoneNumber}
                             onChange={onChange}
                         />
-                        {isFirstSubmit && <span id='contactNumber' className='form-error' role='status'>{errors.contactNumber}</span>}
+                        {isFirstSubmit &&
+                            <span id='phoneNumber' className='form-error' role='status'>{errors.phoneNumber}</span>}
                     </Form.Group>
                     <Form.Group className="mb-3">
                         <Form.Label className="add-appointment-form-label">Address</Form.Label>
                         <Form.Control
-                            id='input'
                             type='text'
                             name='address'
                             placeholder={'Enter Patient Address'}
                             value={appointment.address}
-                            aria-required={true}
-                            aria-describedby='address'
                             onChange={onChange}
                         />
-                        {isFirstSubmit && <span id='address' className='form-error' role='status'>{errors.address}</span>}
+                        {isFirstSubmit &&
+                            <span id='address' className='form-error' role='status'>{errors.address}</span>}
                     </Form.Group>
                 </Form>
                 <div className="d-flex justify-content-center">
