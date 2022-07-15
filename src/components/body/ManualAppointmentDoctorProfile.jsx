@@ -21,6 +21,7 @@ const ManualAppointmentDoctorProfile = () => {
                             time={item.time}
                             appointments={item.appointments}
                             maximumAppointments={item.maximumAppointments}
+                            text="Add"
                         />
                     ))}
                 </div>
