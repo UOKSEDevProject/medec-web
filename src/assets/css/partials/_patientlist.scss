@@ -1,0 +1,91 @@
+p {
+  margin-bottom: 0 !important;
+}
+
+.ptlist-left{
+  width: 35vw;
+}
+
+.ptlist-right {
+  width: 65vw;
+}
+
+.ptlist-right-left{
+  width: 70%;
+}
+
+.pt-image {
+  width: 25%;
+  object-fit: contain;
+}
+
+.pt-number,
+.pt-name {
+  font-size: 1.8rem;
+}
+
+.pt-details {
+  background-color: rgba($color: #000000, $alpha: 0.2);
+  padding: 20px 30px;
+}
+
+.pt-detail-label {
+  width: 20%;
+  margin-right: 20px;
+  color: white;
+  font-weight: 500;
+}
+
+.pt-detail-value {
+  background-color: white;
+  font-weight: 500;
+  border-radius: 20px;
+}
+
+.ptlist-left-title {
+  text-align: center;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0 !important;
+  background-color: rgba($color: white, $alpha: 0.4);
+  border-radius: 0 8px 8px 0;
+}
+
+.pt-tab-container {
+  height: 650px;
+  overflow-y: scroll;
+  background-color: rgba($color: white, $alpha: 0.5);
+}
+
+.pt-tab {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.pt-tab-number{
+  width: 20%;
+  text-align: center;
+}
+
+#selected {
+  background-color: rgba($color: #000000, $alpha: 0.85);
+  color: white;
+}
+
+#unselected {
+  cursor: pointer;
+}
+
+.button {
+  background-color: rgb(3, 13, 46);
+  color: white;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.button:hover{
+  background-color: rgb(3, 13, 46);
+}
