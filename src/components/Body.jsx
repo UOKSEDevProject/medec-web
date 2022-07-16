@@ -8,6 +8,7 @@ import DoctorRegistration from "./body/DoctorRegistration";
 import MedicalCNumberSearch from './body/MedicalCNumberSearch';
 import PatientReportRequirementList from "./body/PatientReportRequirementList";
 import AddManualAppointment from "./body/AddManualAppointment";
+import PatientList from "./body/PatientList";
 
 const Body = () => {
   return (
@@ -19,10 +20,11 @@ const Body = () => {
                   <DoctorProfile/>
                   <PatientProfile/>
                   <DoctorRegistration/>
+                   <PatientList/>
                   <MedicalCNumberSearch/>*/}
                   {/*<PatientReportRequirementList/>*/}
-                  <AddManualAppointment/>
                   {/*<DoctorRegistration/>*/}
+                   <AddManualAppointment/>
               </Container>
           </div>
          {/* <div className='home-page-container'>
