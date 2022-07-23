@@ -7,6 +7,7 @@ import Home from './body/Home';
 import DoctorRegistration from "./body/DoctorRegistration";
 import MedicalCNumberSearch from './body/MedicalCNumberSearch';
 import PatientReportRequirementList from "./body/PatientReportRequirementList";
+import ManualAppointmentDoctorProfile from "./body/ManualAppointmentDoctorProfile";
 import AddManualAppointment from "./body/AddManualAppointment";
 import PatientList from "./body/PatientList";
 
@@ -23,6 +24,7 @@ const Body = () => {
                    <PatientList/>
                   <MedicalCNumberSearch/>*/}
                   {/*<PatientReportRequirementList/>*/}
+                  <ManualAppointmentDoctorProfile/>
                   {/*<DoctorRegistration/>*/}
                    <AddManualAppointment/>
               </Container>
