@@ -7,7 +7,11 @@ import Home from './body/Home';
 import DoctorRegistration from "./body/DoctorRegistration";
 import MedicalCNumberSearch from './body/MedicalCNumberSearch';
 import PatientReportRequirementList from "./body/PatientReportRequirementList";
+import ManualAppointmentDoctorProfile from "./body/ManualAppointmentDoctorProfile";
+import AddManualAppointment from "./body/AddManualAppointment";
 import PatientList from "./body/PatientList";
+import Login from "./body/Login";
+import Register from "./body/Register";
 
 const Body = () => {
   return (
@@ -19,9 +23,14 @@ const Body = () => {
                   <DoctorProfile/>
                   <PatientProfile/>
                   <DoctorRegistration/>
-                  <MedicalCNumberSearch/>*/}
-                  {/*<PatientReportRequirementList/>*/}
-                  <PatientList/>
+                   <PatientList/>
+                  <MedicalCNumberSearch/>
+                  <PatientReportRequirementList/>
+                  <ManualAppointmentDoctorProfile/>
+                  <DoctorRegistration/>
+                   <AddManualAppointment/>
+                  <Login/>*/}
+                  <Register/>
               </Container>
           </div>
          {/* <div className='home-page-container'>

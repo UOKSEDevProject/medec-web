@@ -144,6 +144,27 @@ export const doctorProfile = {
     ]
 }
 
+export const manualAppointmentDoctorProfile = {
+    firstName: 'Thilina',
+    lastName: 'Pahalagedara',
+    specialization: 'Orthopedist',
+    profilePicture: 'https://docs.google.com/uc?id=1qII4n9Up8Of7LjNf8GaaqE7sf5QxWHkh',
+    sessionList: [
+        {
+            time: '05.30PM',
+            date: '25/11/2021',
+            appointments: 20,
+            maximumAppointments: 20,
+        },
+        {
+            time: '05.30PM',
+            date: '25/11/2021',
+            appointments: 5,
+            maximumAppointments: 20,
+        }
+    ]
+}
+
 export const searchList = [
     {label: 'hello', value: 'kekek'},
     {label: 'Hisks', value: 'asasa'},
