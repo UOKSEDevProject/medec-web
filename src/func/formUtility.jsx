@@ -9,11 +9,15 @@ import {
     validateGender,
     validateSpecialization,
     validateTitle,
-    validateCountry, validateBirtDate, validateBloodGroup
+    validateCountry,
+    validateBirtDate,
+    validateBloodGroup,
+    validateName,
+    validateAge
 } from "./clientSideValidation";
 import {CHECKOUT_FIELDS} from "../const/const";
 
-export const setErrors=(event, errors)=> {
+export const setErrors = (event, errors) => {
     switch (event.target.name) {
         case  CHECKOUT_FIELDS.FIRST_NAME:
             validateFirstName(event.target.value, errors);
@@ -34,31 +38,36 @@ export const setErrors=(event, errors)=> {
             validateEmail(event.target.value, errors);
             break;
         case CHECKOUT_FIELDS.MedicalCouncilNumber:
-            validateMedicalCouncilNumber(event.target.value,errors)
+            validateMedicalCouncilNumber(event.target.value, errors)
             break;
         case CHECKOUT_FIELDS.Gender:
-            validateGender(event.target.value,errors)
+            validateGender(event.target.value, errors)
             break;
         case CHECKOUT_FIELDS.Specialization:
-            validateSpecialization(event.target.value,errors)
+            validateSpecialization(event.target.value, errors)
             break;
         case CHECKOUT_FIELDS.Title:
-            validateTitle(event.target.value,errors)
+            validateTitle(event.target.value, errors)
             break;
         case CHECKOUT_FIELDS.Country:
-            validateCountry(event.target.value,errors)
+            validateCountry(event.target.value, errors)
             break;
         case CHECKOUT_FIELDS.Birthdate:
-            validateBirtDate(event.target.value,errors)
+            validateBirtDate(event.target.value, errors)
             break;
         case CHECKOUT_FIELDS.BloodGroup:
-            validateBloodGroup(event.target.value,errors)
+            validateBloodGroup(event.target.value, errors)
             break;
+        case CHECKOUT_FIELDS.Name:
+            validateName(event.target.value, errors)
+            break;
+        case  CHECKOUT_FIELDS.Age:
+            validateAge(event.target.value, errors)
     }
     return errors;
 }
 
-export const checkForm=(elements)=> {
+export const checkForm = (elements) => {
     let allFieldsFilled = true;
 
     for (let i = 0; i < elements.length; i++) {
@@ -70,7 +79,7 @@ export const checkForm=(elements)=> {
     return allFieldsFilled;
 }
 
-export const stringFormatter=(str)=>{
+export const stringFormatter = (str) => {
     const lowerCaseString = str.replace(/\s+/g, ' ').trim().toLowerCase();
     const array = lowerCaseString.split(" ");
     for (let i = 0; i < array.length; i++) {
@@ -83,7 +92,8 @@ export const formatPhoneNumber = (str) => {
     let cleaned = ('' + str).replace(/\D/g, '');
     let match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/);
     if (match) {
-        return  match[1] + ' ' + match[2] + ' ' + match[3];
-    };
+        return match[1] + ' ' + match[2] + ' ' + match[3];
+    }
+    ;
     return null;
 };
