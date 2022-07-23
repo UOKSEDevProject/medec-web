@@ -2,19 +2,13 @@ p {
   margin-bottom: 0 !important;
 }
 
-.ptlist-left{
-  width: 35vw;
-}
-
-.ptlist-right {
-  width: 65vw;
-}
-
-.ptlist-right-left{
-  width: 70%;
+.pt{
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 .pt-image {
+  max-width: 200px;
   width: 25%;
   object-fit: contain;
 }
@@ -40,40 +34,6 @@ p {
   background-color: white;
   font-weight: 500;
   border-radius: 20px;
-}
-
-.ptlist-left-title {
-  text-align: center;
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 0 !important;
-  background-color: rgba($color: white, $alpha: 0.4);
-  border-radius: 0 8px 8px 0;
-}
-
-.pt-tab-container {
-  height: 650px;
-  overflow-y: scroll;
-  background-color: rgba($color: white, $alpha: 0.5);
-}
-
-.pt-tab {
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.pt-tab-number{
-  width: 20%;
-  text-align: center;
-}
-
-#selected {
-  background-color: rgba($color: #000000, $alpha: 0.85);
-  color: white;
-}
-
-#unselected {
-  cursor: pointer;
 }
 
 .button {
