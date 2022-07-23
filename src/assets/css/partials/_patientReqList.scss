@@ -17,6 +17,8 @@
   border-radius: 20px;
 }
 .pt-report-req-details{
+  font-weight: 700;
+  font-size: 1.2rem;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap-reverse;
@@ -81,4 +83,11 @@
 .pt-report-req-finish{
   margin-left: 100%;
   margin-right: 0%;
+}
+.list-item-images{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-width: 100px;
 }

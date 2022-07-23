@@ -12,6 +12,7 @@ import AddManualAppointment from "./body/AddManualAppointment";
 import PatientList from "./body/PatientList";
 import Login from "./body/Login";
 import Register from "./body/Register";
+import LabPatientList from "./body/LabPatientList";
 
 const Body = () => {
   return (
@@ -29,8 +30,9 @@ const Body = () => {
                   <ManualAppointmentDoctorProfile/>
                   <DoctorRegistration/>
                    <AddManualAppointment/>
-                  <Login/>*/}
-                  <Register/>
+                  <Login/>
+                  <Register/>*/}
+                  <LabPatientList/>
               </Container>
           </div>
          {/* <div className='home-page-container'>
