@@ -22,13 +22,15 @@ export const CHECKOUT_FIELDS = {
     PHONE_NUMBER: 'phoneNumber',
     Full_Name: 'fullName',
     Email: 'email',
-    Gender: 'gender',
-    Specialization: 'specialization',
-    MedicalCouncilNumber: 'medicalCouncilNumber',
-    Title: 'tittle',
-    Birthdate: 'birthDate',
-    Country: 'country',
-    BloodGroup: 'bloodGroup',
+    Gender:'gender',
+    Specialization:'specialization',
+    MedicalCouncilNumber:'medicalCouncilNumber',
+    Title:'tittle',
+    Birthdate:'birthDate',
+    Country:'country',
+    BloodGroup:'bloodGroup',
+    Name:"name",
+    Age:"age"
 }
 
 export const genders = [
