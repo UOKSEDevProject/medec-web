@@ -13,7 +13,8 @@ import {
     validateBirtDate,
     validateBloodGroup,
     validateName,
-    validateAge
+    validateAge,
+    validatePassword
 } from "./clientSideValidation";
 import {CHECKOUT_FIELDS} from "../const/const";
 
@@ -63,6 +64,9 @@ export const setErrors = (event, errors) => {
             break;
         case  CHECKOUT_FIELDS.Age:
             validateAge(event.target.value, errors)
+        case CHECKOUT_FIELDS.PASSWORD:
+            validatePassword(event.target.value,errors)
+            break;
     }
     return errors;
 }
@@ -93,7 +97,6 @@ export const formatPhoneNumber = (str) => {
     let match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/);
     if (match) {
         return match[1] + ' ' + match[2] + ' ' + match[3];
-    }
-    ;
+    };
     return null;
 };

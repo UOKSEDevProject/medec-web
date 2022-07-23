@@ -48,7 +48,6 @@ export function validatePhone(phoneNumberValue, errors) {
     if (phoneNumberValue === '' || phoneNumberValue === undefined) {
         errors["phoneNumber"] = "Please fill in your phone number";
     } else if (typeof phoneNumberValue !== "undefined") {
-        delete errors.phoneNumber;
         if (!phoneNumberValue.match(/(\d{3} )(\d{3} )(\d{3})$/)) {
             errors["phoneNumber"] = "Phone number should contain only 9 numbers";
         } else {
@@ -148,5 +147,28 @@ export function validateAge(ageValue, errors) {
         errors["age"] = "Age should be between 1 and 200";
     } else {
         delete errors.age;
+    }
+}
+
+export function validatePassword(passwordValue, errors) {
+    if (passwordValue === '') {
+        errors["password"] = "Please enter your password";
+    } else if (typeof passwordValue !== "undefined") {
+        if (!passwordValue.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!#%*?&])[A-Za-z\d@$!%#*?&]{8,}$/)) {
+            errors["password"] = "your password should include Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character";
+        } else {
+            delete errors.password;
+        }
+    }
+}
+export function validatePassword2(passwordValue1, passwordValue2, errors) {
+    if (passwordValue1 === '') {
+        errors["password2"] = "Please re-enter your password";
+    } else if (typeof passwordValue1 !== "undefined") {
+        if (passwordValue1!==passwordValue2) {
+            errors["password2"] = "password miss match";
+        } else {
+            delete errors.password2;
+        }
     }
 }
