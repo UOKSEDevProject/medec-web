@@ -7,6 +7,8 @@ import Home from './body/Home';
 import DoctorRegistration from "./body/DoctorRegistration";
 import MedicalCNumberSearch from './body/MedicalCNumberSearch';
 import PatientReportRequirementList from "./body/PatientReportRequirementList";
+import Login from "./body/Login";
+import Register from "./body/Register";
 
 const Body = () => {
   return (
@@ -18,8 +20,10 @@ const Body = () => {
                   <DoctorProfile/>
                   <PatientProfile/>
                   <DoctorRegistration/>
-                  <MedicalCNumberSearch/>*/}
+                  <MedicalCNumberSearch/>
                   <PatientReportRequirementList/>
+                  <Login/>*/}
+                  <Register/>
               </Container>
           </div>
          {/* <div className='home-page-container'>

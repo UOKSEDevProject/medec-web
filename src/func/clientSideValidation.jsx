@@ -129,3 +129,26 @@ export function validateCountry(value, errors) {
         delete errors.country;
     }
 }
+
+export function validatePassword(passwordValue, errors) {
+    if (passwordValue === '') {
+        errors["password"] = "Please enter your password";
+    } else if (typeof passwordValue !== "undefined") {
+        if (!passwordValue.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!#%*?&])[A-Za-z\d@$!%#*?&]{8,}$/)) {
+            errors["password"] = "your password should include Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character";
+        } else {
+            delete errors.password;
+        }
+    }
+}
+export function validatePassword2(passwordValue1, passwordValue2, errors) {
+    if (passwordValue1 === '') {
+        errors["password2"] = "Please re-enter your password";
+    } else if (typeof passwordValue1 !== "undefined") {
+        if (passwordValue1!==passwordValue2) {
+            errors["password2"] = "password miss match";
+        } else {
+            delete errors.password2;
+        }
+    }
+}

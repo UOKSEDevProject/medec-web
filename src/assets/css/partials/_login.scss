@@ -1,0 +1,65 @@
+.login-form{
+  font-family: 'Roboto', sans-serif;
+  padding-top: 15vh;
+  padding-bottom: 10vh;
+}
+.login-form-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 300px;
+  max-width: 40vw;
+  background-color: rgba(1,1,1,0.2);
+  padding: 40px;
+  flex-wrap: wrap;
+  border-radius: 20px;
+  margin:auto;
+}
+.login-form-dp{
+  width: 100px;
+}
+.login-form-inputs{
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  width: 100%;
+}
+.register-form-link{
+  margin-top: 5px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.login-form-link1{
+  margin-top: 5px;
+  margin-left: auto;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.login-form-link2{
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+.login-btn{
+  margin: 10px;
+  padding: 5px 80px 5px 80px;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  font-size: 1.1rem;
+  background-color: $footer-navlinkTX;
+  border-color: $footer-navlinkTX;
+
+  &:disabled{
+    background-color: $footer-navlinkTX;
+    border-color: $footer-navlinkTX;
+  }
+}
+.policies-stmt{
+  margin-left: 10px;
+}
+.toSignIn-link{
+  &:hover{
+    cursor: pointer;
+  }
+}
