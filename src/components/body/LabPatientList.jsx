@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Drawer from "./Drawer";
 import {labPtList, ptList, qrCodeDetails} from "../../temp/data-store";
 import {Button, Image} from "react-bootstrap";
@@ -8,7 +8,12 @@ import unTickImg from "../../assets/images/untick.png"
 
 function LabPatientList(props) {
     const [index, setIndex] = useState(0);
-    const [reports,setReports] = useState(labPtList[index].reportList);
+    const [reports,setReports] = useState();
+
+    useEffect(() => {
+       setReports(labPtList[index].reportList);
+    }, [index]);
+    
 
     const upload = (index,report) =>{
         setReports(reports=>[...reports]);
@@ -43,7 +48,7 @@ function LabPatientList(props) {
                 <div  className='pt-report-req-list'>
                     <div className='pt-report-req-list-in'>
                         {
-                            labPtList[index].reportList.map((report, index)=>(
+                            reports?.map((report, index)=>(
                                 <div key={index} className='pt-report-req-list-item'>
                                     <div>{report.name}</div>
                                     <div className={'list-item-images'}>
@@ -58,7 +63,7 @@ function LabPatientList(props) {
 
                 </div>
                 <div className='pt-report-req-finish'>
-                    <Button className='default-btn' variant='secondary' onClick={toNext}>Finish</Button>
+                    <Button className='default-btn' variant='secondary' onClick={toNext}>Next</Button>
                 </div>
             </div>
         </div>
