@@ -1,5 +1,5 @@
 import DctList from "./body/DctList";
-import { Container } from "react-bootstrap";
+import {Container} from "react-bootstrap";
 import Search from "./body/Search";
 import DoctorProfile from "./body/DoctorProfile";
 import PatientProfile from './body/PatientProfile';
@@ -14,32 +14,32 @@ import Login from "./body/Login";
 import Register from "./body/Register";
 
 const Body = () => {
-  return (
-      <div>
-         <div className='body-container'>
-              <Container fluid={true}>
-                   {/*<Search/>
+    return (
+        <div>
+            <div className='body-container'>
+                <Container fluid={true}>
+                    {/*<Search/>
                   <DctList/>
                   <DoctorProfile/>
                   <PatientProfile/>
                   <DoctorRegistration/>
-                   <PatientList/>
+                  <Register/>
                   <MedicalCNumberSearch/>
                   <PatientReportRequirementList/>
                   <ManualAppointmentDoctorProfile/>
                   <DoctorRegistration/>
                    <AddManualAppointment/>
                   <Login/>*/}
-                  <Register/>
-              </Container>
-          </div>
-         {/* <div className='home-page-container'>
+                    <PatientList/>
+                </Container>
+            </div>
+            {/* <div className='home-page-container'>
               <Container fluid={true}>
                   <Home/>
               </Container>
           </div>*/}
-      </div>
-  );
+        </div>
+    );
 };
 
 export default Body;
