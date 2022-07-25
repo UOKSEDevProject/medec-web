@@ -6,18 +6,19 @@ import PatientProfile from "./body/PatientProfile";
 import Home from "./body/Home";
 import DoctorRegistration from "./body/DoctorRegistration";
 import ReportList from "./body/ReportList";
+import { MyAppointments } from "./body/MyAppointments";
 
 const Body = () => {
   return (
     <div>
       <div className='body-container'>
         <Container fluid={true}>
-            {/*<Search/>
+          {/*<Search/>
                     <DctList/>
                     <DoctorProfile/>
                     <PatientProfile/>*/}
-            {/* <DoctorRegistration /> */}
-            <ReportList />
+          {/* <DoctorRegistration /> */}
+          <MyAppointments />
         </Container>
       </div>
       {/*  <div className='home-page-container'>

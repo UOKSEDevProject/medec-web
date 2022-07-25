@@ -4,10 +4,8 @@ $dct-dr: #050203;
 $dct-toggleOnline: #3ff600;
 $dct-toggleOffline: #f70000;
 
-
 /* navbar */
 $navbar-BG: rgba(45, 74, 87, 1);
-
 
 /* footer */
 $footer-BG: #e7ecff;
@@ -18,15 +16,21 @@ $footer-navlinkTX: #111b47;
 $search-btn-color: #637ae2;
 
 /* home-page */
-$home-page-content-image-border: #38447E;
-$home-page-content-title: #0136BF;
-$home-page-content: #050D0F;
+$home-page-content-image-border: #38447e;
+$home-page-content-title: #0136bf;
+$home-page-content: #050d0f;
 $home-page-title: #e7ecff;
-$home-page-aboutus-btn: #101B48;
+$home-page-aboutus-btn: #101b48;
 
 /* doctor-registration */
-$doctor-registration-BG:rgba(1,1,1,0.2);
-$doctor-registration-dp-background:#02b002;
+$doctor-registration-BG: rgba(1, 1, 1, 0.2);
+$doctor-registration-dp-background: #02b002;
 $doctor-registration-dp-upload-background: white;
 $doctor-registration-Save-btn: #111b47;
-$doctor-registration-leftBorder:whitesmoke;
+$doctor-registration-leftBorder: whitesmoke;
+
+/*my appointment*/
+$table-BG: rgba(0, 0, 0, 0.3);
+$table-border: rgb(0, 0, 0);
+$table-header: rgb(28, 28, 28);
+$table-header-text: rgb(255, 255, 255);
