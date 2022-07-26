@@ -9,7 +9,7 @@ let collapseHeight = screenHeight / 2.75;
 let collapseWidth = screenWidth / 3;
 let prescriptionImageHeight = collapseHeight;
 
-const ReportList = () => {
+const MedicalHistory = () => {
   const [isShowCollapesView, setIsShowCollapesView] = useState(true);
   const [selectedItem, setSelectedItem] = useState(
     medicalHistoryList[0].details[0]
@@ -71,4 +71,4 @@ const ReportList = () => {
   );
 };
 
-export default ReportList;
+export default MedicalHistory;

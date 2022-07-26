@@ -835,3 +835,56 @@ export const medicalHistoryList = [
     ],
   },
 ];
+
+export const labReportList = [
+  {
+    title: "November 2021",
+    details: [
+      {
+        id: "1",
+        day: "23 rd",
+        description: "Full Blood Count Report",
+        imgURL: "https://picsum.photos/id/1/200/300",
+      },
+      {
+        id: "2",
+        day: "24 th",
+        description: "Full Blood Count Report",
+        imgURL: "https://picsum.photos/id/2/200/300",
+      },
+      {
+        id: "3",
+        day: "22 nd",
+        description: "Full Blood Count Report",
+        imgURL: "https://picsum.photos/id/3/200/300",
+      },
+    ],
+  },
+  {
+    title: "October 2021",
+    details: [
+      {
+        id: "4",
+        day: "23 rd",
+        description: "Full Blood Count Report",
+        imgURL: "https://picsum.photos/id/4/200/300",
+      },
+      {
+        id: "5",
+        day: "24 th",
+        description: "Full Blood Count Report",
+        imgURL: "https://picsum.photos/id/5/200/300",
+      },
+      {
+        id: "6",
+        day: "22 nd",
+        description: "Full Blood Count Report",
+        imgURL: "https://picsum.photos/id/6/200/300",
+      },
+    ],
+  },
+  {
+    title: "September 2021",
+    details: [],
+  },
+];

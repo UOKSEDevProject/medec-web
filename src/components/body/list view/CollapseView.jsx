@@ -15,34 +15,41 @@ const CollapseView = (props) => {
   let list = [];
 
   listData.map((item, key) => {
+    console.log(item.details.length);
     list.push(
       <div key={key}>
         <div className='report-list-collapse-body-subtitle'>{item.title}</div>
-        {item.details.map((item, key) => {
-          let isSelectedItem = selectedItem.id === item.id;
-          return (
-            <div
-              className={
-                isSelectedItem
-                  ? "report-list-collapse-body-row report-list-row-selected"
-                  : "report-list-collapse-body-row"
-              }
-              key={key}
-              onClick={() => {
-                setSelectedItem(item);
-              }}
-            >
-              <div className='report-list-collapse-body-culumn1'>
-                {item && item.day && item.day.split(" ")[0]}{" "}
-                <sup>{item && item.day && item.day.split(" ")[1]}</sup>
-              </div>
+        {item.details.length !== 0 ? (
+          item.details.map((item, key) => {
+            let isSelectedItem = selectedItem.id === item.id;
+            return (
+              <div
+                className={
+                  isSelectedItem
+                    ? "report-list-collapse-body-row report-list-row-selected"
+                    : "report-list-collapse-body-row"
+                }
+                key={key}
+                onClick={() => {
+                  setSelectedItem(item);
+                }}
+              >
+                <div className='report-list-collapse-body-culumn1'>
+                  {item && item.day && item.day.split(" ")[0]}{" "}
+                  <sup>{item && item.day && item.day.split(" ")[1]}</sup>
+                </div>
 
-              <div className='report-list-collapse-body-culumn2'>
-                {item.description}
+                <div className='report-list-collapse-body-culumn2'>
+                  {item.description}
+                </div>
               </div>
-            </div>
-          );
-        })}
+            );
+          })
+        ) : (
+          <div className='report-list-empty-report-text'>
+            No Reports Available
+          </div>
+        )}
       </div>
     );
   });

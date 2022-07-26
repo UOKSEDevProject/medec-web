@@ -14,7 +14,8 @@ import Login from "./body/Login";
 import Register from "./body/Register";
 import LabPatientList from "./body/LabPatientList";
 import AddPrescriptions from "./body/AddPrescriptions";
-import ReportList from "./body/ReportList";
+import MedicalHistory from "./body/MedicalHistory";
+import LabReportPortal from "./body/LabReportPortal";
 import { MyAppointments } from "./body/MyAppointments";
 
 const Body = () => {
@@ -37,7 +38,8 @@ const Body = () => {
           <Register />
           <LabPatientList />
           <AddPrescriptions /> */}
-          <ReportList />
+          <MedicalHistory />
+          <LabReportPortal />
           {/* <MyAppointments /> */}
         </Container>
       </div>
