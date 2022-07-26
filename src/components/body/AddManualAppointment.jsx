@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Button, Form, Image, Row} from "react-bootstrap";
 import {doctorProfile} from "../../temp/data-store";
-import {setErrors} from "../../func/formUtility";
+import {setErrors} from "../../utils/formUtility";
 
 const AddManualAppointment = () => {
     const [appointment, setAppointment] = useState({

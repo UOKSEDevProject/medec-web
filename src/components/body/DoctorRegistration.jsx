@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 import {Button, Form, Image, Row} from "react-bootstrap";
 import docProfilePic from '../../assets/images/dp.png';
-import {genders, specializations} from "../../const/const";
+import {genders, specializations} from "../../constants/constants";
 import camera from '../../assets/images/camera.png';
-import {checkForm, formatPhoneNumber, setErrors} from "../../func/formUtility";
+import {checkForm, formatPhoneNumber, setErrors} from "../../utils/formUtility";
 
 function DoctorRegistration(props) {
     const [profile, setProfile] = useState({});

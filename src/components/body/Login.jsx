@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Col, Form, Image, Row} from "react-bootstrap";
 import dp from '../../assets/images/dp.png'
-import {checkForm, setErrors} from "../../func/formUtility";
+import {checkForm, setErrors} from "../../utils/formUtility";
 
 function Login() {
 
