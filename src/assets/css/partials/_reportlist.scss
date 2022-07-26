@@ -1,0 +1,68 @@
+.report-list {
+  &-collapse-container {
+    padding: 0;
+    background-color: $reportlist-collapse;
+    position: absolute;
+  }
+  &-collapse {
+    overflow: scroll;
+    overflow-x: hidden;
+  }
+  &-collapse-header {
+    display: flex;
+    flex: row;
+    padding-top: 10px;
+    margin-bottom: 5px;
+  }
+  &-backbutton-image {
+    height: 35px;
+    width: 35px;
+    padding: 5px;
+    margin: auto;
+  }
+  &-collapse-title {
+    text-align: center;
+    margin: auto;
+    font-size: 1em;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+  }
+  &-collapse-body {
+    padding: 0;
+  }
+  &-collapse-body-subtitle {
+    background-color: $reportlist-collapse-submodule-BG;
+    color: $reportlist-collapse-submodule-title;
+    padding-left: 10px;
+    font-size: 1em;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+  }
+  &-collapse-body-row {
+    display: flex;
+    border-block-color: $reportlist-collapse-row-boder;
+    border-block-style: solid;
+    border-block-width: 1px;
+    padding: 5px;
+    padding-left: 20px;
+  }
+  &-row-selected {
+    background-color: $reportlist-collapse-row-selected;
+  }
+  &-collapse-body-culumn2 {
+    margin-left: 20px;
+    font-size: 0.9em;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+  }
+
+  &-image-container {
+    margin: "20px 0";
+  }
+  &-empty-report-text {
+    font-size: 0.9em;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    padding: 5px 20px;
+  }
+}
