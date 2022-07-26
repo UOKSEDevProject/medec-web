@@ -53,7 +53,7 @@ const CollapseView = (props) => {
   return (
     <div
       style={{
-        backgroundColor: "#F6F6f4",
+        // backgroundColor: "#F6F6f4",
         height: screenHeight + 40,
         overflow: "scroll",
       }}

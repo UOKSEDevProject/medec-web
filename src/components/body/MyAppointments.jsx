@@ -46,7 +46,7 @@ export const MyAppointments = () => {
       <div className='table-responsive-md'>
         <table className='table table-bordered'>
           <thead>
-            <tr className='myappointment-page-testSt'>
+            <tr className='myappointment-page-table-head'>
               <th scope='col'>Channeling Center</th>
               <th scope='col'>Doctor</th>
               <th scope='col'>Date</th>

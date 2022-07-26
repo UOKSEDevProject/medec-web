@@ -1,0 +1,20 @@
+.report-list {
+  &-collapse {
+    background-color: $reportlist-collapse;
+    overflow: "scroll";
+  }
+  &-collapse-container {
+    padding: 0;
+    background-color: $reportlist-collapse;
+    position: "absolute" !important;
+  }
+  &-image-container {
+    margin: "20px 0";
+  }
+}
+
+.thilina {
+  padding: 0;
+  background-color: $reportlist-collapse;
+  position: "absolute" !important;
+}

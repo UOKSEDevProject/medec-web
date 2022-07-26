@@ -63,15 +63,11 @@ const ReportList = () => {
   };
 
   return (
-    <div
-      className='row'
-      style={{
-        display: "flex",
-      }}
-    >
+    <div className='row'>
       {/* --------------------------list view------------------------- */}
 
       <div
+        className='thilina'
         style={{
           padding: 0,
           backgroundColor: "#F6F6F6",
