@@ -1,54 +1,19 @@
 import React, { useState } from "react";
 import CollapseView from "./list view/CollapseView";
+import { medicalHistoryList } from "../../temp/data-store";
 
-let screenHeight = window.screen.height / 0.75;
+let screenHeight = window.screen.height;
 let screenWidth = window.screen.width;
 
-const listData = [
-  {
-    title: "November 2021",
-    details: [
-      { day: "23 rd", description: "Dr. John Hasitha" },
-      { day: "24 th", description: "Dr. John Hasitha" },
-      { day: "22 nd", description: "Dr. John Hasitha" },
-    ],
-  },
-  {
-    title: "October 2021",
-    details: [
-      { day: "23 rd", description: "Dr. John Hasitha" },
-      { day: "24 th", description: "Dr. John Hasitha" },
-      { day: "22 nd", description: "Dr. John Hasitha" },
-    ],
-  },
-  {
-    title: "September 2021",
-    details: [
-      { day: "23 rd", description: "Dr. John Hasitha" },
-      { day: "24 th", description: "Dr. John Hasitha" },
-      { day: "24 th", description: "Dr. John Hasitha" },
-    ],
-  },
-  {
-    title: "September 2021",
-    details: [
-      { day: "23 rd", description: "Dr. John Hasitha" },
-      { day: "24 th", description: "Dr. John Hasitha" },
-      { day: "24 th", description: "Dr. John Hasitha" },
-    ],
-  },
-  {
-    title: "September 2021",
-    details: [
-      { day: "23 rd", description: "Dr. John Hasitha" },
-      { day: "24 th", description: "Dr. John Hasitha" },
-      { day: "24 th", description: "Dr. John Hasitha" },
-    ],
-  },
-];
+let collapseHeight = screenHeight / 2.75;
+let collapseWidth = screenWidth / 3;
+let prescriptionImageHeight = collapseHeight;
 
 const ReportList = () => {
   const [isShowCollapesView, setIsShowCollapesView] = useState(true);
+  const [selectedItem, setSelectedItem] = useState(
+    medicalHistoryList[0].details[0]
+  );
 
   const drawerWidthHandler = () => {
     let isMobile = false;
@@ -57,7 +22,7 @@ const ReportList = () => {
         ? screenWidth
         : 50
       : isShowCollapesView
-      ? screenWidth / 3
+      ? collapseWidth
       : 50;
     return width;
   };
@@ -67,20 +32,20 @@ const ReportList = () => {
       {/* --------------------------list view------------------------- */}
 
       <div
-        className='thilina'
+        className='report-list-collapse-container'
         style={{
-          padding: 0,
-          backgroundColor: "#F6F6F6",
-          position: "absolute",
+          backgroundColor: !isShowCollapesView && "rgba(0,0,0,0)",
           width: drawerWidthHandler(),
         }}
       >
         <CollapseView
           title={"Medical History"}
-          listData={listData}
+          listData={medicalHistoryList}
           setIsShowCollapesView={setIsShowCollapesView}
           isShowCollapesView={isShowCollapesView}
-          screenHeight={screenHeight}
+          collapseHeight={collapseHeight}
+          setSelectedItem={setSelectedItem}
+          selectedItem={selectedItem}
         />
       </div>
 
@@ -89,13 +54,14 @@ const ReportList = () => {
       <div
         style={{
           margin: "20px 0",
+          height: prescriptionImageHeight,
         }}
       >
         <center>
           <img
-            src='https://picsum.photos/200/300'
+            src={selectedItem.imgURL}
             loading='lazy'
-            height={screenHeight}
+            height={prescriptionImageHeight}
             width={"auto"}
             alt={"prescription"}
           />

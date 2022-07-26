@@ -7,7 +7,9 @@ const CollapseView = (props) => {
     listData,
     isShowCollapesView,
     setIsShowCollapesView,
-    screenHeight,
+    collapseHeight,
+    setSelectedItem,
+    selectedItem,
   } = props;
 
   let list = [];
@@ -15,34 +17,29 @@ const CollapseView = (props) => {
   listData.map((item, key) => {
     list.push(
       <div key={key}>
-        <div
-          style={{
-            backgroundColor: "#234351",
-            color: "#fff",
-            paddingLeft: "10px",
-          }}
-        >
-          {item.title}
-        </div>
+        <div className='report-list-collapse-body-subtitle'>{item.title}</div>
         {item.details.map((item, key) => {
+          let isSelectedItem = selectedItem.id === item.id;
           return (
             <div
+              className={
+                isSelectedItem
+                  ? "report-list-collapse-body-row report-list-row-selected"
+                  : "report-list-collapse-body-row"
+              }
               key={key}
-              style={{
-                display: "flex",
-                borderBlockColor: "#000",
-                borderBlockStyle: "solid",
-                borderBlockWidth: "1px",
-                padding: "5px",
-                paddingLeft: "20px",
+              onClick={() => {
+                setSelectedItem(item);
               }}
             >
-              <div>
+              <div className='report-list-collapse-body-culumn1'>
                 {item && item.day && item.day.split(" ")[0]}{" "}
                 <sup>{item && item.day && item.day.split(" ")[1]}</sup>
               </div>
 
-              <div style={{ marginLeft: "20px" }}>{item.description}</div>
+              <div className='report-list-collapse-body-culumn2'>
+                {item.description}
+              </div>
             </div>
           );
         })}
@@ -52,27 +49,16 @@ const CollapseView = (props) => {
 
   return (
     <div
+      className='report-list-collapse'
       style={{
-        // backgroundColor: "#F6F6f4",
-        height: screenHeight + 40,
-        overflow: "scroll",
+        height: collapseHeight + 40,
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          flex: "row",
-          paddingTop: "10px",
-          marginBottom: "5px",
-        }}
-      >
+      <div className='report-list-collapse-header'>
         <img
           src={backButonIcon}
+          className='report-list-backbutton-image'
           style={{
-            height: "35px",
-            width: "35px",
-            padding: "5px",
-            margin: "auto",
             transform: !isShowCollapesView && "rotate(180deg)",
           }}
           onClick={() => {
@@ -83,21 +69,10 @@ const CollapseView = (props) => {
         />
 
         {isShowCollapesView && (
-          <div
-            style={{
-              textAlign: "center",
-              margin: "auto",
-            }}
-          >
-            {title}
-          </div>
+          <div className='report-list-collapse-title'>{title}</div>
         )}
       </div>
-      <div
-        style={{
-          padding: 0,
-        }}
-      >
+      <div className='report-list-collapse-body'>
         {isShowCollapesView &&
           list.map((item, key) => {
             return <div key={key}>{item}</div>;
