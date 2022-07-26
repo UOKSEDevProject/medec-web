@@ -21,10 +21,16 @@
   td,
   tr {
     border-color: $table-border;
+    font-size: 1em;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
   }
 
   &-table-head {
     background-color: $table-header;
     color: $table-header-text;
+    font-size: 0.8em;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
   }
 }

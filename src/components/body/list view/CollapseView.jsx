@@ -15,7 +15,6 @@ const CollapseView = (props) => {
   let list = [];
 
   listData.map((item, key) => {
-    console.log(item.details.length);
     list.push(
       <div key={key}>
         <div className='report-list-collapse-body-subtitle'>{item.title}</div>

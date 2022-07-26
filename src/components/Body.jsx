@@ -23,24 +23,23 @@ const Body = () => {
     <div>
       <div className='body-container'>
         <Container fluid={true}>
-          {/* <Search />
+          <Search />
           <DctList />
           <DoctorProfile />
           <PatientProfile />
-          <DoctorRegistration />
-          <PatientList />
+          {/* <DoctorRegistration /> */}
+          {/* <PatientList /> */}
           <MedicalCNumberSearch />
           <PatientReportRequirementList />
           <ManualAppointmentDoctorProfile />
-          <DoctorRegistration />
           <AddManualAppointment />
           <Login />
           <Register />
-          <LabPatientList />
-          <AddPrescriptions /> */}
+          {/* <LabPatientList /> */}
+          <AddPrescriptions />
           <MedicalHistory />
           <LabReportPortal />
-          {/* <MyAppointments /> */}
+          <MyAppointments />
         </Container>
       </div>
       {/* <div className='home-page-container'>
