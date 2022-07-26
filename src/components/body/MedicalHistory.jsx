@@ -4,8 +4,8 @@ import { medicalHistoryList } from "../../temp/data-store";
 
 let screenHeight = window.screen.height;
 let screenWidth = window.screen.width;
-
-let collapseHeight = screenHeight / 2.75;
+//todo change height the colaps and image
+let collapseHeight = screenHeight / 0.7;
 let collapseWidth = screenWidth / 3;
 let prescriptionImageHeight = collapseHeight;
 
