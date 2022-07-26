@@ -50,6 +50,10 @@ export const component = {
     user: 'USER'
 }
 
+export const dataStore = {
+    CreateDoctors: "CREATE_DOCTORS"
+}
+
 export const addPrescriptionsSections = [
     {
         title: "Laboratory Investigations",

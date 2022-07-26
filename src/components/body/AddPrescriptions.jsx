@@ -1,5 +1,5 @@
 import React, {useRef, useState} from "react";
-import {addPrescriptionsSections} from "../../const/const";
+import {addPrescriptionsSections} from "../../constants/constants";
 import PrescriptionCard from "./PrescriptionCard";
 import {Spinner} from "react-bootstrap";
 
