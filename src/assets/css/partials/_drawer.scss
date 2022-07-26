@@ -1,12 +1,8 @@
-.drawer{
+.drawer {
   width: 450px;
 }
 
-.drawer-toggle{
-  display: none;
-}
-
-.drawer-top{
+.drawer-top {
   background-color: rgba($color: white, $alpha: 0.4);
   border-radius: 0 8px 8px 0;
 }
@@ -17,7 +13,7 @@
   margin-bottom: 0 !important;
 }
 
-.drawer-icon{
+.drawer-icon {
   font-size: 35px;
   cursor: pointer;
 }
@@ -34,7 +30,7 @@
   font-size: 1rem;
 }
 
-.drawer-number{
+.drawer-number {
   width: 70px;
   text-align: center;
 }
@@ -46,6 +42,60 @@
 
 #unselected {
   cursor: pointer;
+}
+
+.left-tab {
+  background-color: rgba($color: white, $alpha: 0.5);
+  padding: 20px 10px;
+  flex-direction: column;
+}
+
+.arrow-icon {
+  font-size: 2.3rem;
+  padding: 2px;
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.vertical-text {
+  font-size: 1.4rem;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-weight: 600;
+  margin-block-end: 0 !important;
+  margin-block-start: 0 !important;
+}
+
+
+@media screen and (max-width: 1200px) {
+  .drawer {
+    position: absolute;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .left-tab{
+    display: none !important;
+  }
+
+  .drawer-top {
+    background-color: #e5e5e5;
+    border-radius: 0;
+  }
+
+  .drawer-bottom {
+    background-color: #f6f6f6;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .drawer {
+    width: 100%;
+  }
 }
 
 

@@ -2,13 +2,22 @@ p {
   margin-bottom: 0 !important;
 }
 
-.pt{
+.container-fluid {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.pt-container {
+  position: relative;
+}
+
+.pt {
   max-width: 800px;
   margin: 0 auto;
 }
 
-.pt-content{
-   width: 65%;
+.pt-content {
+  width: 65%;
 }
 
 .pt-image {
@@ -50,6 +59,16 @@ p {
   border: none;
 }
 
-.button:hover{
+.button:hover {
   background-color: rgb(3, 13, 46);
+}
+
+#show-button {
+  visibility: hidden;
+}
+
+@media screen and (max-width: 1200px) {
+  #show-button{
+    visibility: visible;
+  }
 }

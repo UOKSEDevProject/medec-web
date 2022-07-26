@@ -8,6 +8,7 @@ import unTickImg from "../../assets/images/untick.png"
 
 function LabPatientList(props) {
     const [index, setIndex] = useState(0);
+    const [toggle, setToggle] = useState(false);
     const [reports,setReports] = useState();
 
     useEffect(() => {
@@ -31,7 +32,8 @@ function LabPatientList(props) {
 
     return (
         <div className="d-flex">
-            <Drawer title="Customers" items={labPtList} index={index} setIndex={setIndex}/>
+            <Drawer title="Customers" items={labPtList} index={index} setIndex={setIndex} toggle={toggle}
+                    setToggle={setToggle}/>
             <div className='pt p-5 flex-grow-1 pt-report-req-body'>
                 <div  className='pt-report-req-details'>
                     <div  className='pt-report-req-details-info'>
