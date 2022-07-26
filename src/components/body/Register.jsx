@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {Button,  Image} from "react-bootstrap";
 import dp from '../../assets/images/dp.png'
-import {checkForm, setErrors} from "../../func/formUtility";
-import {validatePassword2} from "../../func/clientSideValidation";
+import {checkForm, setErrors} from "../../utils/formUtility";
+import {validatePassword2} from "../../utils/clientSideValidation";
 
 function Register() {
 

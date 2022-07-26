@@ -2,7 +2,7 @@ import {Button, Col, Image, Row} from "react-bootstrap";
 import {homeContent} from "../../temp/data-store";
 import {useEffect, useState} from "react";
 import {configuration} from "../../config";
-import {component} from "../../const/const";
+import {component} from "../../constants/constants";
 
 const Home = () => {
     const [menuList, setMenuList] = useState(null);

@@ -13,12 +13,14 @@ const getChannelCenters = gql`
 const getDoctors = gql`
     query GetDoctors {
         getDoctors {
+            nameWithInitials
+            disName
             _id
-            name
+            fullName
             cntNo
             address
-            prfImgUrl
             spec
+            prfImgUrl
             email
             sex
   }

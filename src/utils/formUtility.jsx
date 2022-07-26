@@ -16,7 +16,7 @@ import {
     validateAge,
     validatePassword
 } from "./clientSideValidation";
-import {CHECKOUT_FIELDS} from "../const/const";
+import {CHECKOUT_FIELDS} from "../constants/constants";
 
 export const setErrors = (event, errors) => {
     switch (event.target.name) {
