@@ -1,0 +1,51 @@
+p {
+  margin-bottom: 0 !important;
+}
+
+.pt{
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.pt-image {
+  max-width: 200px;
+  width: 25%;
+  object-fit: contain;
+}
+
+.pt-number,
+.pt-name {
+  font-size: 1.8rem;
+}
+
+.pt-details {
+  background-color: rgba($color: #000000, $alpha: 0.2);
+  padding: 20px 30px;
+}
+
+.pt-detail-label {
+  width: 20%;
+  margin-right: 20px;
+  color: white;
+  font-weight: 500;
+}
+
+.pt-detail-value {
+  background-color: white;
+  font-weight: 500;
+  border-radius: 20px;
+}
+
+.button {
+  background-color: rgb(3, 13, 46);
+  color: white;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.button:hover{
+  background-color: rgb(3, 13, 46);
+}

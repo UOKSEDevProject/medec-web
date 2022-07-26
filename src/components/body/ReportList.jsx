@@ -57,7 +57,7 @@ const ReportList = () => {
         ? screenWidth
         : 50
       : isShowCollapesView
-      ? screenWidth - 500
+      ? screenWidth / 3
       : 50;
     return width;
   };

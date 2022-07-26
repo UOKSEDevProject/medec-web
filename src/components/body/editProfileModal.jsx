@@ -3,6 +3,7 @@ import {Button, Col, Form, Image, Modal, Row} from "react-bootstrap";
 import {bloodGroups, tittle} from "../../const/const";
 import {checkForm, formatPhoneNumber, setErrors} from "../../func/formUtility";
 import defaultProfilePicture from "../../assets/images/defaultprofilepic.png";
+import camera from "../../assets/images/camera.png";
 
 function EditProfileModal(props) {
 
@@ -54,7 +55,19 @@ function EditProfileModal(props) {
           handleAria(error['address'], event.target.id);
       }  else if (event.target.id === 'phoneNumber'){
           handleAria(error['phoneNumber'], event.target.id);
+      } else if (event.target.name === 'tittle'){
+          handleAria(error['tittle'], event.target.name);
+      } else if (event.target.name === 'birthDate'){
+          handleAria(error['birthDate'], event.target.name);
+      } else if (event.target.name === 'country'){
+          handleAria(error['country'], event.target.name);
+      }else if (event.target.name === 'bloodGroup'){
+          handleAria(error['bloodGroup'], event.target.name);
       }
+    }
+
+    function dpUpload() {
+        // image upload
     }
 
     return (
@@ -64,31 +77,39 @@ function EditProfileModal(props) {
                     <Modal.Title>Edit Profile</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Image src={profile.profilePicture ? profile.profilePicture : defaultProfilePicture} fluid={true} width={200}/>
+                    <div className='dev'>
+                        <Image className='edit-profile-modal-profilePicture-selectIcon' src={camera}
+                                                roundedCircle={true} onClick={dpUpload}/>
+                        <Image className='edit-profile-modal-profilePicture' src={profile.profilePicture ? profile.profilePicture : defaultProfilePicture} fluid={true}/>
+                    </div>
                     <Form>
                         <Form.Group as={Row} className="mb-3">
-                            <Form.Label column sm={3}>
+                            <Form.Label column xs={3} md={3} lg={3}>
                                 Tittle <span>*</span>
                             </Form.Label>
-                            :<Col sm={2}>
+                            <Col xs={4} md={3} lg={2}>
                                 <Form.Select
                                     id='tittle'
                                     defaultValue={profile.tittle}
                                     name='tittle'
                                     aria-required={true}
+                                    aria-describedby='title_'
+                                    onBlur={clientSideValidation}
+                                    onFocus={handleInputAria}
                                     onChange={onChange}>
-                                    <option value={''}>select country code</option>
+                                    <option value={''}>select a title</option>
                                     {tittle.map((item, index) => (
                                         <option key={index} value={item.tittle}>{item.tittle}</option>
                                     ))}
                                 </Form.Select>
+                                <span id='title_' className='form-error' role='status'>{errors.tittle}</span>
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3">
-                            <Form.Label column sm={3}>
+                            <Form.Label column xs={3} md={3} lg={3}>
                                 First Name <span>*</span>
                             </Form.Label>
-                            :<Col sm={7}>
+                            <Col xs={9} md={8} lg={7}>
                             <Form.Control
                                 id='firstName'
                                 type='text'
@@ -105,10 +126,10 @@ function EditProfileModal(props) {
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3">
-                            <Form.Label column sm={3}>
+                            <Form.Label column xs={3} md={3} lg={3}>
                                 Last Name <span>*</span>
                             </Form.Label>
-                            :<Col sm={7}>
+                            <Col xs={9} md={8} lg={7}>
                                 <Form.Control
                                     id='lastName'
                                     type='text'
@@ -125,54 +146,66 @@ function EditProfileModal(props) {
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3">
-                            <Form.Label column sm={3}>
+                            <Form.Label column xs={3} md={3} lg={3}>
                                 Date Of Birth <span>*</span>
                             </Form.Label>
-                            :<Col sm={3}>
+                            <Col xs={6} md={5} lg={4}>
                                 <Form.Control
                                     id='input'
                                     type='date'
                                     name='birthDate'
                                     value={profile.birthDate}
                                     aria-required={true}
+                                    aria-describedby='bDate'
+                                    onBlur={clientSideValidation}
+                                    onFocus={handleInputAria}
                                     onChange={onChange}/>
+                                <span id='bDate' className='form-error' role='status'>{errors.birthDate}</span>
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3">
-                            <Form.Label column sm={3}>
+                            <Form.Label column xs={3} md={3} lg={3}>
                                 Blood Group <span>*</span>
                             </Form.Label>
-                            :<Col sm={2}>
+                            <Col xs={4} md={3} lg={2}>
                                 <Form.Select
                                     id='input'
                                     defaultValue={profile.bloodGroup}
                                     name='bloodGroup'
                                     aria-required={true}
+                                    aria-describedby='bGroup'
+                                    onBlur={clientSideValidation}
+                                    onFocus={handleInputAria}
                                     onChange={onChange}>
-                                    <option value={'Add blood group'}>select blood group</option>
+                                    <option value={''}>select blood group</option>
                                     {bloodGroups.map((item, index) => (
                                         <option key={index} value={item.bloodGroup}>{item.bloodGroup}</option>
                                     ))}
                                 </Form.Select>
+                                <span id='bGroup' className='form-error' role='status'>{errors.bloodGroup}</span>
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3">
-                            <Form.Label column sm={3}>
+                            <Form.Label column xs={12} md={9} lg={3}>
                                 phone Number <span>*</span>
                             </Form.Label>
-                                :<Col sm={2}>
+                                <Col xs={4} md={4} lg={2}>
                                     <Form.Select
                                         id='input'
                                         name='country'
                                         defaultValue={profile.country}
                                         aria-required={true}
+                                        aria-describedby='countryCode'
+                                        onBlur={clientSideValidation}
+                                        onFocus={handleInputAria}
                                         onChange={onChange}>
                                         <option value={''}>select country code</option>
                                         <option value={'+94'}>+94</option>
                                         <option value={'+96'}>+96</option>
                                     </Form.Select>
+                                    <span id='countryCode' className='form-error' role='status'>{errors.country}</span>
                                 </Col>
-                                <Col sm={5}>
+                                <Col xs={8} md={8} lg={5}>
                                     <Form.Control
                                         id='phoneNumber'
                                         type='text'
@@ -189,10 +222,10 @@ function EditProfileModal(props) {
                                 </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3">
-                            <Form.Label column sm={3}>
+                            <Form.Label column xs={12} md={3} lg={3}>
                                 Address <span>*</span>
                             </Form.Label>
-                            :<Col sm={7}>
+                            <Col xs={12} md={9} lg={7}>
                                 <Form.Control
                                     as="textarea"
                                     rows={2}
@@ -211,10 +244,10 @@ function EditProfileModal(props) {
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3">
-                            <Form.Label column sm={3}>
+                            <Form.Label column xs={12} md={3} lg={3}>
                                 Description
                             </Form.Label>
-                            :<Col sm={7}>
+                            <Col xs={12} md={9} lg={7}>
                                 <Form.Control
                                     as="textarea"
                                     rows={3}

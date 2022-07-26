@@ -12,7 +12,7 @@ function Session(props) {
                     {props.appointments}
                 </div>
             </div>
-            <Button className='session-view-btn'>View</Button>
+            <Button className='session-view-btn'>{props.text}</Button>
         </div>
     );
 }

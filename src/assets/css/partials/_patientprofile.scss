@@ -1,6 +1,7 @@
 .patient-profile{
   font-family: 'Roboto', sans-serif;
   padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .patient-profile-body{
@@ -43,6 +44,17 @@
 .patient-profile-profilePicture{
   width: 200px;
   margin: 20px;
+}
+
+.patient-profile-profilePicture-selectIcon{
+  position: absolute;
+  margin: 160px 200px 200px 90px;
+  padding: 5px;
+  background-color: $doctor-registration-dp-upload-background;
+  width: 40px;
+  &:hover{
+    cursor: pointer;
+  }
 }
 
 .patient-profile-qr{
