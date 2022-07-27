@@ -22,6 +22,8 @@ const sessionListener = gql`
     }
 `;
 
-export const subscriptions = {
+const subscriptions = {
     sessionListener: sessionListener
 }
+
+export default subscriptions;

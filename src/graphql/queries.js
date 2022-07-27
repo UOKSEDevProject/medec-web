@@ -27,7 +27,27 @@ const getDoctors = gql`
 }
 `;
 
-export const queries = {
+const searchDoctors = gql`
+    query Query($fullName: String!, $category: String) {
+        searchDoctors(fullName: $fullName, category: $category) {
+            _id
+            fullName
+            disName
+            nameWithInitials
+            cntNo
+            address
+            spec
+            prfImgUrl
+            email
+            sex
+        }
+    }
+`;
+
+const queries = {
     getChannelCenters: getChannelCenters,
-    getDoctors: getDoctors
+    getDoctors: getDoctors,
+    searchDoctors: searchDoctors
 }
+
+export default queries;

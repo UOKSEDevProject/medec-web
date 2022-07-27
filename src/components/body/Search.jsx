@@ -3,7 +3,6 @@ import React, {useEffect} from "react";
 import {customSearchStyles} from "../../custom-styles/doctor-list-search-bar";
 import {Button, Col, Row} from "react-bootstrap";
 import {components} from "react-select";
-import {searchList} from "../../temp/data-store";
 import {BsSearch} from "react-icons/bs";
 
 const Search = (props) => {
@@ -13,7 +12,7 @@ const Search = (props) => {
         onCleanUp,
         onEveryRender,
         onSearchClick,
-        onInputChange,
+        onInputChange
     } = props;
 
     useEffect(() => {
@@ -40,10 +39,8 @@ const Search = (props) => {
         }
     }
 
-    const handelInputChange = (value) => {
-        if (typeof onInputChange === 'function') {
-            onInputChange(value);
-        }
+    const handelInputChange = (inputValue) => {
+
     }
 
     const handleSelectOption = (option) => {
@@ -53,7 +50,7 @@ const Search = (props) => {
     const promiseOptions = (value) =>
         new Promise((resolve) => {
             setTimeout(() => {
-                resolve(searchList);
+                resolve([]);
             }, 1000);
         });
 
@@ -79,7 +76,7 @@ const Search = (props) => {
         <Row className='justify-content-center'>
             <Col xs={12} md={5} className='mt-3'>
                 <AsyncSelect
-                    cacheOptions={true}
+                    cacheOptions={false}
                     placeholder={placeHolder ? placeHolder : ''}
                     isMulti={false}
                     isSearchable={true}
@@ -87,7 +84,7 @@ const Search = (props) => {
                     isLoading={false}
                     onInputChange={handelInputChange}
                     onChange={handleSelectOption}
-                    loadOptions={promiseOptions}
+                    loadOptions={typeof onInputChange === 'function' ? onInputChange : promiseOptions}
                     components={{DropdownIndicator, IndicatorSeparator}}
                     styles={customSearchStyles}
                 />
