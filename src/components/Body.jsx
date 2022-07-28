@@ -33,7 +33,7 @@ const onSearchInputChange = (inputValue) => {
         let req = {
             query: queries.searchDoctors,
             variables: {
-                fullName: inputValue
+                searchValue: inputValue
             },
             fetchPolicy: 'network-only'
         };

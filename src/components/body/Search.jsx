@@ -48,6 +48,10 @@ const Search = (props) => {
         setInputValue(null);
     };
 
+    const handleOnNoOptionMessage = () => {
+        return "Data not available";
+    };
+
     const promiseOptions = (value) => {
         return new Promise((resolve) => {
             if (typeof onInputChange === 'function') {
@@ -88,6 +92,7 @@ const Search = (props) => {
                             backspaceRemovesValue={true}
                             inputValue={inputValue ? inputValue : ''}
                             defaultOptions={searchOptions}
+                            noOptionsMessage={handleOnNoOptionMessage}
                         />
                     </Col>
                     <Button className='search-btn' onClick={handelSearchClick}>

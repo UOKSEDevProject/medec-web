@@ -28,8 +28,8 @@ const getDoctors = gql`
 `;
 
 const searchDoctors = gql`
-    query Query($fullName: String!, $category: String) {
-        searchDoctors(fullName: $fullName, category: $category) {
+    query Query($searchValue: String!) {
+        searchDoctors(searchValue: $searchValue) {
             _id
             fullName
             disName
