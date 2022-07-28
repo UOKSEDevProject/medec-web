@@ -28,6 +28,13 @@ const doctorReducer = (state = initialState, action) => {
           };
       }
 
+      case dataStore.AddSearchList: {
+          return {
+              ...state,
+              searchList: action.payload
+          }
+      }
+
       default: {
           return state;
       }

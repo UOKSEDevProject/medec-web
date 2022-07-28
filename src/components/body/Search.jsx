@@ -1,8 +1,7 @@
 import AsyncSelect from "react-select/async";
-import React, {useEffect} from "react";
+import React, {useEffect, useState, memo} from "react";
 import {customSearchStyles} from "../../custom-styles/doctor-list-search-bar";
 import {Button, Col, Row} from "react-bootstrap";
-import {components} from "react-select";
 import {BsSearch} from "react-icons/bs";
 
 const Search = (props) => {
@@ -14,6 +13,9 @@ const Search = (props) => {
         onSearchClick,
         onInputChange
     } = props;
+
+    const [inputValue, setInputValue] = useState(null);
+    const [selectedOption, setSelectedOption] = useState(null);
 
     useEffect(() => {
         if (typeof onMounted === 'function') {
@@ -33,18 +35,34 @@ const Search = (props) => {
         }
     });
 
-    const handelSearchClick = () => {
-        if (typeof onSearchClick === 'function') {
-            onSearchClick();
+    const handelSearchClick = (value) => {
+
+    }
+
+    const handelInputChange = (inputValue, actionMeta) => {
+        if (actionMeta.action === 'input-change') {
+            setInputValue(inputValue);
+            setSelectedOption(null);
         }
     }
 
-    const handelInputChange = (inputValue) => {
+    const handleSelectOption = (option, actionMeta) => {
+        if (typeof onSearchClick === 'function') {
+            if (actionMeta.action === 'select-option') {
+                onSearchClick([option]);
+            } else if (actionMeta.action === 'clear') {
+                onSearchClick([]);
+            }
+        }
 
+        setSelectedOption(option);
+        setInputValue(null);
     }
 
-    const handleSelectOption = (option) => {
+    const handleOnFocus = (event) => {
+        if (inputValue) {
 
+        }
     }
 
     const promiseOptions = (value) =>
@@ -54,43 +72,45 @@ const Search = (props) => {
             }, 1000);
         });
 
-    // Add search components here - [Ovindu] Start
-    const DropdownIndicator = (props) => {
-        return (
-            <components.DropdownIndicator {...props}>
-                <Button className='search-btn' onClick={handelSearchClick}>
-                    <span>Search</span>
-                    <BsSearch size={25}/>
-                </Button>
-            </components.DropdownIndicator>
-        );
+    const DropdownIndicator = () => {
+        return null;
     };
 
     const IndicatorSeparator = () => {
         return null;
     };
 
-    // end
-
     return (
         <Row className='justify-content-center'>
             <Col xs={12} md={5} className='mt-3'>
-                <AsyncSelect
-                    cacheOptions={false}
-                    placeholder={placeHolder ? placeHolder : ''}
-                    isMulti={false}
-                    isSearchable={true}
-                    isClearable={false}
-                    isLoading={false}
-                    onInputChange={handelInputChange}
-                    onChange={handleSelectOption}
-                    loadOptions={typeof onInputChange === 'function' ? onInputChange : promiseOptions}
-                    components={{DropdownIndicator, IndicatorSeparator}}
-                    styles={customSearchStyles}
-                />
+                <Row className='px-2 px-md-0'>
+                    <Col className='m-0 p-0'>
+                        <AsyncSelect
+                            cacheOptions={false}
+                            placeholder={placeHolder ? placeHolder : ''}
+                            isMulti={false}
+                            isSearchable={true}
+                            isClearable={true}
+                            value={selectedOption}
+                            isLoading={false}
+                            onInputChange={handelInputChange}
+                            onChange={handleSelectOption}
+                            loadOptions={typeof onInputChange === 'function' ? onInputChange : promiseOptions}
+                            components={{DropdownIndicator, IndicatorSeparator}}
+                            styles={customSearchStyles}
+                            backspaceRemovesValue={true}
+                            inputValue={inputValue ? inputValue : ''}
+                            onFocus={handleOnFocus}
+                        />
+                    </Col>
+                    <Button className='search-btn' onClick={handelSearchClick}>
+                        <span>Search</span>
+                        <BsSearch size={25}/>
+                    </Button>
+                </Row>
             </Col>
         </Row>
     );
 };
 
-export default Search;
+export default memo(Search);

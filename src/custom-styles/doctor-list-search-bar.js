@@ -16,7 +16,7 @@ export const customSearchStyles = {
         ...styles,
         paddingTop: '0',
         paddingBottom: '.0',
-        borderRadius: '25px',
+        borderRadius: '25px 0 0 25px',
         boxShadow: '0',
         height: '50px',
         border: 0,

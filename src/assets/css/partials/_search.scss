@@ -3,12 +3,16 @@
 
 .search-btn {
   background-color: $search-btn-color;
-  height: 100%;
+  height: 50px;
   width: 125px;
   border-radius: 0 25px 25px 0;
   border: none;
 
   &:hover {
+    background-color: $search-btn-color;
+  }
+
+  &:focus {
     background-color: $search-btn-color;
   }
 

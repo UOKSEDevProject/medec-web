@@ -19,6 +19,8 @@ import LabReportPortal from "./body/LabReportPortal";
 import {MyAppointments} from "./body/MyAppointments";
 import queries from "../graphql/queries";
 import client from "../connection/connection";
+import store from "../data-store/reducer/root-reducer";
+import {doctorActions} from "../data-store/actions/doctor-actions";
 
 const processSearchData = (data) => {
     return data.map((item) => {
@@ -44,12 +46,16 @@ const onSearchInputChange = (inputValue) => {
     });
 };
 
+const onSearchClick = (options) => {
+    store.dispatch(doctorActions.addSearchList(options));
+}
+
 const Body = () => {
     return (
         <div>
             <div className='body-container'>
                 <Container fluid={true}>
-                    <Search onInputChange={onSearchInputChange}/>
+                    <Search onInputChange={onSearchInputChange} onSearchClick={onSearchClick}/>
                     <DctList/>
                     <DoctorProfile/>
                     <PatientProfile/>
