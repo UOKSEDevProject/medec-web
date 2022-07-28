@@ -15,6 +15,8 @@ const addDoctor = gql`
     }
 `;
 
-export const mutations = {
+const mutations = {
     addDoctor: addDoctor
 }
+
+export default mutations;
