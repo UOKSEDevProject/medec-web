@@ -7,70 +7,57 @@ import {BsSearch} from "react-icons/bs";
 const Search = (props) => {
     const {
         placeHolder,
-        onMounted,
-        onCleanUp,
-        onEveryRender,
         onSearchClick,
-        onInputChange
+        onInputChange,
+        onSelectOption
     } = props;
 
     const [inputValue, setInputValue] = useState(null);
     const [selectedOption, setSelectedOption] = useState(null);
+    const [searchOptions, setSearchOptions] = useState(null);
 
     useEffect(() => {
-        if (typeof onMounted === 'function') {
-            onMounted();
+        if (inputValue === '') {
+            setSearchOptions(null)
         }
-    }, []);
+    }, [inputValue]);
 
-    useEffect(() => {
-        if (typeof onEveryRender === 'function') {
-            onEveryRender();
+    const handelSearchClick = () => {
+        if (typeof onSearchClick === 'function') {
+            onSearchClick(searchOptions);
         }
-
-        return () => {
-            if (typeof onCleanUp === 'function') {
-                onCleanUp();
-            }
-        }
-    });
-
-    const handelSearchClick = (value) => {
-
-    }
+    };
 
     const handelInputChange = (inputValue, actionMeta) => {
         if (actionMeta.action === 'input-change') {
             setInputValue(inputValue);
             setSelectedOption(null);
         }
-    }
+    };
 
     const handleSelectOption = (option, actionMeta) => {
-        if (typeof onSearchClick === 'function') {
+        if (typeof onSelectOption === 'function') {
             if (actionMeta.action === 'select-option') {
-                onSearchClick([option]);
+                onSelectOption([option]);
             } else if (actionMeta.action === 'clear') {
-                onSearchClick([]);
+                onSelectOption([]);
             }
         }
 
         setSelectedOption(option);
         setInputValue(null);
-    }
+    };
 
-    const handleOnFocus = (event) => {
-        if (inputValue) {
-
-        }
-    }
-
-    const promiseOptions = (value) =>
-        new Promise((resolve) => {
-            setTimeout(() => {
-                resolve([]);
-            }, 1000);
+    const promiseOptions = (value) => {
+        return new Promise((resolve) => {
+            if (typeof onInputChange === 'function') {
+                onInputChange(value).then(options => {
+                    resolve(options);
+                    setSearchOptions(options);
+                });
+            }
         });
+    };
 
     const DropdownIndicator = () => {
         return null;
@@ -95,12 +82,12 @@ const Search = (props) => {
                             isLoading={false}
                             onInputChange={handelInputChange}
                             onChange={handleSelectOption}
-                            loadOptions={typeof onInputChange === 'function' ? onInputChange : promiseOptions}
+                            loadOptions={promiseOptions}
                             components={{DropdownIndicator, IndicatorSeparator}}
                             styles={customSearchStyles}
                             backspaceRemovesValue={true}
                             inputValue={inputValue ? inputValue : ''}
-                            onFocus={handleOnFocus}
+                            defaultOptions={searchOptions}
                         />
                     </Col>
                     <Button className='search-btn' onClick={handelSearchClick}>

@@ -46,16 +46,16 @@ const onSearchInputChange = (inputValue) => {
     });
 };
 
-const onSearchClick = (options) => {
+const onSelectOption = (options) => {
     store.dispatch(doctorActions.addSearchList(options));
-}
+};
 
 const Body = () => {
     return (
         <div>
             <div className='body-container'>
                 <Container fluid={true}>
-                    <Search onInputChange={onSearchInputChange} onSearchClick={onSearchClick}/>
+                    <Search onInputChange={onSearchInputChange} onSelectOption={onSelectOption} onSearchClick={onSelectOption}/>
                     <DctList/>
                     <DoctorProfile/>
                     <PatientProfile/>
