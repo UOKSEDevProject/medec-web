@@ -54,9 +54,11 @@ const Body = () => {
     return (
         <div>
             <div className='body-container'>
-                <Container fluid={true}>
+                <Container>
                     <Search onInputChange={onSearchInputChange} onSelectOption={onSelectOption} onSearchClick={onSelectOption}/>
                     <DctList/>
+                </Container>
+                <Container fluid={true}>
                     <DoctorProfile/>
                     <PatientProfile/>
                     {/* <DoctorRegistration /> */}
