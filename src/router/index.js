@@ -1,3 +1,4 @@
+/*
 import React, { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import AddManualAppointment from "../components/body/AddManualAppointment";
@@ -39,7 +40,7 @@ const Router = () => {
         <Route path={paths.LOGIN_PATH} element={<Login />}></Route>
         <Route path={paths.REGISTRATION_PATH} element={<Register />}></Route>
 
-        {/* protected */}
+        {/!* protected *!/}
 
         <Route exact path={paths.HOME_PATH} element={<Home />}></Route>
         <Route path={paths.DR_LIST} element={<DctList />}></Route>
@@ -70,3 +71,4 @@ const Router = () => {
   );
 };
 export default Router;
+*/

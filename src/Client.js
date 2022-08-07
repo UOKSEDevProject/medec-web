@@ -4,14 +4,13 @@ import Footer from "./components/footer/Footer";
 import Router from "./router";
 
 const Client = () => {
-  return (
-    <div className='client'>
-      <Router />
-      {/* <NavBar />
-      <Body />
-      <Footer /> */}
-    </div>
-  );
+    return (
+        <div className='client'>
+            <NavBar/>
+            <Body/>
+            <Footer/>
+        </div>
+    );
 };
 
 export default Client;

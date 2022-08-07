@@ -21,6 +21,8 @@ import queries from "../graphql/queries";
 import client from "../connection/connection";
 import store from "../data-store/reducer/root-reducer";
 import {doctorActions} from "../data-store/actions/doctor-actions";
+import Spinner from "./body/Spinner";
+import {Redirect, Route, Switch} from "react-router-dom";
 
 const processSearchData = (data) => {
     return data.map((item) => {
@@ -54,33 +56,134 @@ const Body = () => {
     return (
         <div>
             <div className='body-container'>
-                <Container fluid={true}>
-                    <Search onInputChange={onSearchInputChange} onSelectOption={onSelectOption} onSearchClick={onSelectOption}/>
-                    <DctList/>
-                    <DoctorProfile/>
+                <Switch>
+                    <Route path='/login'>
+                        <Container fluid={true}>
+                            <Login/>
+                        </Container>
+                    </Route>
+
+                    <Route path='/register'>
+                        <Container fluid={true}>
+                            <Register/>
+                        </Container>
+                    </Route>
+
+                    <Route path='/able-dct'>
+                        <Container fluid={false}>
+                            <Search onInputChange={onSearchInputChange} onSelectOption={onSelectOption} onSearchClick={onSelectOption}/>
+                            <DctList/>
+                        </Container>
+                    </Route>
+
+                    <Route path='/home'>
+                        <Container fluid={true} className='home-page-container'>
+                            <Home/>
+                        </Container>
+                    </Route>
+
+                    <Route path='/dct-prf'>
+                        <Container fluid={true}>
+                            <DoctorProfile/>
+                        </Container>
+                    </Route>
+
+                    <Route path='/pnt-prf'>
+                        <Container fluid={true}>
+                            <PatientProfile/>
+                        </Container>
+                    </Route>
+
+                    <Route path='/dct-reg'>
+                        <Container fluid={true}>
+                            <DoctorRegistration />
+                        </Container>
+                    </Route>
+
+                    <Route path='/pnt-lst'>
+                        <Container fluid={true}>
+                            <PatientList />
+                        </Container>
+                    </Route>
+
+                    <Route path='/med-no-sch'>
+                        <Container fluid={true}>
+                            <MedicalCNumberSearch/>
+                        </Container>
+                    </Route>
+
+                    <Route path='/pnt-rpt-req'>
+                        <Container fluid={true}>
+                            <PatientReportRequirementList/>
+                        </Container>
+                    </Route>
+
+                    <Route path='/mnl-app-dct-prf'>
+                        <Container fluid={true}>
+                            <ManualAppointmentDoctorProfile/>
+                        </Container>
+                    </Route>
+
+                    <Route path='/add-mnl-app'>
+                        <Container fluid={true}>
+                            <AddManualAppointment/>
+                        </Container>
+                    </Route>
+
+                    <Route path='/lb-pnt-lst'>
+                        <Container fluid={true}>
+                            <LabPatientList />
+                        </Container>
+                    </Route>
+
+                    <Route path='/add-pre'>
+                        <Container fluid={true}>
+                            <AddPrescriptions/>
+                        </Container>
+                    </Route>
+
+                    <Route path='/med-his'>
+                        <Container fluid={true}>
+                            <MedicalHistory/>
+                        </Container>
+                    </Route>
+
+                    <Route path='/lb-rpt-ptl'>
+                        <Container fluid={true}>
+                            <LabReportPortal/>
+                        </Container>
+                    </Route>
+
+                    <Route path='/my-app'>
+                        <Container fluid={true}>
+                            <MyAppointments/>
+                        </Container>
+                    </Route>
+
+                    <Route path='/'>
+                        <Container fluid={true}>
+                            <Redirect to='/home'/>
+                        </Container>
+                    </Route>
+                </Switch>
+                {/*<DoctorProfile/>
                     <PatientProfile/>
-                    {/* <DoctorRegistration /> */}
-                    {/* <PatientList /> */}
+                     <DoctorRegistration />
+                     <PatientList />
                     <MedicalCNumberSearch/>
                     <PatientReportRequirementList/>
                     <ManualAppointmentDoctorProfile/>
                     <AddManualAppointment/>
-                    <Login/>
+
                     <Register/>
-                    {/* <LabPatientList /> */}
+                     <LabPatientList />
                     <AddPrescriptions/>
                     <MedicalHistory/>
                     <LabReportPortal/>
-                    <MyAppointments/>
-                </Container>
+                    <MyAppointments/>*/}
             </div>
-            {/* <div className='home-page-container'>
-              <Container fluid={true}>
-                  <Home/>
-              </Container>
-          </div>*/}
         </div>
-    );
+);
 };
 
 export default Body;

@@ -4,7 +4,7 @@ import client from "./connection/connection";
 import { ApolloProvider } from "@apollo/client";
 import { Provider } from "react-redux";
 import store from "./data-store/reducer/root-reducer";
-import { BrowserRouter } from "react-router-dom";
+import {BrowserRouter} from "react-router-dom";
 
 function App() {
   return (
