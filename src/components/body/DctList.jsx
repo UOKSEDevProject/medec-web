@@ -1,7 +1,7 @@
 import {Row} from 'react-bootstrap';
 import Doctor from './Doctor';
 import {DrData} from "../../temp/data-store";
-import {useState} from "react";
+import {memo, useState} from "react";
 
 const DctList = () => {
     const [data, setData] = useState(DrData);
@@ -32,4 +32,4 @@ const DctList = () => {
     );
 };
 
-export default DctList;
+export default memo(DctList);
