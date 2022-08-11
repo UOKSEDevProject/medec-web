@@ -3,6 +3,7 @@ import {Button,  Image} from "react-bootstrap";
 import dp from '../../assets/images/dp.png'
 import {checkForm, setErrors} from "../../utils/formUtility";
 import {validatePassword2} from "../../utils/clientSideValidation";
+import {useHistory} from "react-router-dom";
 
 function Register() {
 
@@ -14,6 +15,7 @@ function Register() {
     const [errors, seterrors] = useState({error:{}});
     const [hasEdit, setHasEdit] = useState(false);
     const [isAgree, setIsAgree] = useState(false) ;
+    const histroy = useHistory();
 
     const onChange = (e) => {
         setCredentials({...credentials,[e.target.name]:e.target.value});
@@ -64,7 +66,7 @@ function Register() {
     }
 
     const toLogin = () =>{
-        //redirect
+        histroy.push('/login')
     }
 
     const Register = () => {
@@ -127,7 +129,6 @@ function Register() {
                     Already a member ?</span> <span className='toSignIn-link' onClick={toLogin}> SIGN IN</span></div>
             </div>
         </div>
-
     );
 }
 

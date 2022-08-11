@@ -1,16 +1,27 @@
 import React, {useState} from 'react';
-import {Button, Col, Form, Image, Row} from "react-bootstrap";
+import {Button, Image} from "react-bootstrap";
 import dp from '../../assets/images/dp.png'
 import {checkForm, setErrors} from "../../utils/formUtility";
+import {useHistory} from "react-router-dom";
+import {useMutation} from "@apollo/client";
+import mutations from "../../graphql/mutations";
+import Spinner from "./Spinner";
+import store from "../../data-store/reducer/root-reducer";
+import {userActions} from "../../data-store/actions/user-actions";
+import {authConstants} from "../../constants/constants";
+
+const onAuthResponse = (data) => {
+    if (data && data.login.authSts === authConstants.authSuccess) {
+        store.dispatch(userActions.authResponse(data.login));
+    }
+};
 
 function Login() {
-
-    const [credentials, setCredentials] = useState({
-        email:'',
-        password:''
-    });
+    const [credentials, setCredentials] = useState({email: '', password: ''});
     const [errors, seterrors] = useState({error:{}});
     const [hasEdit, setHasEdit] = useState(false);
+    const history = useHistory();
+    const [sendLoginReq, {loading}] = useMutation(mutations.login);
 
     const onChange = (e) => {
         setCredentials({...credentials,[e.target.name]:e.target.value});
@@ -54,15 +65,22 @@ function Login() {
     }
 
     const toRegister = () =>{
-        //redirect
-    }
+        history.push('/register');
+    };
 
     const login = () => {
-      //login
-        console.log(credentials);
-    }
+        sendLoginReq({
+            variables: {
+                usr: credentials.email,
+                pwd: credentials.password
+            }, fetchPolicy: "no-cache",
+            onCompleted: onAuthResponse
+        });
+    };
+
     return (
         <div className='login-form'>
+            {loading && <Spinner isOverLay={true}/>}
             <div className='login-form-body'>
                 <Image className='login-form-dp' src={dp} roundedCircle={true}/>
                 <div className='login-form-inputs'>
@@ -98,7 +116,6 @@ function Login() {
                 <p className='login-form-link2' onClick={toRegister}>CREATE ACCOUNT</p>
             </div>
         </div>
-
     );
 }
 
