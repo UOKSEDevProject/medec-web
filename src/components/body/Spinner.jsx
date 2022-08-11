@@ -1,6 +1,10 @@
-const Spinner = () => {
+import {memo} from "react";
+
+const Spinner = (props) => {
+    const {isOverLay} = props;
+
     return(
-        <div className='spinner-container'>
+        <div className={`spinner-container ${isOverLay ? 'overlay' : ''}`}>
             <div className="lds-spinner">
                 <div></div>
                 <div></div>
@@ -19,4 +23,4 @@ const Spinner = () => {
     );
 };
 
-export default Spinner;
+export default memo(Spinner);

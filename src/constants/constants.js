@@ -52,7 +52,21 @@ export const component = {
 
 export const dataStore = {
     CreateDoctors: "CREATE_DOCTORS",
-    AddSearchList: "ADD_SEARCH_LIST"
+    AddSearchList: "ADD_SEARCH_LIST",
+    AuthResponse: "AUTH_RESPONSE"
+}
+
+export const authConstants = {
+    authTypeAdmin: 1,
+    authTypeDoctor: 2,
+    authTypeLab: 3,
+    authTypePatient: 4,
+    authTypeChannelCenter: 5,
+
+    authSuccess: 10,
+    authFail: 11,
+    authRegisteredSuccess: 12,
+    authRegisteredFail: 13,
 }
 
 export const addPrescriptionsSections = [
