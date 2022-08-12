@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Col, Form, Image, Modal, Row} from "react-bootstrap";
-import {bloodGroups, tittle} from "../../const/const";
-import {checkForm, formatPhoneNumber, setErrors} from "../../func/formUtility";
+import {bloodGroups, tittle} from "../../constants/constants";
+import {checkForm, formatPhoneNumber, setErrors} from "../../utils/formUtility";
 import defaultProfilePicture from "../../assets/images/defaultprofilepic.png";
 import camera from "../../assets/images/camera.png";
 

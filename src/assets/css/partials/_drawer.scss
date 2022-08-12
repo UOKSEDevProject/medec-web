@@ -1,0 +1,54 @@
+.drawer{
+  width: 450px;
+}
+
+.drawer-toggle{
+  width : 60px;
+}
+
+.drawer-top{
+  background-color: rgba($color: white, $alpha: 0.4);
+  border-radius: 0 8px 8px 0;
+}
+
+.drawer-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 0 !important;
+}
+
+.drawer-icon{
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.drawer-bottom {
+  height: 85vh;
+  overflow-y: scroll;
+  background-color: rgba($color: white, $alpha: 0.5);
+}
+
+.drawer-tab {
+  padding: 20px 10px;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.drawer-number{
+  width: 70px;
+  text-align: center;
+}
+
+#selected {
+  background-color: rgba($color: #000000, $alpha: 0.85);
+  color: white;
+}
+
+#unselected {
+  cursor: pointer;
+}
+
+
+
+
+

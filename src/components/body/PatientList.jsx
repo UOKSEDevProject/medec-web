@@ -1,34 +1,22 @@
 import React, { useState} from "react";
 import {Image} from "react-bootstrap";
 import {ptList} from "../../temp/data-store";
+import Drawer from "./Drawer";
 
 const PatientList = () => {
     const [index, setIndex] = useState(1);
+
 
     const onComplete = () => {
         index + 1 < 20 && setIndex((index) => (index = index + 1));
     };
 
     return (
-        <div className="d-flex justify-content-between">
-            <div className="ptlist-left">
-                <h2 className="ptlist-left-title p-3">Appointments</h2>
-                <div className="pt-tab-container">
-                    {ptList?.map((pt, idx) => (
-                        <div className="pt-tab px-3 py-3 d-flex align-items-center"
-                             id={idx === index ? "selected" : "unselected"}
-                             onClick={() => setIndex(idx)}>
-                            <p className="pt-tab-number">
-                                {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
-                            </p>
-                            <p className="flex-grow-1">{`${pt?.tittle}. ${pt?.firstName} ${pt?.lastName}`}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-            <div className="ptlist-right p-5">
-                <div className="d-flex justify-content-around align-items-center">
-                    <div className="ptlist-right-left">
+        <div className="d-flex">
+            <Drawer title="Appointments" items={ptList} index={index} setIndex={setIndex}/>
+            <div className="pt p-5 flex-grow-1">
+                <div className="d-flex justify-content-between align-items-center">
+                    <div>
                         <h2 className="pt-number">
                             #{index + 1 < 10 ? `0${index + 1}` : index + 1}
                         </h2>

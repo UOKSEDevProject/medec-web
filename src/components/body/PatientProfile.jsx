@@ -3,7 +3,7 @@ import {Col, Image, Row} from 'react-bootstrap';
 import {userProfile} from '../../temp/data-store';
 import defaultProfilePicture from '../../assets/images/defaultprofilepic.png'
 import EditProfileModal from "./editProfileModal";
-import {stringFormatter} from "../../func/formUtility";
+import {stringFormatter} from "../../utils/formUtility";
 import camera from "../../assets/images/camera.png";
 
 function PatientProfile(props) {
