@@ -15,8 +15,21 @@ const addDoctor = gql`
     }
 `;
 
+const login = gql`
+    mutation Login($usr: String!, $pwd: String!) {
+        login(usr: $usr, pwd: $pwd) {
+            authSts
+            authType
+            tkn
+            usrId
+            message
+         }
+    }
+`;
+
 const mutations = {
-    addDoctor: addDoctor
-}
+    addDoctor: addDoctor,
+    login: login
+};
 
 export default mutations;

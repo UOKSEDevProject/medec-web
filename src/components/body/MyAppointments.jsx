@@ -20,7 +20,7 @@ const myAppointmentList = [
   },
 ];
 
-export const MyAppointments = () => {
+const MyAppointments = () => {
   const [AppointmentList, setAppoinmetList] = useState(myAppointmentList);
 
   const renderTabRow = () => {
@@ -62,3 +62,5 @@ export const MyAppointments = () => {
     </div>
   );
 };
+
+export default MyAppointments;

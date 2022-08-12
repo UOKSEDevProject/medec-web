@@ -3,13 +3,13 @@ import Body from "./components/Body";
 import Footer from "./components/footer/Footer";
 
 const Client = () => {
-  return (
-    <div className='client'>
-      <NavBar />
-      <Body />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className='client'>
+            <NavBar/>
+            <Body/>
+            <Footer/>
+        </div>
+    );
 };
 
 export default Client;

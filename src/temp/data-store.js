@@ -164,33 +164,31 @@ export const manualAppointmentDoctorProfile = {
   ],
 };
 
-export const searchList = [
-  { label: "hello", value: "kekek" },
-  { label: "Hisks", value: "asasa" },
-  { label: "helasaslo", value: "saassd" },
-];
-
 export const homeContent = {
   chanCenter: [
     {
       title: "Add Doctors",
       content: "Find doctors who are currently in hospitals near you",
       imgUrl: availableDc,
+      path: '/add-dct'
     },
     {
       title: "Add Lab Report",
       content: "View your lab reports from one place",
       imgUrl: labReport,
+      path: '/add-lb-rt'
     },
     {
       title: "Make an Appointment",
       content: "Channel your doctor from here",
       imgUrl: calender,
+      path: '/mke-app'
     },
     {
       title: "Manage Doctor",
       content: "View your lab reports from one place",
       imgUrl: qr,
+      path: '/able-dct'
     },
   ],
   lab: [
@@ -198,11 +196,13 @@ export const homeContent = {
       title: "Scan QR",
       content: "Get required lab test list from here",
       imgUrl: qr,
+      path: '/qr'
     },
     {
       title: "Upload",
       content: "View customer list and upload the reports",
       imgUrl: labReport,
+      path: '/add-pre'
     },
   ],
   user: [
@@ -210,16 +210,19 @@ export const homeContent = {
       title: "View available doctors",
       content: "Find doctors who are currently in hospitals near you",
       imgUrl: availableDc,
+      path: '/able-dct'
     },
     {
       title: "Lab report portal",
       content: "View your lab reports from one place",
       imgUrl: labReport,
+      path: '/lb-rpt-ptl'
     },
     {
       title: "Make an Appointment",
       content: "Channel your doctor from here",
       imgUrl: calender,
+      path: '/mke-app'
     },
   ],
 };

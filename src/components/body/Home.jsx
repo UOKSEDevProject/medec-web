@@ -3,9 +3,11 @@ import {homeContent} from "../../temp/data-store";
 import {useEffect, useState} from "react";
 import {configuration} from "../../config";
 import {component} from "../../constants/constants";
+import {useHistory} from "react-router-dom";
 
 const Home = () => {
     const [menuList, setMenuList] = useState(null);
+    const history = useHistory();
 
     useEffect(() => {
         switch (configuration.component) {
@@ -25,7 +27,11 @@ const Home = () => {
 
     const onClickAboutUs = () => {
         // implement the function
-    }
+    };
+
+    const onMenuClick = (path) => {
+        history.push(path);
+    };
 
     return (
         <Row className='home-page'>
@@ -41,7 +47,7 @@ const Home = () => {
                                 <Col xs={12} className='mt-3' key={index}>
                                     <Row className='align-items-center'>
                                         <Col xs={3} className='home-page-content-image text-end'>
-                                            <Image src={content.imgUrl} fluid={true}/>
+                                            <Image src={content.imgUrl} fluid={true} onClick={() => onMenuClick(content.path)}/>
                                         </Col>
                                         <Col xs={9}>
                                             <div className='home-page-content-title'>{content.title}</div>
@@ -59,7 +65,7 @@ const Home = () => {
                                             <div className='home-page-content-content'>{content.content}</div>
                                         </Col>
                                         <Col xs={3} className='home-page-content-image'>
-                                            <Image src={content.imgUrl} fluid={true}/>
+                                            <Image src={content.imgUrl} fluid={true} onClick={() => onMenuClick(content.path)}/>
                                         </Col>
                                     </Row>
                                 </Col>
