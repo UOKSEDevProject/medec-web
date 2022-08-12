@@ -54,10 +54,10 @@ function Register() {
     const isRegisterDisabled = () => {
             let formElements = document.querySelectorAll("[aria-required='true']");
             let isFormFiled = checkForm(formElements);
-            if (isFormFiled){
-                return(!hasEdit || Object.keys(errors).length>1 || !isAgree)
+            if (isFormFiled && isAgree){
+                return(!hasEdit || Object.keys(errors).length>1)
             } else {
-                return (hasEdit || !Object.keys(errors).length>1 || !isAgree)
+                return (hasEdit || !Object.keys(errors).length>1)
             }
     }
 
