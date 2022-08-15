@@ -2,7 +2,7 @@ import {dataStore} from "../../constants/constants";
 
 const createDoctorList = (doctors) => {
   return {
-      type: dataStore.CreateDoctors,
+      type: dataStore.AddDoctors,
       payload: doctors
   };
 };

@@ -24,9 +24,17 @@ const Search = (props) => {
 
     const handelSearchClick = useCallback(() => {
         if (typeof onSearchClick === 'function') {
-            onSearchClick(searchOptions);
+            if (inputValue === '') {
+                if (typeof onInputChange === 'function') {
+                    onInputChange('').then((options) => {
+                        onSearchClick(options);
+                    });
+                }
+            } else {
+                onSearchClick(searchOptions);
+            }
         }
-    }, [searchOptions]);
+    }, [searchOptions, inputValue]);
 
     const handelInputChange = useCallback((inputValue, actionMeta) => {
         if (actionMeta.action === 'input-change') {
@@ -41,6 +49,12 @@ const Search = (props) => {
                 onSelectOption([option]);
             } else if (actionMeta.action === 'clear') {
                 onSelectOption([]);
+
+                if (typeof onInputChange === 'function') {
+                    onInputChange('').then((options) => {
+                        onSearchClick(options);
+                    });
+                }
             }
         }
 
@@ -53,6 +67,7 @@ const Search = (props) => {
     }, []);
 
     const promiseOptions = (value) => {
+        console.error(value)
         return new Promise((resolve) => {
             setTimeout(() => {
                 if (typeof onInputChange === 'function') {
@@ -93,7 +108,7 @@ const Search = (props) => {
                             styles={customSearchStyles}
                             backspaceRemovesValue={true}
                             inputValue={inputValue ? inputValue : ''}
-                            defaultOptions={searchOptions}
+                            defaultOptions={[]}
                             noOptionsMessage={handleOnNoOptionMessage}
                         />
                     </Col>

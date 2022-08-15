@@ -1,33 +1,45 @@
 import {Row} from 'react-bootstrap';
 import Doctor from './Doctor';
-import {DrData} from "../../temp/data-store";
-import {memo, useState} from "react";
+import {memo, useEffect, useState} from "react";
+import {useQuery} from "@apollo/client";
+import queries from "../../graphql/queries";
+import store from "../../data-store/reducer/root-reducer";
+import {doctorActions} from "../../data-store/actions/doctor-actions";
+import Spinner from "./Spinner";
+import {useSelector} from "react-redux";
+import DataNotAvailable from "./DataNotAvailable";
+
+const addDoctorsToStore = (doctors) => {
+    store.dispatch(doctorActions.addSearchList(doctors.getDoctors));
+};
 
 const DctList = () => {
-    const [data, setData] = useState(DrData);
+    const {loading, error} = useQuery(queries.getDoctors, {onCompleted: addDoctorsToStore});
+    const searchList = useSelector(state => state.doctorDS.searchList);
+    const [doctors, setDoctors] = useState(undefined);
 
-    const onToggleChange = (status, index) => {
-        let dataList = [...data];
-        dataList[index].status = status;
-
-        setData(dataList);
-    }
+    useEffect(() => {
+        if (searchList) {
+            setDoctors(searchList);
+        }
+    }, [searchList]);
 
     return (
-        <Row>
-            {data.map((dr, index) => (
+        <Row className='dct-list'>
+            {loading && <Spinner isOverLay={true}/>}
+            {doctors && doctors.map((dr, index) => (
                 <Doctor
                     key={index}
-                    firstName={dr.firstName}
-                    lastName={dr.lastName}
+                    disName={dr.disName}
                     mediCenter={dr.mediCenter}
-                    specialties={dr.specialties}
+                    specialization={dr.specialization}
                     status={dr.status}
                     imageSrc={dr.imageSrc}
                     no={index}
-                    onToggleChange={onToggleChange}
                 />
             ))}
+            {doctors && doctors.length === 0 && <DataNotAvailable customMessage={'Data Not Available'}/>}
+            {error && <DataNotAvailable customMessage={'Data Not Available'}/>}
         </Row>
     );
 };

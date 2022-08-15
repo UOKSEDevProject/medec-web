@@ -1,6 +1,7 @@
 import {Badge, Col, Image, Row} from 'react-bootstrap';
 import Switch from "react-switch";
-import {useEffect} from "react";
+import {component} from "../../constants/constants";
+import {configuration} from "../../config";
 
 const Doctor = (props) => {
     const {
@@ -16,24 +17,6 @@ const Doctor = (props) => {
         onEveryRender,
         onDoctorClick
     } = props;
-
-    useEffect(() => {
-        if (typeof onMounted === 'function') {
-            onMounted();
-        }
-    }, []);
-
-    useEffect(() => {
-        if (typeof onEveryRender === 'function') {
-            onEveryRender();
-        }
-
-        return () => {
-            if (typeof onCleanUp === 'function') {
-                onCleanUp();
-            }
-        }
-    });
 
     const handelOnDoctorClick = () => {
         if (typeof onDoctorClick === 'function') {
@@ -57,19 +40,22 @@ const Doctor = (props) => {
                     <p className='dr dr-name'>Dr. {disName}</p>
                     <p className='dr dr-profession'>{specialization}</p>
                     <p className='dr dr-hospital'>{mediCenter}</p>
-                    <Badge pill={true} className={status ? 'badge-online' : 'badge-offline'}>{status ? 'Online' : 'Offline'}</Badge>
+                    <Badge pill={true} className={status ? 'badge-online' : 'badge-offline'}>{status ? 'Available @' : 'Unavailable'}</Badge>
+                    <Badge pill={true} className='badge-something'>{mediCenter}</Badge>
                 </Col>
             </Row>
             <div className='switch mb-1 mx-3'>
-                <Switch
-                    checked={status}
-                    onColor='#3ff600'
-                    offColor='#f70000'
-                    className=''
-                    uncheckedIcon={false}
-                    checkedIcon={false}
-                    onChange={handelOnToggleChange}
-                />
+                {configuration.component === component.chanCenter &&
+                    <Switch
+                        checked={status}
+                        onColor='#3ff600'
+                        offColor='#f70000'
+                        className=''
+                        uncheckedIcon={false}
+                        checkedIcon={false}
+                        onChange={handelOnToggleChange}
+                    />
+                }
             </div>
         </Col>
     );
