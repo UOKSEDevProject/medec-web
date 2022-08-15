@@ -7,4 +7,4 @@ export const configuration  = {
         path: '/graphql',
         subsPath: '/subscriptions'
     }
-}
+};

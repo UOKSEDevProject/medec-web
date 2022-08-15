@@ -1,7 +1,7 @@
 import {memo} from "react";
 
 const Spinner = (props) => {
-    const {isOverLay} = props;
+    const {isOverLay, message} = props;
 
     return(
         <div className={`spinner-container ${isOverLay ? 'overlay' : ''}`}>
@@ -19,6 +19,7 @@ const Spinner = (props) => {
                 <div></div>
                 <div></div>
             </div>
+            <div>{message}</div>
         </div>
     );
 };

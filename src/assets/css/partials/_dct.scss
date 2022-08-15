@@ -3,6 +3,10 @@
   padding: 20px;
   position: relative;
 
+  &-list {
+    min-height: 100vh;
+  };
+
   .dct-background {
     height: 230px;
     background-color: $dct-BG;
@@ -32,6 +36,9 @@
       }
       &-offline {
         background-color: $dct-toggleOffline !important;
+      }
+      &-something {
+        background-color: $dct-available-hospital !important;
       }
     }
   }

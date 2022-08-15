@@ -13,33 +13,25 @@ const getChannelCenters = gql`
 const getDoctors = gql`
     query GetDoctors {
         getDoctors {
-            nameWithInitials
-            disName
             _id
-            fullName
-            cntNo
-            address
-            spec
-            prfImgUrl
-            email
-            sex
-  }
-}
+            disName
+            specialization
+            imageSrc
+            mediCenter
+            status
+        }
+    }
 `;
 
 const searchDoctors = gql`
-    query Query($searchValue: String!) {
-        searchDoctors(searchValue: $searchValue) {
+    query GetDoctors($searchValue: String) {
+        getDoctors(searchValue: $searchValue) {
             _id
-            fullName
             disName
-            nameWithInitials
-            cntNo
-            address
-            spec
-            prfImgUrl
-            email
-            sex
+            specialization
+            imageSrc
+            mediCenter
+            status
         }
     }
 `;

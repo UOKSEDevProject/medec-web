@@ -51,7 +51,7 @@ export const component = {
 }
 
 export const dataStore = {
-    CreateDoctors: "CREATE_DOCTORS",
+    AddDoctors: "ADD_DOCTORS",
     AddSearchList: "ADD_SEARCH_LIST",
     AuthResponse: "AUTH_RESPONSE"
 }
