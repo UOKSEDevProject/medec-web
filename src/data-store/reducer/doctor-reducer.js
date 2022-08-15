@@ -6,13 +6,11 @@ const processGettingDoctors = (data) => {
     if (data && data.getDoctors) {
         return data.getDoctors.map((data) => {
             return {
-                name: data.name,
-                displayName: data.disName,
-                nameWithInitials: data.nameWithInitials,
-                mediCenter: 'somthing',
-                specialties: data.spec,
-                status: true,
-                imageSrc: data.prfImgUrl,
+                disName: data.disName,
+                mediCenter: data.mediCenter,
+                specialization: data.specialization,
+                status: data.status,
+                imageSrc: data.imageSrc,
                 id: data._id
             };
         });

@@ -43,7 +43,7 @@ const onSearchInputChange = (inputValue) => {
         };
 
         client.query(req).then((res) => {
-            resolve(processSearchData(res.data.searchDoctors));
+            resolve(processSearchData(res.data.getDoctors));
         }).catch(error => {
             reject(error);
         });

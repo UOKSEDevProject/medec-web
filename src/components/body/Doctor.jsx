@@ -4,10 +4,9 @@ import {useEffect} from "react";
 
 const Doctor = (props) => {
     const {
-        firstName,
-        lastName,
+        disName,
         mediCenter,
-        specialties,
+        specialization,
         status,
         imageSrc,
         no,
@@ -55,9 +54,8 @@ const Doctor = (props) => {
                     <Image src={imageSrc} fluid={true}/>
                 </Col>
                 <Col xs={6} className='p-0 mt-3 dr-details'>
-                    <p className='dr dr-name'>Dr. {firstName}</p>
-                    <p className='dr dr-name'>{lastName}</p>
-                    <p className='dr dr-profession'>{specialties}</p>
+                    <p className='dr dr-name'>Dr. {disName}</p>
+                    <p className='dr dr-profession'>{specialization}</p>
                     <p className='dr dr-hospital'>{mediCenter}</p>
                     <Badge pill={true} className={status ? 'badge-online' : 'badge-offline'}>{status ? 'Online' : 'Offline'}</Badge>
                 </Col>
