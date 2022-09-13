@@ -1,40 +1,42 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useState } from "react";
+import {useQuery} from "@apollo/client";
+import queries from "../../graphql/queries";
+import {useSelector} from "react-redux";
+import store from "../../data-store/reducer/root-reducer";
+import {doctorActions} from "../../data-store/actions/doctor-actions";
+import {patientActions} from "../../data-store/actions/patient-actions";
 
-const myAppointmentList = [
-  {
-    channelingCenter: "Navinna Hospital",
-    doctor: "Dr Pethum Kuruppu",
-    date: "2021/10/03",
-    time: "8.00 PM",
-    no: "23",
-    referenceNumber: "0122321331B",
-  },
-  {
-    channelingCenter: "Navinna Hospital",
-    doctor: "Dr Pethum Kuruppu",
-    date: "2021/10/03",
-    time: "8.00 PM",
-    no: "23",
-    referenceNumber: "0122321331B",
-  },
-];
+const addAppoinmentListToStore = (appoinments) => {
+  store.dispatch(patientActions.addAppointmentList(appoinments.getAppointments));
+};
 
 const MyAppointments = () => {
-  const [AppointmentList, setAppoinmetList] = useState(myAppointmentList);
+  const {loading, error} = useQuery(queries.getAppointmentList, {onCompleted: addAppoinmentListToStore,variables: {getAppointmentsId:"62c1dbdc8de3254ab1e020c2"}});
+  const appointmentList = useSelector(state => state.patientDS.appointmentList);
+  const [appointments, setAppointments] = useState(undefined);
+
+  useEffect(()=>{
+      if(appointmentList){
+        setAppointments(appointmentList);
+      }
+  },[appointmentList])
+
+
+    console.log(appointments);
 
   const renderTabRow = () => {
     let row = [];
-    AppointmentList.map((item, key) => {
+    appointments?.map((item, key) => {
       row.push(
         <tr key={key}>
-          <td>{item.channelingCenter}</td>
-          <td>{item.doctor}</td>
+          <td>{item.channelCenter}</td>
+          <td>{item.dctName}</td>
           <td>{item.date}</td>
           <td>{item.time}</td>
-          <td>{item.no}</td>
-          <td>{item.referenceNumber}</td>
-          <td>{item.channelingCenter}</td>
+          <td>{item.aptNo}</td>
+          <td>{item.refNo}</td>
+          <td>{item.currAptNo}</td>
         </tr>
       );
     });

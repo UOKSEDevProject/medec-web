@@ -14,7 +14,15 @@ const addSearchList = (doctors) => {
   };
 };
 
+const addDoctorSessionList = (sessions) => {
+    return {
+        type: dataStore.AddDoctorTimeSchedule,
+        payload: sessions
+    }
+}
+
 export const doctorActions = {
     createDoctorList: createDoctorList,
-    addSearchList: addSearchList
+    addSearchList: addSearchList,
+    addDoctorSessionList: addDoctorSessionList
 };
