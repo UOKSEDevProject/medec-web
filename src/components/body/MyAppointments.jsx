@@ -18,6 +18,14 @@ const myAppointmentList = [
     no: "23",
     referenceNumber: "0122321331B",
   },
+  {
+    channelingCenter: "Navinna Hospital",
+    doctor: "Dr Pethum Kariyawasam",
+    date: "2021/10/03",
+    time: "8.00 PM",
+    no: "23",
+    referenceNumber: "0122321331B",
+  },
 ];
 
 const MyAppointments = () => {
