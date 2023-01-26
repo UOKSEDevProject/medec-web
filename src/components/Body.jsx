@@ -6,6 +6,7 @@ import {doctorActions} from "../data-store/actions/doctor-actions";
 import Spinner from "./body/Spinner";
 import {Redirect, Route, Switch} from "react-router-dom";
 import {Suspense, lazy} from "react";
+import DoctorTimeSchedule from "./body/DoctorTimeSchedule";
 
 const Login = lazy(() => import('./body/Login'));
 const Register = lazy(() => import('./body/Register'));
@@ -100,6 +101,12 @@ const Body = () => {
                         <Route path='/dct-reg'>
                             <Container fluid={true}>
                                 <DoctorRegistration />
+                            </Container>
+                        </Route>
+
+                        <Route path='/dct-time-sch'>
+                            <Container fluid={true}>
+                                <DoctorTimeSchedule />
                             </Container>
                         </Route>
 
