@@ -34,7 +34,7 @@ function LabPatientList(props) {
         <div className="d-flex">
             <Drawer title="Customers" items={labPtList} index={index} setIndex={setIndex} toggle={toggle}
                     setToggle={setToggle}/>
-            <div className='pt p-5 flex-grow-1 pt-report-req-body'>
+            <div className=' p-5 flex-grow-1 pt-report-req-body'>
                 <div  className='pt-report-req-details'>
                     <div  className='pt-report-req-details-info'>
                         <div className='pt-report-req-details-info-num'># {index+1}</div>
@@ -54,9 +54,8 @@ function LabPatientList(props) {
                                 <div key={index} className='pt-report-req-list-item'>
                                     <div>{report.name}</div>
                                     <div className={'list-item-images'}>
-                                        <div><Image src={report.isRequired?tickImg:unTickImg} height={30}/></div>
-                                        <div><Image src={report.isRequired?report.isUpload?tickImg:uploadImg:unTickImg}
-                                                    height={30} onClick={()=>report.isRequired && !report.isUpload && upload(index,report) }/></div>
+                                        <div><Image src={report.isUpload?tickImg:uploadImg}
+                                                    height={30} onClick={()=>!report.isUpload && upload(index,report) }/></div>
                                     </div>
                                    </div>
                             ))
