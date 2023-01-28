@@ -7,6 +7,7 @@ import {useQuery} from "@apollo/client";
 import queries from "../../graphql/queries";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
+import {configuration} from "../../config";
 
 const addDoctorSessionListToStore = (sessionList) => {
     store.dispatch(doctorActions.addDoctorSessionList(sessionList.getDoctorSessionList))
@@ -37,6 +38,7 @@ const DoctorProfile = () => {
                             key={index}
                             hospitalName={session.hospitalName}
                             sessionList={session.sessionsList}
+                            buttonText={configuration.component === 'DOCTOR'  ? 'View' : 'Chanel' }
                         />
                     ))}
                 </div>

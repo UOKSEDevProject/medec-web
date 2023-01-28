@@ -12,7 +12,7 @@ function SessionCard(props) {
                     time={item.time}
                     appointments={item.appointments}
                     maximumAppointments={item.maximumAppointments}
-                    text="View"
+                    text={props.buttonText}
                 />
                 ))}
         </div>
