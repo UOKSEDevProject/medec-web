@@ -36,10 +36,47 @@ const searchDoctors = gql`
     }
 `;
 
+const getAppointmentList = gql`
+    query Query($getAppointmentsId: String!) {
+      getAppointments(id: $getAppointmentsId) {
+        channelCenter
+        dctName
+        date
+        time
+        aptNo
+        refNo
+        currAptNo
+      }
+    }
+`;
+
+const getDoctorProfile = gql `
+    query Query($getDoctorSessionListId: String!) {
+      getDoctorSessionList(id: $getDoctorSessionListId) {
+        _id
+        disName
+        spec
+        prfImgUrl
+        channelCenters {
+          _id
+          hospitalName
+          sessionsList {
+            time
+            date
+            appointments
+            maximumAppointments
+          }
+        }
+      }
+    }
+`
+
 const queries = {
     getChannelCenters: getChannelCenters,
     getDoctors: getDoctors,
-    searchDoctors: searchDoctors
+    searchDoctors: searchDoctors,
+    getAppointmentList: getAppointmentList,
+    getDoctorProfile: getDoctorProfile
 }
 
 export default queries;

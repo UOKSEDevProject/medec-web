@@ -11,6 +11,13 @@ const doctorReducer = (state = initialState, action) => {
           };
       }
 
+      case dataStore.AddDoctorTimeSchedule: {
+          return {
+              ...state,
+              sessionList: action.payload
+          }
+      }
+
       case dataStore.AddSearchList: {
           return {
               ...state,

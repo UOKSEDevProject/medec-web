@@ -53,7 +53,9 @@ export const component = {
 export const dataStore = {
     AddDoctors: "ADD_DOCTORS",
     AddSearchList: "ADD_SEARCH_LIST",
-    AuthResponse: "AUTH_RESPONSE"
+    AuthResponse: "AUTH_RESPONSE",
+    AddAppointmentList: "ADD_APPOINTMENT_LIST",
+    AddDoctorTimeSchedule: "ADD_DOCTOR_TIME_SCHEDULE"
 }
 
 export const authConstants = {
