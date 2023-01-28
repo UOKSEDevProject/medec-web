@@ -5,6 +5,8 @@ import { ApolloProvider } from "@apollo/client";
 import { Provider } from "react-redux";
 import store from "./data-store/reducer/root-reducer";
 import {BrowserRouter} from "react-router-dom";
+//notification
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   return (
@@ -13,6 +15,7 @@ function App() {
         <Provider store={store}>
           <BrowserRouter>
             <Client />
+            <ToastContainer />
           </BrowserRouter>
         </Provider>
       </ApolloProvider>

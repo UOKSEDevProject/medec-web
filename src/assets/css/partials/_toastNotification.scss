@@ -1,0 +1,11 @@
+@import 'react-toastify/dist/ReactToastify.css';
+
+.Toastify__toast-body{
+    .Toastify__toast-icon {
+        width: 30px;
+    }
+    div{
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}

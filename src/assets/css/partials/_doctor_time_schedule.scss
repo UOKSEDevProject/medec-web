@@ -1,5 +1,7 @@
 .dct-time-sch{
-    padding: 20px 0px;
+    padding: 15vh 0px;
+    min-height: 80vh;
+    position: relative;
 
     .date-picker{
         background-color: aliceblue;
@@ -94,53 +96,74 @@
         .shedule-card{
             background-color:rgba($color: #000000, $alpha: 0.3);
             margin: 5px 0 ;
-            padding: 6px 6px;
-            justify-content: space-between;
+            padding: 6px 10px;
             border-radius: 5px;
-            height: 40px;
+            height: 50px;
             display: flex;
             min-width: 320px;
-            
-            
-            
-            .date{
-                font-family: 'Roboto', sans-serif;
-                font-weight: 500;
-                font-size:1rem;
-                color: $table-header-text;
-                margin: auto 0;
-            }
+            justify-content: space-between;
 
-            .time{
-                font-family: 'Roboto', sans-serif;
-                font-weight: 500;
-                font-size:1rem;
-                color: $table-header-text;
-                margin: auto 0;
-            }
+            .details{
+                display: flex;
+                justify-content: space-between;
+                width: 65%;
 
-            .appontments{
-                font-family: 'Roboto', sans-serif;
-                font-weight: 500;
-                font-size:1rem;
-                color: $table-header-text;
-                margin: auto 0;
-            }
+                .date{
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 500;
+                    font-size:1rem;
+                    color: $table-header-text;
+                    margin: auto 0;
+                }
+    
+                .time{
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 500;
+                    font-size:1rem;
+                    color: $table-header-text;
+                    margin: auto 0;
+                }
+    
+                .appontments{
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 500;
+                    font-size:1rem;
+                    color: $table-header-text;
+                    margin: auto 0;
+                    text-align: center;
 
-            .btn-edit{
-                font-family: 'Roboto', sans-serif;
-                font-weight: 500;
-                font-size:1rem;
-                color: $table-header-text;
-            }
+                    &-title{
+                        font-weight: 400;
+                        font-size: 0.6rem;
+                    }
+                    &-number{
 
-            .btn-delete{
-                font-family: 'Roboto', sans-serif;
-                font-weight: 500;
-                font-size:1rem;
-                color: $table-header-text;
+                    }
+                }
+            }
+            .buttons{
+                width: 30%;
+                display: flex;
+                justify-content: space-around;
+                height: 100%;
+                padding: 5px 0;
+
+                .btn-edit{
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 500;
+                    font-size:1rem;
+                    color: $table-header-text;
+                }
+    
+                .btn-delete{
+                    font-family: 'Roboto', sans-serif;
+                    font-weight: 500;
+                    font-size:1rem;
+                    color: $table-header-text;
+                }
             }
         }
+
         .add-time-slot{
             display: flex;
             flex-direction: row;
@@ -152,12 +175,13 @@
             .col1{
                 display: flex;
                 width: 100%;
-                justify-content: space-around;
+                justify-content: space-between;
             }
             .col2{
                 width: fit-content ;
                 display: flex;
                 align-items: flex-end;
+                margin-left: 5px;
             }
 
             .date-picker{
@@ -189,7 +213,49 @@
         }
     }
 
-    @media only screen and (max-width: 740px) {
+    @media only screen and (max-width: 550px) {
+
+        .schedule-details{
+            .shedule-card{
+                flex-direction: column;
+                height: 85px;
+                min-width: 200px;
+
+                .details{
+                    padding: 0 5px;
+                    width: 100%;
+                }
+
+                .buttons{
+                    width: 100%;
+                    justify-content: end;
+                }
+            }
+        }
+
+    }
+
+    @media only screen and (max-width: 900px) {
+        padding: 10hv 0px;
+        
+        .schedule-details{
+
+            .add-time-slot{
+                flex-direction: column;
+                
+
+                .col2{
+                    margin-top: 10px;
+                    width: 100%;
+                    justify-content: flex-end;
+                }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 940px) {
+        padding: 0 0px;
+
         .profile-details{
             width: 100%;
         }
@@ -207,20 +273,5 @@
             align-items: flex-end;
         }
     }
-
-    @media only screen and (max-width: 570px) {
-        .schedule-details{
-
-            .add-time-slot{
-                flex-direction: column;
-                
-
-                .col2{
-                    margin-top: 10px;
-                    width: 100%;
-                    justify-content: flex-end;
-                }
-            }
-        }
-    }
+    
 }
