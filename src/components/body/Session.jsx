@@ -12,7 +12,7 @@ function Session(props) {
                     {props.appointments}
                 </div>
             </div>
-            <Button className='session-view-btn'>{props.text}</Button>
+            <Button className='session-view-btn' disabled={props.maximumAppointments===props.appointments}>{props.text}</Button>
         </div>
     );
 }
