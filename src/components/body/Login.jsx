@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button, Image} from "react-bootstrap";
 import dp from '../../assets/images/dp.png'
-import {checkForm, setErrors} from "../../utils/formUtility";
+import {checkForm} from "../../utils/formUtility";
 import {useHistory} from "react-router-dom";
 import {useMutation} from "@apollo/client";
 import mutations from "../../graphql/mutations";
@@ -17,8 +17,8 @@ const onAuthResponse = (data) => {
 };
 
 function Login() {
-    const [credentials, setCredentials] = useState({email: '', password: ''});
-    const [errors, seterrors] = useState({error:{}});
+
+    const [credentials, setCredentials] = useState({email:'', password:''});
     const [hasEdit, setHasEdit] = useState(false);
     const history = useHistory();
     const [sendLoginReq, {loading}] = useMutation(mutations.login);
@@ -28,35 +28,13 @@ function Login() {
         setHasEdit(true);
     }
 
-    const clientSideValidation = (event) => {
-        let error = setErrors(event, errors);
-        seterrors({...errors,error});
-    }
-
-    const handleAria = (errorName, elementName) => {
-        if (errorName === '' || errorName === undefined){
-            document.getElementById(elementName).removeAttribute("aria-invalid");
-        } else {
-            document.getElementById(elementName).setAttribute("aria-invalid",true);
-        }
-    }
-
-    const handleInputAria = (event) => {
-        let error = errors;
-        if (event.target.id === 'email'){
-            handleAria(error["email"], event.target.id);
-        } else if (event.target.id === 'password'){
-            handleAria(error['password'], event.target.id);
-        }
-    }
-
     const isLoginDisabled = () => {
         let formElements = document.querySelectorAll("[aria-required='true']");
         let isFormFiled = checkForm(formElements);
         if (isFormFiled){
-            return(!hasEdit || Object.keys(errors).length>1)
+            return !hasEdit;
         } else {
-            return (hasEdit || !Object.keys(errors).length>1)
+            return hasEdit;
         }
     }
 
@@ -92,10 +70,7 @@ function Login() {
                         value={credentials.email}
                         aria-required={true}
                         aria-describedby='mail'
-                        onChange={onChange}
-                        onBlur={clientSideValidation}
-                        onFocus={handleInputAria}/>
-                    <span id='mail' className='form-error' role='status'>{errors.email}</span>
+                        onChange={onChange}/>
                 </div>
                 <div className='login-form-inputs'>
                     <input className='login-form-inputs'
@@ -106,10 +81,7 @@ function Login() {
                         value={credentials.password}
                         aria-required={true}
                         aria-describedby='pwd'
-                        onChange={onChange}
-                        onBlur={clientSideValidation}
-                        onFocus={handleInputAria}/>
-                    <span id='pwd' className='form-error' role='status'>{errors.password}</span>
+                        onChange={onChange}/>
                 </div>
                 <p className='login-form-link1' onClick={handleForgetPassword}>Forget password?</p>
                 <Button className='login-btn' variant="primary" disabled={isLoginDisabled()} onClick={login}>Log in</Button>
