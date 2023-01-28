@@ -4,7 +4,9 @@
   font-size: 1.2rem;
 }
 .pt-report-req-body{
-  min-width: 450px;
+  @media (min-width: 576px){
+    margin: 0 auto;
+  }
   max-width: 60vw;
   padding-left: 10vw;
   padding-top: 5vh;
@@ -19,10 +21,10 @@
   font-weight: 700;
   font-size: 1.2rem;
   display: flex;
-  flex-direction: row;
   flex-wrap: wrap-reverse;
-  justify-content: space-between;
-  align-items: flex-end;
+  align-content: center;
+  align-items: center;
+  justify-content: space-around;
 }
 .pt-report-req-details-info{
   display: flex;
@@ -47,16 +49,15 @@
 }
 
 .pt-report-req-list{
+  margin-top: 2vw;
   padding-top: 5vw;
   margin-right: 10vw;
   margin-left: 10vw;
-  min-width: 450px;
   max-width: 550px;
   background-color: rgba(1,1,1,0.2);
   border-radius: 10px;
 }
 .pt-report-req-list-in{
-  min-width: 400px;
   max-width: 500px;
   display: flex;
   flex-wrap: wrap;
@@ -69,24 +70,22 @@
 .pt-report-req-list-item{
   margin: 0px 20px 20px 20px;
   padding: 10px;
-  min-width: 400px;
-  max-width: 500px;
+  width: 100%;
   background-color: rgba(1,1,1,0.2);
   display: flex;
-  flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-between;
   border-radius: 10px;
   color: white;
 }
 .pt-report-req-finish{
-  margin-left: 100%;
-  margin-right: 0%;
+  button{
+    float: right;
+  }
 }
 .list-item-images{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-between;
-  min-width: 100px;
 }
