@@ -1,5 +1,7 @@
 import React from 'react';
 import {Button} from "react-bootstrap";
+import {configuration} from "../../config";
+import {component} from "../../constants/constants";
 
 function Session(props) {
     return (
@@ -12,7 +14,11 @@ function Session(props) {
                     {props.appointments}
                 </div>
             </div>
-            <Button className='session-view-btn' disabled={props.maximumAppointments===props.appointments}>{props.text}</Button>
+            <Button className='session-view-btn'
+                    disabled={
+                        configuration.component === 'DOCTOR' ? false : props.maximumAppointments===props.appointments}
+            >
+                {props.text}</Button>
         </div>
     );
 }
