@@ -13,6 +13,7 @@ import Spinner from "./Spinner";
 import {useSelector} from "react-redux";
 import CalendarIcon from '../../assets/images/icon/calander-icon.png';
 import {notifyMessage} from '../../utils/notification';
+import DataNotAvailable from "./DataNotAvailable";
 import {convertDateObjectToStringDate, convertStringDateToDateObject} from "../../utils/DateConverter";
 import mutations from "../../graphql/mutations";
 
@@ -154,36 +155,39 @@ const DoctorTimeSchedule = () => {
 
     const renderScheduleList = () => {
         let row = [];
-
-        doctorProfile?.sessionsList?.map((item, key) => {
-            row.push(
-                <div key={key} className='shedule-card'>
-                    <div className='details'>
-                        <div className='date'>{item.date}</div>
-                        <div className='time'>{item.time}</div>
-                        <div className='appontments'>
-                            <div className='appontments-title'>
-                                {'Appointments'}
-                            </div>
-                            <div className='appontments-number'
-                                 style={item.appointments >= item.maximumAppointments ? {color: '#f70000'} : {color: '#02b002'}}>
-                                {item.appointments.toString().padStart(2, "0")}
-                                <span style={{
-                                    fontWeight: '400px',
-                                    fontSize: '0.6rem'
-                                }}>/{item.maximumAppointments.toString().padStart(2, "0")}</span>
+        if(doctorProfile?.sessionsList?.length>0){
+            doctorProfile?.sessionsList?.map((item, key) => {
+                row.push(
+                    <div key={key} className='shedule-card'>
+                        <div className='details'>
+                            <div className='date'>{item.date}</div>
+                            <div className='time'>{item.time}</div>
+                            <div className='appontments'>
+                                <div className='appontments-title'>
+                                    {'Appointments'}
+                                </div>
+                                <div className='appontments-number'
+                                    style={item.appointments >= item.maximumAppointments ? {color: '#f70000'} : {color: '#02b002'}}>
+                                    {item.appointments.toString().padStart(2, "0")}
+                                    <span style={{
+                                        fontWeight: '400px',
+                                        fontSize: '0.6rem'
+                                    }}>/{item.maximumAppointments.toString().padStart(2, "0")}</span>
+                                </div>
                             </div>
                         </div>
+                        <div className='buttons'>
+                            <Image className='btn-edit' onClick={() => editSlot(item.id)} src={EditBtn}
+                                style={{height: '30px', margin: '0 5px'}}/>
+                            <Image className='btn-edit' onClick={() => deleteSlot(item.id)} src={DeleteBtn}
+                                style={{height: '30px', margin: '0 5px'}}/>
+                        </div>
                     </div>
-                    <div className='buttons'>
-                        <Image className='btn-edit' onClick={() => editSlot(item.id)} src={EditBtn}
-                               style={{height: '30px', margin: '0 5px'}}/>
-                        <Image className='btn-edit' onClick={() => deleteSlot(item.id)} src={DeleteBtn}
-                               style={{height: '30px', margin: '0 5px'}}/>
-                    </div>
-                </div>
-            );
-        })
+                );
+            })
+        }else{
+            row.push(<div className='error-message' >{'Data Not Available'}</div>)
+        }
 
         return row;
     }
