@@ -182,7 +182,7 @@ export const homeContent = {
       title: "Make an Appointment",
       content: "Channel your doctor from here",
       imgUrl: calender,
-      path: '/mke-app'
+      path: '/mk-app'
     },
     {
       title: "Manage Doctor",
@@ -222,7 +222,7 @@ export const homeContent = {
       title: "Make an Appointment",
       content: "Channel your doctor from here",
       imgUrl: calender,
-      path: '/mke-app'
+      path: '/mk-app'
     },
   ],
 };

@@ -1,0 +1,45 @@
+.dct-card-bg{
+  margin: 10px auto;
+  max-width: 60vw;
+  height: 290px;
+  padding: 20px;
+  background-color: $dct-BG;
+  border-radius: 10px;
+  font-family: "Hind Siliguri", sans-serif;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: space-around;
+  align-items: center;
+
+  .dct-img{
+    width: 100%;
+    height: 100%;
+    flex:1;
+
+  }
+  .dct-card-details{
+    flex: 3;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+}
+@media (max-width: 629px) {
+  .dct-card-bg{
+    height: auto;
+    .dct-name{
+      font-size: 1rem;
+    }
+    .dct-specialization{
+      font-size: 0.5rem;
+    }
+
+    .dct-img{
+      width: 35%;
+      height: auto;
+    }
+  }
+}
