@@ -6,6 +6,7 @@ import {useSelector} from "react-redux";
 import store from "../../data-store/reducer/root-reducer";
 import {doctorActions} from "../../data-store/actions/doctor-actions";
 import {patientActions} from "../../data-store/actions/patient-actions";
+import DataNotAvailable from "./DataNotAvailable";
 
 const addAppoinmentListToStore = (appoinments) => {
     store.dispatch(patientActions.addAppointmentList(appoinments.getAppointments));
@@ -42,8 +43,9 @@ const MyAppointments = () => {
 
         return row;
     };
-    return (
-        <div className='myappointment-page'>
+
+    return appointments && appointments.length === 0 ? <DataNotAvailable customMessage={'Data Not Available'}/>
+        : (<div className='myappointment-page'>
             <div className='table-responsive-md'>
                 <table className='table table-bordered'>
                     <thead>
