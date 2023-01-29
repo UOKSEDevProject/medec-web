@@ -48,7 +48,7 @@ const DoctorTimeSchedule = () => {
                 setIsEdit({bool: true, id: id});
                 setDateValue(convertStringDateToDateObject(item.date));
                 setTimeValue(item.time);
-                setMaxAppointmentValue(item.appointments);
+                setMaxAppointmentValue(item.maximumAppointments);
             }
         })
     }
@@ -119,10 +119,11 @@ const DoctorTimeSchedule = () => {
             if (res.data.updateSession.statusCode === "E0004") {
                 notifyMessage("Session could not be found", '2');
             } else {
-                store.dispatch(doctorActions.updateSessionOfDoctorSessionList(res.data.createSession.payload));
+                store.dispatch(doctorActions.updateSessionOfDoctorSessionList(res.data.updateSession.payload));
                 notifyMessage("Session has been updated successfully", '1');
             }
-        }).catch(() => {
+        }).catch((e) => {
+            console.log(e)
             notifyMessage("Something went wrong", '3');
         }).finally(() => {
             setIsLoading(false);
@@ -140,6 +141,7 @@ const DoctorTimeSchedule = () => {
             if (res.data.deleteSession.statusCode === "E0001") {
                 notifyMessage("Session could not be found", '2');
             } else {
+                console.log('lllll-',id);
                 store.dispatch(doctorActions.deleteSessionFromDoctorSessionList(id));
                 notifyMessage("Session has been deleted successfully", '1');
             }
@@ -207,7 +209,7 @@ const DoctorTimeSchedule = () => {
                                         clearIcon={null} format="dd/MM/yyyy"
                                         calendarIcon={<Image className='calander-icon' src={CalendarIcon}/>}
                             />
-                            <TimePicker onChange={setTimeValue} value={timeValue} clearIcon={null}
+                            <TimePicker onChange={setTimeValue} value={timeValue} clearIcon={null} clockIcon={null} disableClock={true}
                                         className='time-picker'/>
                             <Form.Control
                                 type="text" className='add-appoinment-number' maxLength={"2"}
