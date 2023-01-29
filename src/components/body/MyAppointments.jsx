@@ -14,7 +14,7 @@ const addAppoinmentListToStore = (appoinments) => {
 const MyAppointments = () => {
     const {loading, error} = useQuery(queries.getAppointmentList, {
         onCompleted: addAppoinmentListToStore,
-        variables: {getAppointmentsId: "62c1dbdc8de3254ab1e020c2"}
+        variables: {getAppointmentsId: sessionStorage.getItem("usrId")}
     });
     const appointmentList = useSelector(state => state.patientDS.appointmentList);
     const [appointments, setAppointments] = useState(undefined);
