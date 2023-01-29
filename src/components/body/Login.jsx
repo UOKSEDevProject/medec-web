@@ -17,7 +17,6 @@ const onAuthResponse = (data) => {
 };
 
 function Login() {
-
     const [credentials, setCredentials] = useState({email:'', password:''});
     const [hasEdit, setHasEdit] = useState(false);
     const history = useHistory();

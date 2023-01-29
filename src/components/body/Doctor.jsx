@@ -2,9 +2,11 @@ import {Badge, Col, Image, Row} from 'react-bootstrap';
 import Switch from "react-switch";
 import {component} from "../../constants/constants";
 import {configuration} from "../../config";
+import {useHistory} from "react-router-dom";
 
 const Doctor = (props) => {
     const {
+        id,
         disName,
         mediCenter,
         specialization,
@@ -14,14 +16,13 @@ const Doctor = (props) => {
         onToggleChange,
         onMounted,
         onCleanUp,
-        onEveryRender,
-        onDoctorClick
+        onEveryRender
     } = props;
 
+    const history = useHistory();
+
     const handelOnDoctorClick = () => {
-        if (typeof onDoctorClick === 'function') {
-            onDoctorClick(props);
-        }
+        configuration.component == "CHAN_CENTER" ? history.push(`/dct-time-sch/${id}`) : history.push(`/dct-prf/${id}`);
     }
 
     const handelOnToggleChange = (check) => {
@@ -40,7 +41,8 @@ const Doctor = (props) => {
                     <p className='dr dr-name'>Dr. {disName}</p>
                     <p className='dr dr-profession'>{specialization}</p>
                     <p className='dr dr-hospital'>{mediCenter}</p>
-                    <Badge pill={true} className={status ? 'badge-online' : 'badge-offline'}>{status ? 'Available @' : 'Unavailable'}</Badge>
+                    <Badge pill={true}
+                           className={status ? 'badge-online' : 'badge-offline'}>{status ? 'Available @' : 'Unavailable'}</Badge>
                     <Badge pill={true} className='badge-something'>{mediCenter}</Badge>
                 </Col>
             </Row>

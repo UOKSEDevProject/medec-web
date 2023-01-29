@@ -2,11 +2,12 @@ import React, {useState} from "react";
 import {Image} from "react-bootstrap";
 import {ptList} from "../../temp/data-store";
 import Drawer from "./Drawer";
+import {useHistory} from "react-router-dom";
 
 const PatientList = () => {
     const [index, setIndex] = useState(1);
     const [toggle, setToggle] = useState(false);
-
+    const history = useHistory();
 
     const onComplete = () => {
         index + 1 < 20 && setIndex((index) => (index = index + 1));
@@ -25,7 +26,9 @@ const PatientList = () => {
                         <h1 className="pt-name">
                             {`${ptList[index]?.tittle}. ${ptList[index]?.firstName} ${ptList[index]?.lastName}`}
                         </h1>
-                        <button className="button px-3 py-2" id="show-button" onClick={()=>setToggle(false)}>View All Appointments</button>
+                        <button className="button px-3 py-2" id="show-button" onClick={() => setToggle(false)}>View All
+                            Appointments
+                        </button>
                     </div>
                     <Image
                         src="https://docs.google.com/uc?id=1Tey5rRf84gaJyR2e-fJJN_J015bAW-KN"
@@ -66,8 +69,8 @@ const PatientList = () => {
                     </div>
                 </div>
                 <div className="d-flex flex-wrap align-items-center justify-content-around">
-                    <button className="button px-3 py-2">Add Prescription</button>
-                    <button className="button px-3 py-2">View Medical History</button>
+                    <button className="button px-3 py-2" onClick={() => history.push("/add-pre")}>Add Prescription</button>
+                    <button className="button px-3 py-2" onClick={() => history.push("/med-his")}>View Medical History</button>
                     <button className="button px-3 py-2" onClick={() => onComplete()}>Complete</button>
                 </div>
             </div>
