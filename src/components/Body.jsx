@@ -26,6 +26,7 @@ const AddPrescriptions = lazy(() => import('./body/AddPrescriptions'));
 const LabPatientList = lazy(() => import('./body/LabPatientList'));
 const AddManualAppointment = lazy(() => import('./body/AddManualAppointment'));
 const ManualAppointmentDoctorProfile = lazy(() => import('./body/ManualAppointmentDoctorProfile'));
+const SearchedDctCardList = lazy(() => import('./body/SearchedDctCardList'))
 
 const processSearchData = (data) => {
     return data.map((item) => {
@@ -167,6 +168,13 @@ const Body = () => {
                         <Route path='/my-app'>
                             <Container fluid={true}>
                                 <MyAppointments/>
+                            </Container>
+                        </Route>
+
+                        <Route path='/mk-app'>
+                            <Container fluid={false}>
+                                <Search onInputChange={onSearchInputChange} onSelectOption={onSelectOption} onSearchClick={onSelectOption}/>
+                                <SearchedDctCardList/>
                             </Container>
                         </Route>
 
