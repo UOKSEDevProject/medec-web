@@ -170,13 +170,7 @@ export const homeContent = {
       title: "Add Doctors",
       content: "Find doctors who are currently in hospitals near you",
       imgUrl: availableDc,
-      path: '/add-dct'
-    },
-    {
-      title: "Add Lab Report",
-      content: "View your lab reports from one place",
-      imgUrl: labReport,
-      path: '/add-lb-rt'
+      path: '/med-no-sch'
     },
     {
       title: "Make an Appointment",
@@ -202,7 +196,7 @@ export const homeContent = {
       title: "Upload",
       content: "View customer list and upload the reports",
       imgUrl: labReport,
-      path: '/add-pre'
+      path: '/lb-pnt-lst'
     },
   ],
   user: [

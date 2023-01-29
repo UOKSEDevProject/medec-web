@@ -1,5 +1,4 @@
 import {Image} from 'react-bootstrap';
-import {doctorProfile} from '../../temp/data-store';
 import SessionCard from "./SessionCard";
 import store from "../../data-store/reducer/root-reducer";
 import {doctorActions} from "../../data-store/actions/doctor-actions";
@@ -8,13 +7,19 @@ import queries from "../../graphql/queries";
 import {useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {configuration} from "../../config";
+import {useParams} from "react-router-dom";
+import Spinner from "./Spinner";
 
 const addDoctorSessionListToStore = (sessionList) => {
     store.dispatch(doctorActions.addDoctorSessionList(sessionList.getDoctorSessionList))
 }
 
 const DoctorProfile = () => {
-    const {loading, error} = useQuery(queries.getDoctorProfile, {onCompleted: addDoctorSessionListToStore, variables: { getDoctorSessionListId : "MBBS230943B"}});
+    const {dctId} = useParams();
+    const {loading} = useQuery(queries.getDoctorProfile, {
+        onCompleted: addDoctorSessionListToStore,
+        variables: {getDoctorSessionListId: dctId}
+    });
     const doctorProfile = useSelector(state => state.doctorDS.sessionList);
     const [doctor, setDoctor] = useState(undefined);
 
@@ -26,6 +31,7 @@ const DoctorProfile = () => {
 
     return (
         <div className='dct-profile'>
+            {loading && <Spinner isOverLay={true}/>}
             <div className='dct-profile-body'>
                 <div className='dct-profile-details'>
                     <Image className='dct-Profile-Picture' src={doctor?.prfImgUrl} fluid={true} alt='profile'/>
@@ -38,7 +44,7 @@ const DoctorProfile = () => {
                             key={index}
                             hospitalName={session.hospitalName}
                             sessionList={session.sessionsList}
-                            buttonText={configuration.component === 'DOCTOR'  ? 'View' : 'Chanel' }
+                            buttonText={configuration.component === 'DOCTOR' ? 'View' : 'Chanel' }
                         />
                     ))}
                 </div>

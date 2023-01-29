@@ -20,6 +20,9 @@ const Home = () => {
             case component.laboratory:
                 setMenuList(homeContent.lab);
                 break;
+            case component.doctor:
+                history.push("/dct-prf/MBBS230943B");
+                break;
             default:
                 break;
         }
@@ -47,7 +50,8 @@ const Home = () => {
                                 <Col xs={12} className='mt-3' key={index}>
                                     <Row className='align-items-center'>
                                         <Col xs={3} className='home-page-content-image text-end'>
-                                            <Image src={content.imgUrl} fluid={true} onClick={() => onMenuClick(content.path)}/>
+                                            <Image src={content.imgUrl} fluid={true}
+                                                   onClick={() => onMenuClick(content.path)}/>
                                         </Col>
                                         <Col xs={9}>
                                             <div className='home-page-content-title'>{content.title}</div>
@@ -65,7 +69,8 @@ const Home = () => {
                                             <div className='home-page-content-content'>{content.content}</div>
                                         </Col>
                                         <Col xs={3} className='home-page-content-image'>
-                                            <Image src={content.imgUrl} fluid={true} onClick={() => onMenuClick(content.path)}/>
+                                            <Image src={content.imgUrl} fluid={true}
+                                                   onClick={() => onMenuClick(content.path)}/>
                                         </Col>
                                     </Row>
                                 </Col>

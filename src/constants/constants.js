@@ -47,7 +47,8 @@ export const specializations = [
 export const component = {
     chanCenter: 'CHAN_CENTER',
     laboratory: 'LABORATORY',
-    user: 'USER'
+    user: 'USER',
+    doctor:'DOCTOR'
 }
 
 export const dataStore = {

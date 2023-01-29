@@ -1,11 +1,12 @@
 .dct {
+  cursor: pointer;
   height: 250px;
   padding: 20px;
   position: relative;
 
   &-list {
     min-height: 100vh;
-  };
+  }
 
   .dct-background {
     height: 230px;
@@ -34,9 +35,11 @@
       &-online {
         background-color: $dct-toggleOnline !important;
       }
+
       &-offline {
         background-color: $dct-toggleOffline !important;
       }
+
       &-something {
         background-color: $dct-available-hospital !important;
       }

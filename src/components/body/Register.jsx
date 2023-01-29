@@ -1,80 +1,99 @@
 import React, {useState} from 'react';
-import {Button,  Image} from "react-bootstrap";
+import {Button, Image} from "react-bootstrap";
 import dp from '../../assets/images/dp.png'
 import {checkForm, setErrors} from "../../utils/formUtility";
 import {validatePassword2} from "../../utils/clientSideValidation";
 import {useHistory} from "react-router-dom";
+import {useMutation} from "@apollo/client";
+import mutations from "../../graphql/mutations";
+import {authConstants} from "../../constants/constants";
+import store from "../../data-store/reducer/root-reducer";
+import {userActions} from "../../data-store/actions/user-actions";
+import Spinner from "./Spinner";
+
+const onAuthResponse = (data) => {
+    if (data && data.login.authSts === authConstants.authSuccess) {
+        store.dispatch(userActions.authResponse(data.register));
+    }
+};
 
 function Register() {
-
     const [credentials, setCredentials] = useState({
-        email:'',
-        password:'',
-        password2:''
+        email: '',
+        password: '',
+        password2: ''
     });
-    const [errors, seterrors] = useState({error:{}});
+    const [errors, seterrors] = useState({error: {}});
     const [hasEdit, setHasEdit] = useState(false);
-    const [isAgree, setIsAgree] = useState(false) ;
-    const histroy = useHistory();
+    const [isAgree, setIsAgree] = useState(false);
+    const history = useHistory();
+    const [sendRegisterReq, {loading}] = useMutation(mutations.register);
 
     const onChange = (e) => {
-        setCredentials({...credentials,[e.target.name]:e.target.value});
+        setCredentials({...credentials, [e.target.name]: e.target.value});
         setHasEdit(true);
     }
 
     const clientSideValidation = (event) => {
-        if (event.target.name === 'password2'){
-            let error = validatePassword2(event.target.value,credentials.password,errors);
-            seterrors({...errors,error})
-        }else{
+        if (event.target.name === 'password2') {
+            let error = validatePassword2(event.target.value, credentials.password, errors);
+            seterrors({...errors, error})
+        } else {
             let error = setErrors(event, errors);
-            seterrors({...errors,error});
+            seterrors({...errors, error});
         }
     }
 
     const handleAria = (errorName, elementName) => {
-        if (errorName === '' || errorName === undefined){
+        if (errorName === '' || errorName === undefined) {
             document.getElementById(elementName).removeAttribute("aria-invalid");
         } else {
-            document.getElementById(elementName).setAttribute("aria-invalid",true);
+            document.getElementById(elementName).setAttribute("aria-invalid", true);
         }
     }
 
     const handleInputAria = (event) => {
         let error = errors;
-        if (event.target.id === 'email'){
+        if (event.target.id === 'email') {
             handleAria(error["email"], event.target.id);
-        } else if (event.target.id === 'password'){
+        } else if (event.target.id === 'password') {
             handleAria(error['password'], event.target.id);
-        } else if (event.target.id === 'password2'){
+        } else if (event.target.id === 'password2') {
             handleAria(error['password2'], event.target.id);
         }
     }
 
     const isRegisterDisabled = () => {
-            let formElements = document.querySelectorAll("[aria-required='true']");
-            let isFormFiled = checkForm(formElements);
-            if (isFormFiled && isAgree){
-                return(!hasEdit || Object.keys(errors).length>1)
-            } else {
-                return (hasEdit || !Object.keys(errors).length>1)
-            }
+        let formElements = document.querySelectorAll("[aria-required='true']");
+        let isFormFiled = checkForm(formElements);
+        if (isFormFiled && isAgree) {
+            return (!hasEdit || Object.keys(errors).length > 1)
+        } else {
+            return (hasEdit || !Object.keys(errors).length > 1)
+        }
     }
 
     const isChecked = () => {
-      setIsAgree(!isAgree);
+        setIsAgree(!isAgree);
     }
 
-    const toLogin = () =>{
-        histroy.push('/login')
+    const toLogin = () => {
+        history.push('/login')
     }
 
     const Register = () => {
-        //login
-        console.log(credentials);
+        sendRegisterReq({
+            variables: {
+                usr: credentials.email,
+                pwd: credentials.password
+            }, fetchPolicy: "no-cache",
+            onCompleted: onAuthResponse
+        });
     }
+
     return (
         <div className='login-form'>
+            {loading && <Spinner isOverLay={true}/>}
             <div className='login-form-body'>
                 <Image className='login-form-dp' src={dp} roundedCircle={true}/>
                 <div className='login-form-inputs'>
@@ -124,8 +143,9 @@ function Register() {
                     I agree to the terms & conditions defined by MEDEC</span>
                 </div>
 
-                <Button className='login-btn' variant="primary" disabled={isRegisterDisabled()} onClick={Register}>Register</Button>
-                <div className='login-form-link2'><span  className='register-form-link'>
+                <Button className='login-btn' variant="primary" disabled={isRegisterDisabled()}
+                        onClick={Register}>Register</Button>
+                <div className='login-form-link2'><span className='register-form-link'>
                     Already a member ?</span> <span className='toSignIn-link' onClick={toLogin}> SIGN IN</span></div>
             </div>
         </div>

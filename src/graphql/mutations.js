@@ -27,9 +27,22 @@ const login = gql`
     }
 `;
 
+const register = gql`
+    mutation Register($usr: String!, $userArgs: UserArgs, $pwd: String!) {
+      register(usr: $usr, userArgs: $userArgs, pwd: $pwd) {
+        authSts
+        authType
+        message
+        tkn
+        usrId
+      }
+    }
+`
+
 const mutations = {
     addDoctor: addDoctor,
-    login: login
+    login: login,
+    register: register,
 };
 
 export default mutations;
