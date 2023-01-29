@@ -5,7 +5,7 @@ import EditBtn from '../../assets/images/icon/buttons/btn-edit.png';
 import DeleteBtn from '../../assets/images/icon/buttons/btn-delete.png';
 import DatePicker from 'react-date-picker';
 import TimePicker from 'react-time-picker';
-import {useQuery} from "@apollo/client";
+import {useMutation, useQuery} from "@apollo/client";
 import queries from "../../graphql/queries";
 import store from "../../data-store/reducer/root-reducer";
 import {doctorActions} from "../../data-store/actions/doctor-actions";
@@ -13,6 +13,8 @@ import Spinner from "./Spinner";
 import {useSelector} from "react-redux";
 import CalendarIcon from '../../assets/images/icon/calander-icon.png';
 import {notifyMessage} from '../../utils/notification';
+import {convertDateObjectToStringDate, convertStringDateToDateObject} from "../../utils/DateConverter";
+import mutations from "../../graphql/mutations";
 
 const addDoctorSessionListToStore = (data) => {
     store.dispatch(doctorActions.addDoctorSessionList(data.getDoctorSessionListForChannelCenter))
@@ -20,6 +22,13 @@ const addDoctorSessionListToStore = (data) => {
 
 const DoctorTimeSchedule = () => {
     const {dctId} = useParams();
+
+    const [isLoading, setIsLoading] = useState(false);
+    const [dateValue, setDateValue] = useState(new Date());
+    const [timeValue, setTimeValue] = useState('10:00');
+    const [maxAppointmentValue, setMaxAppointmentValue] = useState('0');
+    const [isEdit, setIsEdit] = useState({bool: false, id: null});
+
     const {loading} = useQuery(queries.getDoctorSessionListsForChannelCenter, {
         onCompleted: addDoctorSessionListToStore,
         variables: {
@@ -27,43 +36,31 @@ const DoctorTimeSchedule = () => {
             chId: "62c0b0d10ae48667baa01a30"
         }
     });
+    const [sendCreateSessionReq] = useMutation(mutations.addSession);
+    const [sendDeleteSessionReq] = useMutation(mutations.deleteSession);
+    const [sendUpdateSessionReq] = useMutation(mutations.updateSession);
+
     const doctorProfile = useSelector(state => state.doctorDS.sessionList);
-    const [dateValue, setDateValue] = useState(new Date());
-    const [timeValue, setTimeValue] = useState('10:00');
-    const [maxAppointmentValue, setMaxAppointmentValue] = useState('0');
-    const [isEdit, setIsEdit] = useState({bool: false, id: null});
 
     const editSlot = (id) => {
         doctorProfile?.sessionsList?.find((item) => {
             if (item.id === id) {
                 setIsEdit({bool: true, id: id});
-                setDateValue(item.date);
-                setTimeValue(item.time, true);
+                setDateValue(convertStringDateToDateObject(item.date));
+                setTimeValue(item.time);
                 setMaxAppointmentValue(item.appointments);
             }
         })
     }
 
-    const deleteSlot = (id) => {
-        console.log(id)
-    }
-
     const saveSlot = () => {
-
-        //make edited date
-        let date = new Date(dateValue);
-        date.setHours(timeValue.split(':')[0]);
-        date.setMinutes(timeValue.split(':')[1]);
-
-        //validation
         if (maxAppointmentValue > 0) {
             if (isEdit.bool) {
-                console.log('call the save API  :date-', date, 'update id- ', isEdit.id);
+                updateSession();
             } else {
-                console.log('call the save API  :date-', date);
+                createSession();
             }
 
-            //chaneg input fileds to initials
             setIsEdit({bool: false, id: null});
             setDateValue(new Date());
             setTimeValue('10:00');
@@ -73,44 +70,95 @@ const DoctorTimeSchedule = () => {
         }
     }
 
-    const formatedTime = (date, is24) => {
-        let hours = date.getHours();
-        let minutes = date.getMinutes();
-        let strTime;
-
-        if (is24) {
-            console.log(hours + ':' + minutes);
-            strTime = hours.toString().padStart(2, "0") + ':' + minutes.toString().padStart(2, "0");
-        } else {
-            let ampm = hours >= 12 ? 'pm' : 'am';
-            hours = hours % 12;
-            hours = hours ? hours : 12;
-            minutes = minutes < 10 ? '0' + minutes : minutes;
-            strTime = hours.toString().padStart(2, "0") + ':' + minutes.toString().padStart(2, "0") + ' ' + ampm;
+    const createSession = () => {
+        const session = {
+            chId: "62c0b0d10ae48667baa01a30",
+            dctId: dctId,
+            date: convertDateObjectToStringDate(dateValue),
+            maxApts: maxAppointmentValue,
+            strTime: timeValue
         }
 
-        return (strTime).trim();
+        setIsLoading(true);
+
+        sendCreateSessionReq({
+            variables: {
+                session: session
+            }, fetchPolicy: "no-cache"
+        }).then(res => {
+            if (res.data.createSession.statusCode === "E0004") {
+                notifyMessage("Doctor Id or Channel Center Id is not Valid", '2');
+            } else if (res.data.createSession.statusCode === "E0009") {
+                notifyMessage("Sorry. Can't create the session. Doctor already has a session on that time", '2');
+            } else {
+                store.dispatch(doctorActions.addNewSessionToDoctorSessionList(res.data.createSession.payload));
+                notifyMessage("Session has been added successfully", '1');
+            }
+        }).catch(() => {
+            notifyMessage("Something went wrong", '3');
+        }).finally(() => {
+            setIsLoading(false);
+        })
     }
 
-    const formatedDate = (date) => {
-        let day = date.getDate().toString().padStart(2, "0");
-        let month = (date.getMonth() + 1).toString().padStart(2, "0");
-        let year = date.getFullYear();
-        var strDate = day + '/' + month + '/' + year;
+    const updateSession = () => {
+        const session = {
+            strTime: timeValue,
+            date: convertDateObjectToStringDate(dateValue),
+            maxApts: maxAppointmentValue
+        }
 
-        return (strDate);
+        setIsLoading(true);
+
+        sendUpdateSessionReq({
+            variables: {
+                sessionId: isEdit.id,
+                session: session
+            }, fetchPolicy: "no-cache"
+        }).then(res => {
+            if (res.data.updateSession.statusCode === "E0004") {
+                notifyMessage("Session could not be found", '2');
+            } else {
+                store.dispatch(doctorActions.updateSessionOfDoctorSessionList(res.data.createSession.payload));
+                notifyMessage("Session has been updated successfully", '1');
+            }
+        }).catch(() => {
+            notifyMessage("Something went wrong", '3');
+        }).finally(() => {
+            setIsLoading(false);
+        })
+    }
+
+    const deleteSlot = (id) => {
+        setIsLoading(true);
+
+        sendDeleteSessionReq({
+            variables: {
+                sessionId: id
+            }, fetchPolicy: "no-cache"
+        }).then(res => {
+            if (res.data.deleteSession.statusCode === "E0001") {
+                notifyMessage("Session could not be found", '2');
+            } else {
+                store.dispatch(doctorActions.deleteSessionFromDoctorSessionList(id));
+                notifyMessage("Session has been deleted successfully", '1');
+            }
+        }).catch(() => {
+            notifyMessage("Something went wrong", '3');
+        }).finally(() => {
+            setIsLoading(false);
+        })
     }
 
     const renderScheduleList = () => {
         let row = [];
 
         doctorProfile?.sessionsList?.map((item, key) => {
-            let date = new Date(item.date);
             row.push(
                 <div key={key} className='shedule-card'>
                     <div className='details'>
-                        <div className='date'>{formatedDate(date)}</div>
-                        <div className='time'>{formatedTime(date, false)}</div>
+                        <div className='date'>{item.date}</div>
+                        <div className='time'>{item.time}</div>
                         <div className='appontments'>
                             <div className='appontments-title'>
                                 {'Appointments'}
@@ -140,7 +188,7 @@ const DoctorTimeSchedule = () => {
 
     return (
         <div className='dct-time-sch'>
-            {loading && <Spinner isOverLay={true}/>}
+            {(loading || isLoading) && <Spinner isOverLay={true}/>}
             <div className='center-card'>
                 <div className='profile-details'>
                     <Image className='dct-Profile-Picture' src={doctorProfile?.prfImgUrl} fluid={true}
@@ -160,7 +208,7 @@ const DoctorTimeSchedule = () => {
                                         calendarIcon={<Image className='calander-icon' src={CalendarIcon}/>}
                             />
                             <TimePicker onChange={setTimeValue} value={timeValue} clearIcon={null}
-                                        className='time-picker' clockIcon={null}/>
+                                        className='time-picker'/>
                             <Form.Control
                                 type="text" className='add-appoinment-number' maxLength={"2"}
                                 onChange={(e) => {
