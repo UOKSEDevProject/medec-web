@@ -6,5 +6,11 @@ export const configuration  = {
         ws: 'ws://localhost:4000',
         path: '/graphql',
         subsPath: '/subscriptions'
+    },
+    aws: {
+        S3_BUCKET: 'medec-content',
+        REGION: 'Asia Pacific (Mumbai) ap-south-1',
+        accessKeyId: 'accessKeyId',
+        secretAccessKey: 'secretAccessKey'
     }
 };
