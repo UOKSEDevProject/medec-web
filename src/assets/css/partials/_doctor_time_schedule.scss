@@ -211,6 +211,18 @@
         }
     }
 
+    .error-message{
+        font-family: 'Roboto', sans-serif;
+        font-weight: 500;
+        font-size: 1rem;
+        text-align: center;
+        vertical-align: middle;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
     @media only screen and (max-width: 550px) {
 
         .schedule-details{
