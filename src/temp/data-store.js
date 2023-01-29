@@ -71,6 +71,7 @@ export const DrData = [
 ];
 export const userProfile = {
   tittle: "Mr",
+  disName:"Ovindu A",
   firstName: "Ovindu",
   lastName: "Archana",
   bloodGroup: "O+",
