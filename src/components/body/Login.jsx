@@ -13,6 +13,8 @@ import {authConstants} from "../../constants/constants";
 const onAuthResponse = (data) => {
     if (data && data.login.authSts === authConstants.authSuccess) {
         store.dispatch(userActions.authResponse(data.login));
+        sessionStorage.setItem("tkn", data.login.tkn);
+        sessionStorage.setItem("usrId", data.login.usrId);
     }
 };
 
@@ -52,6 +54,9 @@ function Login() {
                 pwd: credentials.password
             }, fetchPolicy: "no-cache",
             onCompleted: onAuthResponse
+        }).then(r => {
+            if(r.data.login.authSts === authConstants.authSuccess){
+                history.push('/home')}
         });
     };
 

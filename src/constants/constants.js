@@ -8,11 +8,9 @@ export const bloodGroups = [
     {bloodGroup: 'O+'},
     {bloodGroup: 'O-'},
 ]
-export const tittle = [
-    {tittle: 'Mr'},
-    {tittle: 'Mrs'},
-    {tittle: 'Ms'},
-    {tittle: 'Hon'},
+export const gender = [
+    {tittle: 'Male'},
+    {tittle: 'Female'},
 ]
 
 export const CHECKOUT_FIELDS = {

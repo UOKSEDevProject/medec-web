@@ -53,7 +53,7 @@ function PatientProfile(props) {
                     <div className='patient-profile-nameContainer'>
                         <div
 
-                            className='patient-profile-name'>{profile.tittle}.  {stringFormatter(profile.firstName+' '+profile.lastName)}</div>
+                            className='patient-profile-name'>Hi,  {stringFormatter(profile.disName)}</div>
                         <button className='patient-profile-historyBtn' onClick={openMedicalHistory}>Medical
                             History</button>
                     </div>

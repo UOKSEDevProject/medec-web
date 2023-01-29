@@ -14,7 +14,7 @@ import {
     validateBloodGroup,
     validateName,
     validateAge,
-    validatePassword
+    validatePassword, validateDisName, validateIName
 } from "./clientSideValidation";
 import {CHECKOUT_FIELDS} from "../constants/constants";
 
@@ -66,6 +66,12 @@ export const setErrors = (event, errors) => {
             validateAge(event.target.value, errors)
         case CHECKOUT_FIELDS.PASSWORD:
             validatePassword(event.target.value,errors)
+            break;
+        case 'disName':
+            validateDisName(event.target.value, errors);
+            break;
+        case 'iName':
+            validateIName(event.target.value, errors);
             break;
     }
     return errors;

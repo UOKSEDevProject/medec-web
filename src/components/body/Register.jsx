@@ -4,6 +4,7 @@ import dp from '../../assets/images/dp.png'
 import {checkForm, setErrors} from "../../utils/formUtility";
 import {validatePassword2} from "../../utils/clientSideValidation";
 import {useHistory} from "react-router-dom";
+import EditProfileModal from "./editProfileModal";
 import {useMutation} from "@apollo/client";
 import mutations from "../../graphql/mutations";
 import {authConstants} from "../../constants/constants";
@@ -12,12 +13,15 @@ import {userActions} from "../../data-store/actions/user-actions";
 import Spinner from "./Spinner";
 
 const onAuthResponse = (data) => {
-    if (data && data.login.authSts === authConstants.authSuccess) {
+    if (data && data.register.authSts === authConstants.authRegisteredSuccess) {
         store.dispatch(userActions.authResponse(data.register));
+
     }
 };
 
 function Register() {
+    const [modalShow, setModalShow] = useState(false);
+    const [profile, setProfile] = useState();
     const [credentials, setCredentials] = useState({
         email: '',
         password: '',
@@ -82,14 +86,43 @@ function Register() {
     }
 
     const Register = () => {
+        setModalShow(true);
+    }
+
+    const updateProfile = (profile) => {
+        setModalShow(false);
+        setProfile(profile);
         sendRegisterReq({
             variables: {
                 usr: credentials.email,
-                pwd: credentials.password
+                pwd: credentials.password,
+                userArgs: {
+                    patientArgs: {
+                        fullName: profile.fullName,
+                        disName: profile.disName,
+                        nameWithInitials: profile.iName,
+                        prfImgUrl: profile.imageUrl,
+                        address: profile.address,
+                        birthDate: profile.birthDate,
+                        bldGrp: profile.bloodGroup,
+                        des: profile.description,
+                        sex: profile.gender,
+                        cntNo: profile.country+' '+profile.phoneNumber
+                    }
+                }
             }, fetchPolicy: "no-cache",
             onCompleted: onAuthResponse
+        }).then(r =>{
+            if(r.data.register.authSts === authConstants.authRegisteredSuccess){
+                history.push('/login')
+            }
         });
     }
+
+    const closeModal = () => {
+        setModalShow(false);
+    }
+
 
     return (
         <div className='login-form'>
@@ -148,6 +181,11 @@ function Register() {
                 <div className='login-form-link2'><span className='register-form-link'>
                     Already a member ?</span> <span className='toSignIn-link' onClick={toLogin}> SIGN IN</span></div>
             </div>
+            <EditProfileModal
+                profile={profile}
+                visibility={modalShow}
+                closeModal={closeModal}
+                updateProfile={(profile) => {updateProfile(profile)}}/>
         </div>
     );
 }
