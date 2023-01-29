@@ -51,6 +51,11 @@ export const component = {
     doctor:'DOCTOR'
 }
 
+export const platform = {
+    web: 'WEB',
+    mobile: 'MOB'
+}
+
 export const dataStore = {
     AddDoctors: "ADD_DOCTORS",
     AddSearchList: "ADD_SEARCH_LIST",
@@ -70,6 +75,11 @@ export const authConstants = {
     authFail: 11,
     authRegisteredSuccess: 12,
     authRegisteredFail: 13,
+}
+
+export const platformConstants = {
+    platformMobile: 1,
+    platformWeb: 2
 }
 
 export const addPrescriptionsSections = [
