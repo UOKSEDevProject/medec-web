@@ -13,7 +13,7 @@ import Spinner from "./Spinner";
 import {useSelector} from "react-redux";
 import CalendarIcon from '../../assets/images/icon/calander-icon.png';
 import {notifyMessage} from '../../utils/notification';
-import {convertDateObjectToStringDate, convertStringDateToDateObject} from "../../utils/DateConverter";
+import {convertDateObjectToStringDate, convertStringDateToDateObject} from "../../utils/DateConverter.js";
 import mutations from "../../graphql/mutations";
 import subscriptions from "../../graphql/subscriptions";
 

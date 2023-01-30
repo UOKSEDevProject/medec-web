@@ -46,7 +46,7 @@ const DoctorProfile = () => {
                             key={index}
                             hospitalName={session.hospitalName}
                             sessionList={session.sessionsList}
-                            buttonText={configuration.component === 'DOCTOR' ? 'View' : 'Chanel' }
+                            buttonText={configuration.component === 'DOCTOR' ? 'View' : 'Channel' }
                         />
                     ))}
                 </div>
@@ -54,4 +54,5 @@ const DoctorProfile = () => {
         </div>
     );
 }
+
 export default DoctorProfile;

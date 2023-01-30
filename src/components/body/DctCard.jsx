@@ -26,7 +26,6 @@ function DctCard(props) {
                 </div>
                 <BsChevronRight color="white" fontSize="7vw"/>
             </div>
-
         </div>
     );
 }
