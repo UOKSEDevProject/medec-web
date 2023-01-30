@@ -9,6 +9,7 @@ import Spinner from "./Spinner";
 import store from "../../data-store/reducer/root-reducer";
 import {userActions} from "../../data-store/actions/user-actions";
 import {authConstants} from "../../constants/constants";
+import {notifyMessage} from "../../utils/notification";
 
 const onAuthResponse = (data) => {
     if (data && data.login.authSts === authConstants.authSuccess) {
@@ -56,8 +57,11 @@ function Login() {
             onCompleted: onAuthResponse
         }).then(r => {
             if(r.data.login.authSts === authConstants.authSuccess){
-                history.push('/home')}
-        });
+                history.push('/home')
+            }else{
+                notifyMessage(r.data.login.message, '3');
+            }
+        }).catch(()=>notifyMessage("Something Went Wrong", '3'))
     };
 
     return (

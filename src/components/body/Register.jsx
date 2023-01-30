@@ -11,6 +11,7 @@ import {authConstants} from "../../constants/constants";
 import store from "../../data-store/reducer/root-reducer";
 import {userActions} from "../../data-store/actions/user-actions";
 import Spinner from "./Spinner";
+import {notifyMessage} from "../../utils/notification";
 
 const onAuthResponse = (data) => {
     if (data && data.register.authSts === authConstants.authRegisteredSuccess) {
@@ -114,9 +115,12 @@ function Register() {
             onCompleted: onAuthResponse
         }).then(r =>{
             if(r.data.register.authSts === authConstants.authRegisteredSuccess){
+                notifyMessage("Successfully Registered", '1');
                 history.push('/login')
+            } else{
+                notifyMessage(r.data.register.message, '3');
             }
-        });
+        }).catch(()=>notifyMessage("Something Went Wrong", '3'));
     }
 
     const closeModal = () => {

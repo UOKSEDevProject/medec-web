@@ -9,6 +9,7 @@ import {useEffect, useState} from "react";
 import {configuration} from "../../config";
 import {useParams} from "react-router-dom";
 import Spinner from "./Spinner";
+import DataNotAvailable from "./DataNotAvailable";
 
 const addDoctorSessionListToStore = (sessionList) => {
     store.dispatch(doctorActions.addDoctorSessionList(sessionList.getDoctorSessionList))
@@ -39,6 +40,7 @@ const DoctorProfile = () => {
                     <div className='dct-specialization'>{doctor?.spec}</div>
                 </div>
                 <div className='dct-profile-session-list'>
+                    {doctor && doctor?.channelCenters.length === 0 && <DataNotAvailable customMessage={'Sessions Data Not Available'}/>}
                     {doctor?.channelCenters?.map((session,index)=>(
                         <SessionCard
                             key={index}
