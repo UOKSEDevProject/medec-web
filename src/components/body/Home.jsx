@@ -29,7 +29,7 @@ const Home = () => {
     }, []);
 
     const onClickAboutUs = () => {
-        // implement the function
+        history.push(`./about-us`);
     };
 
     const onMenuClick = (path) => {
