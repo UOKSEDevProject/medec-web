@@ -3,15 +3,25 @@ import {Button, Form, Image, Row} from "react-bootstrap";
 import docProfilePic from '../../assets/images/dp.png';
 import {genders, specializations} from "../../constants/constants";
 import camera from '../../assets/images/camera.png';
-import {checkForm, formatPhoneNumber, setErrors} from "../../utils/formUtility";
+import {
+    checkForm,
+    convertToNameWithInitials,
+    CreateDisplayName,
+    formatPhoneNumber,
+    setErrors
+} from "../../utils/formUtility";
 import {useMutation} from "@apollo/client";
 import mutations from "../../graphql/mutations";
+import Spinner from "./Spinner";
+import {useHistory} from "react-router-dom";
+import {notifyMessage} from "../../utils/notification";
 
 function DoctorRegistration(props) {
     const [profile, setProfile] = useState({});
     const [errors, seterrors] = useState({error: {}});
     const [hasEdit, setHasEdit] = useState(false);
-    const [sendDoctorRegistrationReq, {loading}] = useMutation(mutations.register);
+    const [sendDoctorRegistrationReq, {loading}] = useMutation(mutations.addDoctor);
+    const history = useHistory();
 
     const onChange = (e) => {
         setProfile({...profile, [e.target.name]: e.target.value});
@@ -45,7 +55,6 @@ function DoctorRegistration(props) {
     }
 
     const handleInputAria = (event) => {
-        console.log(errors)
         let error = errors;
         if (event.target.name === 'fullName') {
             handleAria(error["fullName"], event.target.name);
@@ -66,16 +75,41 @@ function DoctorRegistration(props) {
     }
 
     function saveDoctorDetails() {
-        //save details
+
+        sendDoctorRegistrationReq({
+            variables:{
+                doctor: {
+                    address: profile.address,
+                    cntNo: profile.phoneNumber,
+                    disName: CreateDisplayName(profile.fullName),
+                    email: profile.email,
+                    fullName: profile.fullName,
+                    mcNumber: profile.medicalCouncilNumber,
+                    nameWithInitials: convertToNameWithInitials(profile.fullName),
+                    prfImgUrl: profile.url,
+                    sex: profile.gender,
+                    spec: profile.specialization
+            }
+        }, fetchPolicy: "no-cache"
+        }).then(r=>{
+            if(r.data.addDoctor.statusCode==='S0000'){
+                notifyMessage("Successfully Added", '1');
+                history.push(`./dct-time-sch/${r.data.addDoctor.payload._id}`);
+            } else {
+                notifyMessage("Something Went Wrong", '3');
+            }
+        }
+        ).catch(()=>notifyMessage("Something Went Wrong", '3'));
     }
 
     function dpUpload() {
-        //image upload
+        profile.url='url'
     }
 
     return (
         <div className='doctor-registration'>
             <div className='doctor-registration-form-container'>
+                {loading && <Spinner isOverLay={true}/>}
                 <Form className='doctor-registration-form'>
                     <div className='doctor-registration-form-section1'>
                         <Image className='doctor-registration-form-section1-image' src={docProfilePic}

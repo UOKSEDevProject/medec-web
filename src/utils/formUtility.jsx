@@ -103,6 +103,18 @@ export const formatPhoneNumber = (str) => {
     let match = cleaned.match(/^(\d{3})(\d{3})(\d{3})$/);
     if (match) {
         return match[1] + ' ' + match[2] + ' ' + match[3];
-    };
+    }
     return null;
 };
+
+export const convertToNameWithInitials = (str) => {
+    const array = stringFormatter(str).split(" ");
+    for (let i = 0; i < array.length-1; i++) {
+        array[i] = array[i].charAt(0);
+    }
+    return array.join('.');
+}
+export const CreateDisplayName = (str) => {
+    const array = stringFormatter(str).split(" ");
+    return array[0];
+}
