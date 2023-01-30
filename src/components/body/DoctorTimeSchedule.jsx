@@ -1,11 +1,11 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {Image, Form, Button} from 'react-bootstrap';
 import EditBtn from '../../assets/images/icon/buttons/btn-edit.png';
 import DeleteBtn from '../../assets/images/icon/buttons/btn-delete.png';
 import DatePicker from 'react-date-picker';
 import TimePicker from 'react-time-picker';
-import {useMutation, useQuery} from "@apollo/client";
+import {useMutation, useQuery, useSubscription} from "@apollo/client";
 import queries from "../../graphql/queries";
 import store from "../../data-store/reducer/root-reducer";
 import {doctorActions} from "../../data-store/actions/doctor-actions";
@@ -13,13 +13,19 @@ import Spinner from "./Spinner";
 import {useSelector} from "react-redux";
 import CalendarIcon from '../../assets/images/icon/calander-icon.png';
 import {notifyMessage} from '../../utils/notification';
-import DataNotAvailable from "./DataNotAvailable";
-import {convertDateObjectToStringDate, convertStringDateToDateObject} from "../../utils/DateConverter";
+import {convertDateObjectToStringDate, convertStringDateToDateObject} from "../../utils/DateConverter.js";
 import mutations from "../../graphql/mutations";
+import subscriptions from "../../graphql/subscriptions";
 
 const addDoctorSessionListToStore = (data) => {
     store.dispatch(doctorActions.addDoctorSessionList(data.getDoctorSessionListForChannelCenter))
-}
+};
+
+const onSubsDataFeed = (res) => {
+    if (res && res.subscriptionData && res.subscriptionData.data && res.subscriptionData.data.sessionListener) {
+        store.dispatch(doctorActions.updateSessionOfDoctorSessionList(res.subscriptionData.data.sessionListener));
+    }
+};
 
 const DoctorTimeSchedule = () => {
     const {dctId} = useParams();
@@ -29,6 +35,7 @@ const DoctorTimeSchedule = () => {
     const [timeValue, setTimeValue] = useState('10:00');
     const [maxAppointmentValue, setMaxAppointmentValue] = useState('0');
     const [isEdit, setIsEdit] = useState({bool: false, id: null});
+    const [sessionIdList, setSessionIdLists] = useState([]);
 
     const {loading} = useQuery(queries.getDoctorSessionListsForChannelCenter, {
         onCompleted: addDoctorSessionListToStore,
@@ -42,6 +49,17 @@ const DoctorTimeSchedule = () => {
     const [sendUpdateSessionReq] = useMutation(mutations.updateSession);
 
     const doctorProfile = useSelector(state => state.doctorDS.sessionList);
+
+    useEffect(() => {
+        if (doctorProfile && doctorProfile.sessionsList) {
+            setSessionIdLists(doctorProfile.sessionsList.map((value) => {return value.id;}));
+        }
+    }, [doctorProfile]);
+
+    useSubscription(subscriptions.sessionListener, {
+        variables: {sessionId: sessionIdList ? sessionIdList.join('|') : ''},
+        onSubscriptionData: onSubsDataFeed
+    });
 
     const editSlot = (id) => {
         doctorProfile?.sessionsList?.find((item) => {

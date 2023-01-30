@@ -26,7 +26,8 @@ const AddPrescriptions = lazy(() => import('./body/AddPrescriptions'));
 const LabPatientList = lazy(() => import('./body/LabPatientList'));
 const AddManualAppointment = lazy(() => import('./body/AddManualAppointment'));
 const ManualAppointmentDoctorProfile = lazy(() => import('./body/ManualAppointmentDoctorProfile'));
-const SearchedDctCardList = lazy(() => import('./body/SearchedDctCardList'))
+const SearchedDctCardList = lazy(() => import('./body/SearchedDctCardList'));
+const AboutUs = lazy(() => import('./body/AboutUs'));
 
 const processSearchData = (data) => {
     return data.map((item) => {
@@ -182,6 +183,12 @@ const Body = () => {
                             <Container fluid={false}>
                                 <Search onInputChange={onSearchInputChange} onSelectOption={onSelectOption} onSearchClick={onSelectOption}/>
                                 <SearchedDctCardList/>
+                            </Container>
+                        </Route>
+
+                        <Route path='/about-us'>
+                            <Container fluid={false}>
+                                <AboutUs/>
                             </Container>
                         </Route>
 
