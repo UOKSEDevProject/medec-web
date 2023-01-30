@@ -34,6 +34,29 @@ export function validateFullName(fullNameValue, errors) {
     }
 }
 
+export function validateDisName(fullNameValue, errors) {
+    if (fullNameValue === '') {
+        errors["disName"] = "Please fill in your display name";
+    } else if (typeof fullNameValue !== "undefined") {
+        if (!fullNameValue.match(/^[a-zA-Z ]{2,17}$/)) {
+            errors["disName"] = "Please enter a valid name, avoid numbers and special characters";
+        } else {
+            delete errors.disName;
+        }
+    }
+}
+export function validateIName(fullNameValue, errors) {
+    if (fullNameValue === '') {
+        errors["iName"] = "Please fill in your name with initials";
+    } else if (typeof fullNameValue !== "undefined") {
+        if (!fullNameValue.match(/^[a-zA-Z\. ]{2,17}$/)) {
+            errors["iName"] = "Please enter a valid name, avoid numbers and special characters";
+        } else {
+            delete errors.iName;
+        }
+    }
+}
+
 export function validateAddress(addressValue, errors) {
     if (addressValue === '' || addressValue === undefined) {
         errors["address"] = "Please enter a valid street address";

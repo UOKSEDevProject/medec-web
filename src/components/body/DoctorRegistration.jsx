@@ -4,11 +4,14 @@ import docProfilePic from '../../assets/images/dp.png';
 import {genders, specializations} from "../../constants/constants";
 import camera from '../../assets/images/camera.png';
 import {checkForm, formatPhoneNumber, setErrors} from "../../utils/formUtility";
+import {useMutation} from "@apollo/client";
+import mutations from "../../graphql/mutations";
 
 function DoctorRegistration(props) {
     const [profile, setProfile] = useState({});
     const [errors, seterrors] = useState({error: {}});
     const [hasEdit, setHasEdit] = useState(false);
+    const [sendDoctorRegistrationReq, {loading}] = useMutation(mutations.register);
 
     const onChange = (e) => {
         setProfile({...profile, [e.target.name]: e.target.value});

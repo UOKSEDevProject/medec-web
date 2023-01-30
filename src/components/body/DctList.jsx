@@ -30,6 +30,7 @@ const DctList = () => {
             {doctors && doctors.map((dr, index) => (
                 <Doctor
                     key={index}
+                    id={dr._id}
                     disName={dr.disName}
                     mediCenter={dr.mediCenter}
                     specialization={dr.specialization}

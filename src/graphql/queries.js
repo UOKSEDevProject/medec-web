@@ -50,7 +50,7 @@ const getAppointmentList = gql`
     }
 `;
 
-const getDoctorProfile = gql `
+const getDoctorProfile = gql`
     query Query($getDoctorSessionListId: String!) {
       getDoctorSessionList(id: $getDoctorSessionListId) {
         _id
@@ -71,12 +71,45 @@ const getDoctorProfile = gql `
     }
 `
 
+const searchForDoctorByMedicalCouncilNumber = gql`
+   query Query($getDoctorByIdId: String!) {
+      getDoctorById(id: $getDoctorByIdId) {
+        payload {
+          _id
+          disName
+        }
+        statusCode
+        statusDetails
+      }
+    }
+`
+
+const getDoctorSessionListsForChannelCenter = gql`
+    query Query($getDoctorSessionListForChannelCenterId: String!, $chId: String!) {
+      getDoctorSessionListForChannelCenter(id: $getDoctorSessionListForChannelCenterId, chId: $chId) {
+        _id
+        disName
+        prfImgUrl
+        spec
+        sessionsList {
+          id
+          appointments
+          date
+          maximumAppointments
+          time
+        }
+      }
+    }
+`
+
 const queries = {
     getChannelCenters: getChannelCenters,
     getDoctors: getDoctors,
     searchDoctors: searchDoctors,
     getAppointmentList: getAppointmentList,
-    getDoctorProfile: getDoctorProfile
+    getDoctorProfile: getDoctorProfile,
+    searchForDoctorByMedicalCouncilNumber: searchForDoctorByMedicalCouncilNumber,
+    getDoctorSessionListsForChannelCenter: getDoctorSessionListsForChannelCenter
 }
 
 export default queries;

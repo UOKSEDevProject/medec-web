@@ -1,22 +1,24 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Button, Col, Form, Image, Modal, Row} from "react-bootstrap";
-import {bloodGroups, tittle} from "../../constants/constants";
+import {bloodGroups, gender} from "../../constants/constants";
 import {checkForm, formatPhoneNumber, setErrors} from "../../utils/formUtility";
 import defaultProfilePicture from "../../assets/images/defaultprofilepic.png";
 import camera from "../../assets/images/camera.png";
+import FileUpLoader from './FileUploader';
+import {uploadFile} from '../../utils/awsFunctioins';
+
 
 function EditProfileModal(props) {
 
-    const [profile, setProfile] = useState(props.profile);
+    const [profile, setProfile] = useState(props.profile ? props.profile: {});
     const [errors, seterrors] = useState({error:{}});
     const [hasEdit, setHasEdit] = useState(false);
+    let inputFileRef = useRef();
 
     const onChange = (e) => {
         setProfile({...profile,[e.target.name]:e.target.value});
         setHasEdit(true);
-        if (e.target.name==='firstName' || e.target.name==='lastName'){
-            setProfile({...profile,[e.target.name]:e.target.value});
-        } else if(e.target.name==='phoneNumber'){
+        if(e.target.name==='phoneNumber'){
             let phoneNumber = formatPhoneNumber(e.target.value);
             setProfile({...profile,[e.target.name]:phoneNumber});
         }
@@ -47,16 +49,18 @@ function EditProfileModal(props) {
 
     const handleInputAria = (event) => {
       let error = errors;
-      if (event.target.id === 'firstName'){
-          handleAria(error["firstName"], event.target.id);
-      } else if (event.target.id === 'lastName'){
-          handleAria(error['lastName'], event.target.id);
+      if (event.target.id === 'fullName'){
+          handleAria(error["fullName"], event.target.id);
+      } else if (event.target.id === 'disName'){
+          handleAria(error['disName'], event.target.id);
+      }else if (event.target.id === 'iName'){
+          handleAria(error['iName'], event.target.id);
       } else if (event.target.id === 'address'){
           handleAria(error['address'], event.target.id);
       }  else if (event.target.id === 'phoneNumber'){
           handleAria(error['phoneNumber'], event.target.id);
-      } else if (event.target.name === 'tittle'){
-          handleAria(error['tittle'], event.target.name);
+      } else if (event.target.name === 'gender'){
+          handleAria(error['gender'], event.target.name);
       } else if (event.target.name === 'birthDate'){
           handleAria(error['birthDate'], event.target.name);
       } else if (event.target.name === 'country'){
@@ -66,8 +70,21 @@ function EditProfileModal(props) {
       }
     }
 
-    function dpUpload() {
-        // image upload
+    function dpUpload(file) {
+        uploadFile(file).on('httpUploadProgress', (evt) => {
+            console.log(Math.round((evt.loaded / evt.total) * 100))
+          })
+          .send((e) => {
+             if (e) {
+               console.log(e)
+             }
+          });
+          
+        profile.imageUrl="url";
+    }
+
+    function imageSelectingHandler () {
+        inputFileRef.click();
     }
 
     return (
@@ -79,70 +96,101 @@ function EditProfileModal(props) {
                 <Modal.Body>
                     <div className='dev'>
                         <Image className='edit-profile-modal-profilePicture-selectIcon' src={camera}
-                                                roundedCircle={true} onClick={dpUpload}/>
+                                                roundedCircle={true} onClick={imageSelectingHandler}/>
+                        {/* <input type="file" onChange={dpUpload} style={{display: 'none'}} ref={inputFileRef}/> */}
+                        <div style={{display:'none'}}>
+                            <FileUpLoader
+                                pageType
+                                sendImageData={(file) => {
+                                    dpUpload(file);
+                                }}
+                                accepts={["image/png", "image/jpg", "image/jpeg"]}
+                                cRef={(e)=>inputFileRef=e}
+                            />
+                        </div>
                         <Image className='edit-profile-modal-profilePicture' src={profile.profilePicture ? profile.profilePicture : defaultProfilePicture} fluid={true}/>
                     </div>
                     <Form>
                         <Form.Group as={Row} className="mb-3">
                             <Form.Label column xs={3} md={3} lg={3}>
-                                Tittle <span>*</span>
+                                Gender <span>*</span>
                             </Form.Label>
                             <Col xs={4} md={3} lg={2}>
                                 <Form.Select
-                                    id='tittle'
+                                    id='gender'
                                     defaultValue={profile.tittle}
-                                    name='tittle'
+                                    name='gender'
                                     aria-required={true}
-                                    aria-describedby='title_'
+                                    aria-describedby='gender_'
                                     onBlur={clientSideValidation}
                                     onFocus={handleInputAria}
                                     onChange={onChange}>
-                                    <option value={''}>select a title</option>
-                                    {tittle.map((item, index) => (
+                                    <option value={''}>select Your Gender</option>
+                                    {gender.map((item, index) => (
                                         <option key={index} value={item.tittle}>{item.tittle}</option>
                                     ))}
                                 </Form.Select>
-                                <span id='title_' className='form-error' role='status'>{errors.tittle}</span>
+                                <span id='gender_' className='form-error' role='status'>{errors.tittle}</span>
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3">
                             <Form.Label column xs={3} md={3} lg={3}>
-                                First Name <span>*</span>
+                                Full Name <span>*</span>
                             </Form.Label>
                             <Col xs={9} md={8} lg={7}>
                             <Form.Control
-                                id='firstName'
+                                id='fullName'
                                 type='text'
-                                name='firstName'
-                                placeholder={'enter First Name'}
-                                value={profile.firstName}
+                                name='fullName'
+                                placeholder={'enter Full Name'}
+                                value={profile.fullName}
                                 aria-required={true}
                                 aria-describedby='fName'
                                 maxLength={17}
                                 onChange={onChange}
                                 onBlur={clientSideValidation}
                                 onFocus={handleInputAria}/>
-                                <span id='fName' className='form-error' role='status'>{errors.firstName}</span>
+                                <span id='fName' className='form-error' role='status'>{errors.fullName}</span>
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3">
                             <Form.Label column xs={3} md={3} lg={3}>
-                                Last Name <span>*</span>
+                                Display Name <span>*</span>
                             </Form.Label>
                             <Col xs={9} md={8} lg={7}>
                                 <Form.Control
-                                    id='lastName'
+                                    id='disName'
                                     type='text'
-                                    name='lastName'
-                                    placeholder={'enter Last Name'}
-                                    value={profile.lastName}
+                                    name='disName'
+                                    placeholder={'enter name for display'}
+                                    value={profile.disName}
                                     aria-required={true}
-                                    aria-describedby='lName'
+                                    aria-describedby='dName'
                                     maxLength={17}
                                     onChange={onChange}
                                     onBlur={clientSideValidation}
                                     onFocus={handleInputAria}/>
-                                <span id='lName' className='form-error' role='status'>{errors.lastName}</span>
+                                <span id='dName' className='form-error' role='status'>{errors.disName}</span>
+                            </Col>
+                        </Form.Group>
+                        <Form.Group as={Row} className="mb-3">
+                            <Form.Label column xs={3} md={3} lg={3}>
+                                Name with Initials <span>*</span>
+                            </Form.Label>
+                            <Col xs={9} md={8} lg={7}>
+                                <Form.Control
+                                    id='iName'
+                                    type='text'
+                                    name='iName'
+                                    placeholder={'enter name with initials'}
+                                    value={profile.iniName}
+                                    aria-required={true}
+                                    aria-describedby='iName_'
+                                    maxLength={17}
+                                    onChange={onChange}
+                                    onBlur={clientSideValidation}
+                                    onFocus={handleInputAria}/>
+                                <span id='iName_' className='form-error' role='status'>{errors.iName}</span>
                             </Col>
                         </Form.Group>
                         <Form.Group as={Row} className="mb-3">

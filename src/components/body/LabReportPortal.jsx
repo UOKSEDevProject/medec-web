@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import CollapseView from "./list view/CollapseView";
 import { labReportList } from "../../temp/data-store";
+import {Button} from "react-bootstrap";
+import {exportPdf} from "../../utils/export";
+import LABREPORT from "../../assets/images/lab-report.png"
 
 let screenHeight = window.screen.height;
 let screenWidth = window.screen.width;
@@ -65,6 +68,7 @@ const LabReportPortal = () => {
           />
         </center>
       </div>
+        <Button onClick={()=>exportPdf(LABREPORT)}>Download PDF</Button>
     </div>
   );
 };

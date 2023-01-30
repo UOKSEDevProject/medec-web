@@ -8,11 +8,9 @@ export const bloodGroups = [
     {bloodGroup: 'O+'},
     {bloodGroup: 'O-'},
 ]
-export const tittle = [
-    {tittle: 'Mr'},
-    {tittle: 'Mrs'},
-    {tittle: 'Ms'},
-    {tittle: 'Hon'},
+export const gender = [
+    {tittle: 'Male'},
+    {tittle: 'Female'},
 ]
 
 export const CHECKOUT_FIELDS = {
@@ -47,7 +45,13 @@ export const specializations = [
 export const component = {
     chanCenter: 'CHAN_CENTER',
     laboratory: 'LABORATORY',
-    user: 'USER'
+    user: 'USER',
+    doctor:'DOCTOR'
+}
+
+export const platform = {
+    web: 'WEB',
+    mobile: 'MOB'
 }
 
 export const dataStore = {
@@ -55,7 +59,10 @@ export const dataStore = {
     AddSearchList: "ADD_SEARCH_LIST",
     AuthResponse: "AUTH_RESPONSE",
     AddAppointmentList: "ADD_APPOINTMENT_LIST",
-    AddDoctorTimeSchedule: "ADD_DOCTOR_TIME_SCHEDULE"
+    AddDoctorTimeSchedule: "ADD_DOCTOR_TIME_SCHEDULE",
+    AddSessionToDoctorTimeSchedule:"ADD_SESSION_TO_DOCTOR_TIME_SCHEDULE",
+    UpdateSessionOfDoctorTimeSchedule:"UPDATE_SESSION_OF_DOCTOR_TIME_SCHEDULE",
+    DeleteSessionFromDoctorSessionList:"DELETE_SESSION_FROM_DOCTOR_TIME_SCHEDULE",
 }
 
 export const authConstants = {
@@ -69,6 +76,11 @@ export const authConstants = {
     authFail: 11,
     authRegisteredSuccess: 12,
     authRegisteredFail: 13,
+}
+
+export const platformConstants = {
+    platformMobile: 1,
+    platformWeb: 2
 }
 
 export const addPrescriptionsSections = [

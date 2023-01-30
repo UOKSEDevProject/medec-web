@@ -16,6 +16,7 @@ const myBucket = new AWS.S3({
 })
 
 export const uploadFile = (file) => {
+    console.log('upload file',file);
     const params = {
         ACL: 'public-read',
         Body: file,

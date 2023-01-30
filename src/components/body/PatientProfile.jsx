@@ -5,15 +5,15 @@ import defaultProfilePicture from '../../assets/images/defaultprofilepic.png'
 import EditProfileModal from "./editProfileModal";
 import {stringFormatter} from "../../utils/formUtility";
 import camera from "../../assets/images/camera.png";
+import {useHistory} from "react-router-dom";
 
 function PatientProfile(props) {
     const [modalShow, setModalShow] = useState(false);
-
+    const history = useHistory();
     const [profile, setProfile] = useState(userProfile);
 
-    const openMedicalHistory = (e) => {
-        e.preventDefault();
-        //medical history page open
+    const openMedicalHistory = () => {
+        history.push("/med-his")
     }
 
     const updateProfile = (profile) => {
@@ -53,7 +53,7 @@ function PatientProfile(props) {
                     <div className='patient-profile-nameContainer'>
                         <div
 
-                            className='patient-profile-name'>{profile.tittle}.  {stringFormatter(profile.firstName+' '+profile.lastName)}</div>
+                            className='patient-profile-name'>Hi,  {stringFormatter(profile.disName)}</div>
                         <button className='patient-profile-historyBtn' onClick={openMedicalHistory}>Medical
                             History</button>
                     </div>

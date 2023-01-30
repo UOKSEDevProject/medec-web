@@ -76,8 +76,15 @@ const Body = () => {
 
                         <Route path='/able-dct'>
                             <Container fluid={false}>
-                                <Search onInputChange={onSearchInputChange} onSelectOption={onSelectOption} onSearchClick={onSelectOption}/>
+                                <Search onInputChange={onSearchInputChange} onSelectOption={onSelectOption}
+                                        onSearchClick={onSelectOption}/>
                                 <DctList/>
+                            </Container>
+                        </Route>
+
+                        <Route path='/lab-req'>
+                            <Container fluid={false}>
+                                <PatientReportRequirementList/>
                             </Container>
                         </Route>
 
@@ -87,7 +94,7 @@ const Body = () => {
                             </Container>
                         </Route>
 
-                        <Route path='/dct-prf'>
+                        <Route path='/dct-prf/:dctId'>
                             <Container fluid={true}>
                                 <DoctorProfile/>
                             </Container>
@@ -101,19 +108,19 @@ const Body = () => {
 
                         <Route path='/dct-reg'>
                             <Container fluid={true}>
-                                <DoctorRegistration />
+                                <DoctorRegistration/>
                             </Container>
                         </Route>
 
-                        <Route path='/dct-time-sch'>
+                        <Route path='/dct-time-sch/:dctId'>
                             <Container fluid={true}>
-                                <DoctorTimeSchedule />
+                                <DoctorTimeSchedule/>
                             </Container>
                         </Route>
 
                         <Route path='/pnt-lst'>
                             <Container fluid={true}>
-                                <PatientList />
+                                <PatientList/>
                             </Container>
                         </Route>
 
@@ -143,7 +150,7 @@ const Body = () => {
 
                         <Route path='/lb-pnt-lst'>
                             <Container fluid={true}>
-                                <LabPatientList />
+                                <LabPatientList/>
                             </Container>
                         </Route>
 
@@ -202,7 +209,7 @@ const Body = () => {
                     <MyAppointments/>*/}
             </div>
         </div>
-);
+    );
 };
 
 export default Body;
