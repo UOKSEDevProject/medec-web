@@ -8,9 +8,9 @@ export const configuration  = {
         subsPath: '/subscriptions'
     },
     aws: {
-        S3_BUCKET: 'wedding-planner-lk-app',
-        REGION: 'ap-northeast-1',
-        accessKeyId: 'AKIAU5KTNW5AMA6Q5HWQ',
-        secretAccessKey: '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'
+        S3_BUCKET: 'medec-content',
+        REGION: 'Asia Pacific (Mumbai) ap-south-1',
+        accessKeyId: 'AKIAWZ5URD3XCPU2BNH2',
+        secretAccessKey: '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'
     }
 };

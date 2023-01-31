@@ -7,7 +7,7 @@ const REGION = configuration.aws.REGION;
 
 AWS.config.update({
     accessKeyId: configuration.aws.accessKeyId,
-    secretAccessKey: configuration.aws.secretAccessKey
+    secretAccessKey: configuration.aws.secretAccessKey,
 })
 
 const myBucket = new AWS.S3({

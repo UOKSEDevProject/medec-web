@@ -79,7 +79,7 @@ function EditProfileModal(props) {
                console.log(e)
              }
           });
-          
+
         profile.imageUrl="url";
     }
 
@@ -97,7 +97,6 @@ function EditProfileModal(props) {
                     <div className='dev'>
                         <Image className='edit-profile-modal-profilePicture-selectIcon' src={camera}
                                                 roundedCircle={true} onClick={imageSelectingHandler}/>
-                        {/* <input type="file" onChange={dpUpload} style={{display: 'none'}} ref={inputFileRef}/> */}
                         <div style={{display:'none'}}>
                             <FileUpLoader
                                 pageType
