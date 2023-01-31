@@ -28,6 +28,7 @@ const AddManualAppointment = lazy(() => import('./body/AddManualAppointment'));
 const ManualAppointmentDoctorProfile = lazy(() => import('./body/ManualAppointmentDoctorProfile'));
 const SearchedDctCardList = lazy(() => import('./body/SearchedDctCardList'));
 const AboutUs = lazy(() => import('./body/AboutUs'));
+const Admin = lazy(()=>import('./body/Admin'));
 
 const processSearchData = (data) => {
     return data.map((item) => {
@@ -192,11 +193,19 @@ const Body = () => {
                             </Container>
                         </Route>
 
+                        <Route path='/ad'>
+                            <Container fluid={true}>
+                                <Admin/>
+                            </Container>
+                        </Route>
+
                         <Route path='/'>
                             <Container fluid={true}>
                                 <Redirect to='/home'/>
                             </Container>
                         </Route>
+
+
                     </Switch>
                 </Suspense>
                 {/*<DoctorProfile/>

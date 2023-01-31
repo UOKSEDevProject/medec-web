@@ -21,6 +21,23 @@ const addDoctor = gql`
 }
 `;
 
+const updateDoctor = gql`
+    mutation AddDoctorToChannelCenter($chId: String!, $dctId: String!) {
+      addDoctorToChannelCenter(chId: $chId, dctId: $dctId) {
+        payload {
+          name
+          logoUrl
+          doctors
+          cntNo
+          address
+          _id
+        }
+        statusCode
+        statusDetails
+      }
+    }
+`
+
 const addSession = gql`
     mutation CreateSession($session: SessionArgs!) {
       createSession(session: $session) {
@@ -110,6 +127,7 @@ const register = gql`
 
 const mutations = {
     addDoctor: addDoctor,
+    updateDoctor:updateDoctor,
     login: login,
     register: register,
     addSession: addSession,
