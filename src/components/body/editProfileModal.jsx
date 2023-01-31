@@ -1,15 +1,18 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Button, Col, Form, Image, Modal, Row} from "react-bootstrap";
 import {bloodGroups, gender} from "../../constants/constants";
 import {checkForm, formatPhoneNumber, setErrors} from "../../utils/formUtility";
 import defaultProfilePicture from "../../assets/images/defaultprofilepic.png";
 import camera from "../../assets/images/camera.png";
+import FileUpLoader from './FileUploader';
+
 
 function EditProfileModal(props) {
 
     const [profile, setProfile] = useState(props.profile ? props.profile: {});
     const [errors, seterrors] = useState({error:{}});
     const [hasEdit, setHasEdit] = useState(false);
+    let inputFileRef = useRef();
 
     const onChange = (e) => {
         setProfile({...profile,[e.target.name]:e.target.value});
@@ -66,8 +69,13 @@ function EditProfileModal(props) {
       }
     }
 
-    function dpUpload() {
-        profile.imageUrl="url"
+    function dpUpload(file) {
+        console.log(file);
+        profile.imageUrl="url";
+    }
+
+    function imageSelectingHandler () {
+        inputFileRef.click();
     }
 
     return (
@@ -79,7 +87,17 @@ function EditProfileModal(props) {
                 <Modal.Body>
                     <div className='dev'>
                         <Image className='edit-profile-modal-profilePicture-selectIcon' src={camera}
-                                                roundedCircle={true} onClick={dpUpload}/>
+                                                roundedCircle={true} onClick={imageSelectingHandler}/>
+                        <div style={{display:'none'}}>
+                            <FileUpLoader
+                                pageType
+                                sendImageData={(file) => {
+                                    dpUpload(file);
+                                }}
+                                accepts={["image/png", "image/jpg", "image/jpeg"]}
+                                cRef={(e)=>inputFileRef=e}
+                            />
+                        </div>
                         <Image className='edit-profile-modal-profilePicture' src={profile.profilePicture ? profile.profilePicture : defaultProfilePicture} fluid={true}/>
                     </div>
                     <Form>

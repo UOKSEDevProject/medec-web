@@ -6,5 +6,5 @@ export const configuration  = {
         ws: 'ws://localhost:4000',
         path: '/graphql',
         subsPath: '/subscriptions'
-    }
+    },
 };
