@@ -1,0 +1,16 @@
+.about-us {
+  border-radius: 12px;
+  padding: 0 20px;
+  background: linear-gradient(to bottom, #2d4a57, rgba(0,0,0,0.1));;
+
+  &-font {
+    font-size: 1.25em;
+    text-align: justify;
+    font-family: "Roboto", sans-serif;
+  }
+
+  &-title {
+    font-size: 1.6em;
+    color: $footer-BG;
+  }
+}
