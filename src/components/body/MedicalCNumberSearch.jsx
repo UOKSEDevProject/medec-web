@@ -5,12 +5,16 @@ import queries from "../../graphql/queries";
 import Spinner from "./Spinner";
 import client from "../../connection/connection";
 import {useHistory} from "react-router-dom";
+import {useMutation} from "@apollo/client";
+import mutations from "../../graphql/mutations";
+import {notifyMessage} from "../../utils/notification";
 
 const MedicalCNumberSearch = () => {
     const [value, setValue] = useState("");
     const [doctor, setDoctor] = useState(null);
     const [loading, setLoading] = useState(false);
     const [isFirstTime, setIsFirstTime] = useState(true);
+    const [sendDoctorUpdateReq] = useMutation(mutations.updateDoctor);
     const history = useHistory();
 
     const searchDoctor = () => {
@@ -40,7 +44,20 @@ const MedicalCNumberSearch = () => {
     }
 
     const updateDoctor = () => {
-        history.push(`/dct-time-sch/${doctor._id}`)
+        sendDoctorUpdateReq({
+            variables: {
+                chId: sessionStorage.getItem("usrId"),
+                dctId: value
+            }, fetchPolicy: "no-cache"
+        }).then(r => {
+            if(r.data.addDoctorToChannelCenter.statusCode === 'S0000'){
+                notifyMessage("Successfully Added", '1');
+                history.push(`/dct-time-sch/${doctor._id}`)
+
+            } else if (r.data.addDoctorToChannelCenter.statusCode === 'E0009'){
+                notifyMessage("Already Registered", '3');
+            }
+            }).catch(()=>notifyMessage("Something Went Wrong", '3'));
     }
 
     return (
