@@ -5,7 +5,6 @@ import {checkForm, formatPhoneNumber, setErrors} from "../../utils/formUtility";
 import defaultProfilePicture from "../../assets/images/defaultprofilepic.png";
 import camera from "../../assets/images/camera.png";
 import FileUpLoader from './FileUploader';
-import {uploadFile} from '../../utils/awsFunctioins';
 
 
 function EditProfileModal(props) {
@@ -71,15 +70,7 @@ function EditProfileModal(props) {
     }
 
     function dpUpload(file) {
-        uploadFile(file).on('httpUploadProgress', (evt) => {
-            console.log(Math.round((evt.loaded / evt.total) * 100))
-          })
-          .send((e) => {
-             if (e) {
-               console.log(e)
-             }
-          });
-
+        console.log(file);
         profile.imageUrl="url";
     }
 
