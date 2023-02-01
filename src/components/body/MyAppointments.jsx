@@ -46,22 +46,23 @@ const MyAppointments = () => {
 
     return appointments && appointments.length === 0 ? <DataNotAvailable customMessage={'Data Not Available'}/>
         : (<div className='myappointment-page'>
-            <div className='table-responsive-md'>
-                <table className='table table-bordered'>
-                    <thead>
-                    <tr className='myappointment-page-table-head'>
-                        <th scope='col'>Channeling Center</th>
-                        <th scope='col'>Doctor</th>
-                        <th scope='col'>Date</th>
-                        <th scope='col'>Time</th>
-                        <th scope='col'>No</th>
-                        <th scope='col'>Reference Number</th>
-                        <th scope='col'>Current Appointment Number</th>
-                    </tr>
-                    </thead>
-                    <tbody>{renderTabRow()}</tbody>
-                </table>
-            </div>
+                <div className='myappointment-table-container' >
+                        <table className='table'>
+                            <thead>
+                            <tr className='myappointment-page-table-head'>
+                                <th scope='col'>Channeling Center</th>
+                                <th scope='col'>Doctor</th>
+                                <th scope='col'>Date</th>
+                                <th scope='col'>Time</th>
+                                <th scope='col'>No</th>
+                                <th scope='col'>Reference Number</th>
+                                <th scope='col'>Current Appointment Number</th>
+                            </tr>
+                            </thead>
+                            <tbody>{renderTabRow()}</tbody>
+                        </table>
+                </div>
+
         </div>
     );
 };

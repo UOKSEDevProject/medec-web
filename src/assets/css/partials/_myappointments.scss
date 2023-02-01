@@ -3,13 +3,14 @@
   padding-bottom: 50px;
   height: 70vh;
   //   padding: 10px;
+  .myappointment-table-container{
+    margin: auto;
+    max-height: 60vh;
+    overflow-y: auto;
+    max-width: 1000px;
+  }
   table {
     background-color: $table-BG;
-    margin-top: "10px";
-    max-width: 1000px;
-    transform: translate(-50%, -50%);
-    margin-left: 50%;
-    margin-top: 200px;
   }
   thead {
     // border-width: 0;
