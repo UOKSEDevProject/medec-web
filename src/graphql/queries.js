@@ -61,6 +61,7 @@ const getDoctorProfile = gql`
           _id
           hospitalName
           sessionsList {
+            id
             time
             date
             appointments

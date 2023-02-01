@@ -124,15 +124,41 @@ const register = gql`
       }
     }
 `
-
+const addAppointment = gql`
+    mutation AddAppointment($sessionId: String!, $pId: String!) {
+        addAppointment(sessionId: $sessionId, pId: $pId) {
+            payload {
+                _id
+                apts {
+                    aptNo
+                    _id
+                    activeSt
+                    pId
+                    pName
+                }
+                chId
+                curAptNo
+                date
+                dctId
+                maxApts
+                status
+                strTime
+                totApts
+            }
+            statusCode
+            statusDetails
+        }
+    }
+`
 const mutations = {
     addDoctor: addDoctor,
-    updateDoctor:updateDoctor,
+    updateDoctor: updateDoctor,
     login: login,
     register: register,
     addSession: addSession,
     deleteSession: deleteSession,
-    updateSession: updateSession
+    updateSession: updateSession,
+    addAppointment:addAppointment
 };
 
 export default mutations;

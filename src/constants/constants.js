@@ -63,6 +63,7 @@ export const dataStore = {
     AddSessionToDoctorTimeSchedule:"ADD_SESSION_TO_DOCTOR_TIME_SCHEDULE",
     UpdateSessionOfDoctorTimeSchedule:"UPDATE_SESSION_OF_DOCTOR_TIME_SCHEDULE",
     DeleteSessionFromDoctorSessionList:"DELETE_SESSION_FROM_DOCTOR_TIME_SCHEDULE",
+    updateDoctorSession: "UPDATE_DOCTOR_SESSION"
 }
 
 export const authConstants = {
