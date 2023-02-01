@@ -84,6 +84,43 @@ const doctorReducer = (state = initialState, action) => {
             }
         }
 
+        case dataStore.updateDoctorSession: {
+            const hospital=[];
+            state.sessionList.channelCenters.map((item) => {
+                const sessionList=[];
+                item.sessionsList.map((it) => {
+                    if(it.id===action.payload._id){
+                        const obj = {
+                            __typename : it.__typename,
+                            id : it.id,
+                            time : action.payload.strTime,
+                            date : action.payload.date,
+                            appointments : action.payload.totApts,
+                            maximumAppointments : action.payload.maxApts
+                        }
+                        sessionList.push(obj);
+                    } else{
+                        sessionList.push(it);
+                    }
+                })
+                const channelCenter = {
+                    __typename : item.__typename,
+                    hospitalName : item.hospitalName,
+                    sessionsList : sessionList,
+                    _id : item._id
+                }
+
+                hospital.push(channelCenter);
+            })
+            return {
+                ...state,
+                sessionList:{
+                    ...state.sessionList,
+                    channelCenters: hospital
+                }
+            }
+        }
+
         default: {
             return state;
         }

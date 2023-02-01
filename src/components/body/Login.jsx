@@ -57,6 +57,7 @@ function Login() {
             onCompleted: onAuthResponse
         }).then(r => {
             if(r.data.login.authSts === authConstants.authSuccess){
+                notifyMessage("Successfully Logged", '1');
                 history.push('/home')
             }else{
                 notifyMessage(r.data.login.message, '3');

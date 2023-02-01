@@ -42,11 +42,19 @@ const deleteSessionFromDoctorSessionList = (sessionId) => {
     }
 }
 
+const updateDoctorSession = (session) => {
+    return {
+        type: dataStore.updateDoctorSession,
+        payload: session
+    }
+}
+
 export const doctorActions = {
     createDoctorList: createDoctorList,
     addSearchList: addSearchList,
     addDoctorSessionList: addDoctorSessionList,
     addNewSessionToDoctorSessionList: addNewSessionToDoctorSessionList,
     updateSessionOfDoctorSessionList: updateSessionOfDoctorSessionList,
-    deleteSessionFromDoctorSessionList: deleteSessionFromDoctorSessionList
+    deleteSessionFromDoctorSessionList: deleteSessionFromDoctorSessionList,
+    updateDoctorSession: updateDoctorSession
 };
