@@ -10,7 +10,7 @@ import {useSelector} from "react-redux";
 const renderUserOptions = (location, userId) => {
     return( configuration.component === component.user && location.pathname !=='/login' && location.pathname !=='/register' &&
        <Nav>
-           <NavLink to='/my-app' className='nav-link' activeClassName='active'>My Appointments</NavLink>
+           <NavLink to={userId === undefined ? '/login' : '/my-app'} className='nav-link' activeClassName='active'>My Appointments</NavLink>
            <Link to={userId === undefined ? '/login' : '/pnt-prf'}>
                <Image  className='profile-picture' fluid={true} roundedCircle={true}
                        src={userProfile.profilePicture != null ? userProfile.profilePicture
