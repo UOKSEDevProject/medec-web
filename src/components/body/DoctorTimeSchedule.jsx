@@ -18,7 +18,7 @@ import mutations from "../../graphql/mutations";
 import subscriptions from "../../graphql/subscriptions";
 
 const addDoctorSessionListToStore = (data) => {
-    store.dispatch(doctorActions.addDoctorSessionList(data.getDoctorSessionListForChannelCenter))
+    store.dispatch(doctorActions.addDoctorSessionList(data.getDoctorProfileForChannelCenter))
 };
 
 const onSubsDataFeed = (res) => {
@@ -37,10 +37,10 @@ const DoctorTimeSchedule = () => {
     const [isEdit, setIsEdit] = useState({bool: false, id: null});
     const [sessionIdList, setSessionIdLists] = useState([]);
 
-    const {loading} = useQuery(queries.getDoctorSessionListsForChannelCenter, {
+    const {loading} = useQuery(queries.getDoctorProfileForChannelCenter, {
         onCompleted: addDoctorSessionListToStore,
         variables: {
-            getDoctorSessionListForChannelCenterId: dctId,
+            getDoctorProfileForChannelCenterId: dctId,
             chId: "62c0b0d10ae48667baa01a30"
         }
     });

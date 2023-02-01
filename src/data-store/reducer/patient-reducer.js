@@ -2,16 +2,30 @@ import {dataStore} from "../../constants/constants";
 
 let initialState = {};
 
-const patientReducer = (state= initialState, action) => {
+const patientReducer = (state = initialState, action) => {
     switch (action.type) {
         case 'testing': {
             return state;
         }
 
-        case dataStore.AddAppointmentList:{
+        case dataStore.AddAppointmentList: {
             return {
                 ...state,
-                appointmentList : action.payload
+                appointmentList: action.payload
+            }
+        }
+
+        case dataStore.AddLabReportList: {
+            return {
+                ...state,
+                labReportList: action.payload
+            }
+        }
+
+        case dataStore.AddMedicalHistory: {
+            return {
+                ...state,
+                medicalHistoryList: action.payload
             }
         }
 

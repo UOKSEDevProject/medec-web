@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import CollapseView from "./list view/CollapseView";
-import { labReportList } from "../../temp/data-store";
 import {Button} from "react-bootstrap";
 import {exportPdf} from "../../utils/export";
 import LABREPORT from "../../assets/images/lab-report.png"
+import {useQuery} from "@apollo/client";
+import queries from "../../graphql/queries";
+import Spinner from "./Spinner";
+import store from "../../data-store/reducer/root-reducer";
+import {useSelector} from "react-redux";
+import {patientActions} from "../../data-store/actions/patient-actions";
 
 let screenHeight = window.screen.height;
 let screenWidth = window.screen.width;
@@ -12,65 +17,80 @@ let collapseHeight = screenHeight / 0.7;
 let collapseWidth = screenWidth / 3;
 let prescriptionImageHeight = collapseHeight;
 
+const addLabReportListToStore = (data) => {
+    store.dispatch(patientActions.addLabReportList(data.getLabReportList.payload))
+};
+
 const LabReportPortal = () => {
-  const [isShowCollapesView, setIsShowCollapesView] = useState(true);
-  const [selectedItem, setSelectedItem] = useState(labReportList[0].details[0]);
+    const {loading} = useQuery(queries.getLabReportList, {
+        onCompleted: addLabReportListToStore,
+        variables: {
+            pId: "62c1dbdc8de3254ab1e020c2",
+        }
+    });
+    const labReportList = useSelector(state => state.patientDS.labReportList);
+    const [isShowCollapesView, setIsShowCollapesView] = useState(true);
+    const [selectedItem, setSelectedItem] = useState(null);
 
-  const drawerWidthHandler = () => {
-    let isMobile = false;
-    let width = isMobile
-      ? isShowCollapesView
-        ? screenWidth
-        : 50
-      : isShowCollapesView
-      ? collapseWidth
-      : 50;
-    return width;
-  };
+    useEffect(() => {
+        if (labReportList) {
+            setSelectedItem(labReportList[0]?.reports[0]);
+        }
+    }, [labReportList])
 
-  return (
-    <div className='row'>
-      {/* --------------------------list view------------------------- */}
+    const drawerWidthHandler = () => {
+        let isMobile = false;
+        let width = isMobile
+            ? isShowCollapesView
+                ? screenWidth
+                : 50
+            : isShowCollapesView
+                ? collapseWidth
+                : 50;
+        return width;
+    };
 
-      <div
-        className='report-list-collapse-container'
-        style={{
-          backgroundColor: !isShowCollapesView && "rgba(0,0,0,0)",
-          width: drawerWidthHandler(),
-        }}
-      >
-        <CollapseView
-          title={"Lab Report List"}
-          listData={labReportList}
-          setIsShowCollapesView={setIsShowCollapesView}
-          isShowCollapesView={isShowCollapesView}
-          collapseHeight={collapseHeight}
-          setSelectedItem={setSelectedItem}
-          selectedItem={selectedItem}
-        />
-      </div>
+    return loading ? <Spinner isOverLay={true}/> :
+        <div className='row'>
+            {/* --------------------------list view------------------------- */}
+            <div
+                className='report-list-collapse-container'
+                style={{
+                    backgroundColor: !isShowCollapesView && "rgba(0,0,0,0)",
+                    width: drawerWidthHandler(),
+                }}
+            >
+                <CollapseView
+                    title={"Lab Report List"}
+                    listData={labReportList}
+                    setIsShowCollapesView={setIsShowCollapesView}
+                    isShowCollapesView={isShowCollapesView}
+                    collapseHeight={collapseHeight}
+                    setSelectedItem={setSelectedItem}
+                    selectedItem={selectedItem}
+                />
+            </div>
 
-      {/*---------------------------------------------------------------*/}
+            {/*---------------------------------------------------------------*/}
 
-      <div
-        style={{
-          margin: "20px 0",
-          height: prescriptionImageHeight,
-        }}
-      >
-        <center>
-          <img
-            src={selectedItem.imgURL}
-            loading='lazy'
-            height={prescriptionImageHeight}
-            width={"auto"}
-            alt={"prescription"}
-          />
-        </center>
-      </div>
-        <Button onClick={()=>exportPdf(LABREPORT)}>Download PDF</Button>
-    </div>
-  );
+            <div
+                style={{
+                    margin: "20px 0",
+                    height: prescriptionImageHeight,
+                }}
+            >
+                <center>
+                    <img
+                        src={selectedItem?.imgURL}
+                        loading='lazy'
+                        height={prescriptionImageHeight}
+                        width={"auto"}
+                        alt={"prescription"}
+                    />
+                </center>
+            </div>
+            <Button onClick={() => exportPdf(LABREPORT)}>Download PDF</Button>
+        </div>;
 };
 
 export default LabReportPortal;
