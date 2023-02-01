@@ -59,6 +59,8 @@ export const dataStore = {
     AddSearchList: "ADD_SEARCH_LIST",
     AuthResponse: "AUTH_RESPONSE",
     AddAppointmentList: "ADD_APPOINTMENT_LIST",
+    AddLabReportList: "ADD_LABREPORT_LIST",
+    AddMedicalHistory: "ADD_MEDICAL_HISTORY",
     AddDoctorTimeSchedule: "ADD_DOCTOR_TIME_SCHEDULE",
     AddSessionToDoctorTimeSchedule:"ADD_SESSION_TO_DOCTOR_TIME_SCHEDULE",
     UpdateSessionOfDoctorTimeSchedule:"UPDATE_SESSION_OF_DOCTOR_TIME_SCHEDULE",

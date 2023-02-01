@@ -12,14 +12,14 @@ import Spinner from "./Spinner";
 import DataNotAvailable from "./DataNotAvailable";
 
 const addDoctorSessionListToStore = (sessionList) => {
-    store.dispatch(doctorActions.addDoctorSessionList(sessionList.getDoctorSessionList))
+    store.dispatch(doctorActions.addDoctorSessionList(sessionList.getDoctorProfile))
 }
 
 const DoctorProfile = () => {
     const {dctId} = useParams();
     const {loading} = useQuery(queries.getDoctorProfile, {
         onCompleted: addDoctorSessionListToStore,
-        variables: {getDoctorSessionListId: dctId}
+        variables: {getDoctorProfileId: dctId}
     });
     const doctorProfile = useSelector(state => state.doctorDS.sessionList);
     const [doctor, setDoctor] = useState(undefined);

@@ -1,7 +1,11 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import CollapseView from "./list view/CollapseView";
-import {medicalHistoryList} from "../../temp/data-store";
-
+import store from "../../data-store/reducer/root-reducer";
+import {patientActions} from "../../data-store/actions/patient-actions";
+import {useQuery} from "@apollo/client";
+import queries from "../../graphql/queries";
+import {useSelector} from "react-redux";
+import Spinner from "./Spinner";
 
 let screenHeight = window.screen.height;
 let screenWidth = window.screen.width;
@@ -10,12 +14,26 @@ let collapseHeight = screenHeight / 0.7;
 let collapseWidth = screenWidth / 3;
 let prescriptionImageHeight = collapseHeight;
 
-const MedicalHistory = () => {
+const addMedicalHistoryToStore = (data) => {
+    store.dispatch(patientActions.addMedicalHistory(data.getLabReportList.payload))
+};
 
+const MedicalHistory = () => {
+    const {loading} = useQuery(queries.getLabReportList, {
+        onCompleted: addMedicalHistoryToStore,
+        variables: {
+            pId: "62c1dbdc8de3254ab1e020c2",
+        }
+    });
+    const medicalHistoryList = useSelector(state => state.patientDS.medicalHistoryList);
     const [isShowCollapesView, setIsShowCollapesView] = useState(true);
-    const [selectedItem, setSelectedItem] = useState(
-        medicalHistoryList[0].details[0]
-    );
+    const [selectedItem, setSelectedItem] = useState(null);
+
+    useEffect(() => {
+        if (medicalHistoryList) {
+            setSelectedItem(medicalHistoryList[0]?.reports[0]);
+        }
+    }, [medicalHistoryList])
 
     const drawerWidthHandler = () => {
         let isMobile = false;
@@ -29,7 +47,7 @@ const MedicalHistory = () => {
         return width;
     };
 
-    return (
+    return loading ? <Spinner isOverLay={true}/> :
         <div className='row'>
             {/* --------------------------list view------------------------- */}
 
@@ -69,8 +87,7 @@ const MedicalHistory = () => {
                     />
                 </center>
             </div>
-        </div>
-    );
+        </div>;
 };
 
 export default MedicalHistory;
