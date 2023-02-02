@@ -8,13 +8,19 @@ import {doctorActions} from "../../data-store/actions/doctor-actions";
 import Spinner from "./Spinner";
 import {useSelector} from "react-redux";
 import DataNotAvailable from "./DataNotAvailable";
+import {configuration} from "../../config";
+import {component} from "../../constants/constants";
 
 const addDoctorsToStore = (doctors) => {
-    store.dispatch(doctorActions.addSearchList(doctors.getDoctors));
+    configuration.component === component.user?
+         store.dispatch(doctorActions.addSearchListWithStatus(doctors.getAvailableDoctors))
+
+        : store.dispatch(doctorActions.addSearchList(doctors.getDoctors));
 };
 
 const DctList = () => {
-    const {loading, error} = useQuery(queries.getDoctors, {onCompleted: addDoctorsToStore});
+    const {loading, error} = useQuery(configuration.component === component.user? queries.getAvailableDoctors
+        :queries.getDoctors, {onCompleted: addDoctorsToStore});
     const searchList = useSelector(state => state.doctorDS.searchList);
     const [doctors, setDoctors] = useState(undefined);
 

@@ -56,9 +56,7 @@ const CollapseView = (props) => {
     return (
         <div
             className='report-list-collapse'
-            style={{
-                height: collapseHeight + 40,
-            }}
+
         >
             <div className='report-list-collapse-header'>
                 <img
@@ -79,10 +77,13 @@ const CollapseView = (props) => {
                 )}
             </div>
             <div className='report-list-collapse-body'>
-                {isShowCollapesView &&
+                <div className='list-container'>
+                    {isShowCollapesView &&
                     list.map((item, key) => {
                         return <div key={key}>{item}</div>;
                     })}
+                </div>
+
             </div>
         </div>
     );

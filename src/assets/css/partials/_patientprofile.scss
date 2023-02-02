@@ -6,7 +6,6 @@
 
 .patient-profile-body{
   margin: auto;
-  min-width: 450px;
   max-width: 70vw;
   background-color: rgba(1,1,1,0.2);
   padding: 40px;
@@ -58,6 +57,7 @@
 }
 
 .patient-profile-qr{
+  height: 200px;
   border-radius: 10px;
   border: 1px solid  black;
   width: 200px;
