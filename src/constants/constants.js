@@ -66,7 +66,8 @@ export const dataStore = {
     AddSessionToDoctorTimeSchedule:"ADD_SESSION_TO_DOCTOR_TIME_SCHEDULE",
     UpdateSessionOfDoctorTimeSchedule:"UPDATE_SESSION_OF_DOCTOR_TIME_SCHEDULE",
     DeleteSessionFromDoctorSessionList:"DELETE_SESSION_FROM_DOCTOR_TIME_SCHEDULE",
-    updateDoctorSession: "UPDATE_DOCTOR_SESSION"
+    updateDoctorSession: "UPDATE_DOCTOR_SESSION",
+    Logout: "LOG_OUT"
 }
 
 export const authConstants = {
@@ -80,6 +81,7 @@ export const authConstants = {
     authFail: 11,
     authRegisteredSuccess: 12,
     authRegisteredFail: 13,
+    authLogout: 14
 }
 
 export const platformConstants = {
