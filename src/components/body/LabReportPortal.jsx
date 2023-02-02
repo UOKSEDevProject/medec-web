@@ -51,7 +51,7 @@ const LabReportPortal = () => {
     };
 
     return loading ? <Spinner isOverLay={true}/> :
-        <div className='row'>
+        <div className='row reportLst'>
             {/* --------------------------list view------------------------- */}
             <div
                 className='report-list-collapse-container'
@@ -75,19 +75,17 @@ const LabReportPortal = () => {
 
             <div
                 style={{
-                    margin: "20px 0",
-                    height: prescriptionImageHeight,
+                    height: '90vh',
                 }}
             >
-                <center>
-                    <img
-                        src={selectedItem?.imgURL}
-                        loading='lazy'
-                        height={prescriptionImageHeight}
-                        width={"auto"}
-                        alt={"prescription"}
-                    />
-                </center>
+                <img
+                    className='lab-report'
+                    src={selectedItem?.imgUrl}
+                    loading='lazy'
+                    height={'100%'}
+                    width={"auto"}
+                    alt={"prescription"}
+                />
             </div>
             <Button onClick={() => exportPdf(LABREPORT)}>Download PDF</Button>
         </div>;
