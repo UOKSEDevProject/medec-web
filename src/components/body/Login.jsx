@@ -10,12 +10,29 @@ import store from "../../data-store/reducer/root-reducer";
 import {userActions} from "../../data-store/actions/user-actions";
 import {authConstants} from "../../constants/constants";
 import {notifyMessage} from "../../utils/notification";
+import client from "../../connection/connection";
+import subscriptions from "../../graphql/subscriptions";
+
+const onAuthSubscribe = () => {
+    client.subscribe({
+        query: subscriptions.authListener,
+        variables: {
+            userId: window.sessionStorage.getItem('usrId')
+        },
+    }).subscribe({
+        next: ({data}) => {
+            store.dispatch(userActions.authResponse(data.authListener));
+        }
+    });
+}
 
 const onAuthResponse = (data) => {
     if (data && data.login.authSts === authConstants.authSuccess) {
         store.dispatch(userActions.authResponse(data.login));
         sessionStorage.setItem("tkn", data.login.tkn);
         sessionStorage.setItem("usrId", data.login.usrId);
+
+        onAuthSubscribe();
     }
 };
 

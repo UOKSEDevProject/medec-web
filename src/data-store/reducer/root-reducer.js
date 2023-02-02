@@ -31,7 +31,7 @@ store.subscribe(() => {
     let currentState = store.getState();
 
     if (currentState && currentState.userDs && currentState.userDs.authSts && currentState.userDs.authSts === authConstants.authLogout) {
-        store.dispatch(rootActions.clearStore);
+       store.dispatch(rootActions.clearStore());
     }
 })
 
