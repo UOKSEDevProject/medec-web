@@ -3,6 +3,10 @@
   font-size: 1.2em;
   font-family: "Roboto", sans-serif;
   font-weight: 500;
+
+  .logout-btn {
+    margin-left: 25px;
+  }
 }
 
 .nav-logo {
@@ -11,4 +15,9 @@
 
 .profile-picture {
   width: 50px;
+  cursor: pointer;
+}
+
+.profile-overlay {
+  background: #ffffff21;
 }

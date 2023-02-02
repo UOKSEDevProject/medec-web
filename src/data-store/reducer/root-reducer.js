@@ -3,6 +3,9 @@ import doctorReducer from "./doctor-reducer";
 import patientReducer from "./patient-reducer";
 import {composeWithDevTools} from "redux-devtools-extension";
 import userReducer from "./user-reducer";
+import {authConstants} from "../../constants/constants";
+import {rootActions} from "../actions/root-actions";
+import {notifyMessage} from "../../utils/notification";
 
 const mergerReducers = combineReducers({
     doctorDS: doctorReducer,
@@ -10,6 +13,26 @@ const mergerReducers = combineReducers({
     userDs: userReducer
 });
 
-const store = createStore(mergerReducers, composeWithDevTools());
+const rootReducer = (state, action) => {
+    if (action.type === 'LOG_OUT') {
+        window.sessionStorage.clear();
+        window.location.replace(window.location.origin);
+        notifyMessage('You have been logout', 0);
+
+        return mergerReducers(undefined, action)
+    }
+
+    return mergerReducers(state, action);
+}
+
+const store = createStore(rootReducer, composeWithDevTools());
+
+store.subscribe(() => {
+    let currentState = store.getState();
+
+    if (currentState && currentState.userDs && currentState.userDs.authSts && currentState.userDs.authSts === authConstants.authLogout) {
+        store.dispatch(rootActions.clearStore);
+    }
+})
 
 export default store;
