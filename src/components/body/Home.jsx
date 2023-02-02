@@ -23,6 +23,9 @@ const Home = () => {
             case component.doctor:
                 history.push("/dct-prf/MBBS230943B");
                 break;
+            case component.admin:
+                history.push("/ad");
+                break;
             default:
                 break;
         }
