@@ -29,7 +29,7 @@ const TestLabReportPortal = () => {
     },[selectedItem])
 
     return (
-        0 ? <Spinner isOverLay={true}/> :
+      loading ? <Spinner isOverLay={true}/> :
         <div className="lab-report-portal">
             <div className="pt-container d-flex lab-container" id={isCollapsed ? "pt-container-overlay" : "empty"}>
                 <TestCollapseView
