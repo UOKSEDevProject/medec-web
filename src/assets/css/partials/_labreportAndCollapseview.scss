@@ -1,0 +1,111 @@
+  .lab-report-portal{
+    .collapse-view{
+      position: absolute;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      z-index: 2;
+    }
+    .lab-container{
+      min-height: 80vh;
+    }
+
+    #fix-width{
+      width: 450px;
+    }
+
+    #full-width{
+      width: 100%;
+    }
+
+    .drawer-top{
+      background-color: white;
+      border-radius: 0 8px 8px 0;
+    }
+
+    .drawer-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0 !important;
+    }
+
+    .drawer-icon{
+      font-size: 35px;
+      cursor: pointer;
+    }
+
+    .drawer-bottom {
+      overflow-y: scroll;
+      background-color: white;
+    }
+
+    .drawer-tab {
+      padding: 20px 10px;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .drawer-number{
+      width: 70px;
+      text-align: center;
+    }
+
+    #selected {
+      background-color: rgba($color: #000000, $alpha: 0.85);
+      color: white;
+    }
+
+    #unselected {
+      cursor: pointer;
+    }
+
+    .left-tab-lab{
+      background-color: rgba($color: white, $alpha: 0.5) !important;
+      padding: 20px 10px;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .arrow-icon{
+      font-size: 2.3rem;
+      padding: 2px;
+      cursor:pointer;
+      background-color: black;
+      color: white;
+      text-align: center;
+      border-radius: 8px;
+    }
+
+    .vertical-text{
+      font-size: 1.4rem;
+      writing-mode:vertical-rl;
+      text-orientation: mixed;
+      margin-block-end: 0 !important;
+      margin-block-start: 0 !important;
+  }
+
+  .presc-container{
+    padding-bottom: 5px;
+    img{
+      height: 100%;
+      width: auto;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    #fix-width{
+      width: 100%;
+
+    }
+    .presc-container{
+      position: relative;
+      width: 70vw;
+      margin-top: 20px;
+      
+      img{
+        width: 100%;
+        height: auto;
+      }
+    }
+  }
+}
