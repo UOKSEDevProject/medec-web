@@ -144,5 +144,6 @@ export const ErrorMessage = [
         emptyLogoImage: 'You didn\'t select the image for the Logo',
         emptyPassword: 'You didn\'t enter the password',
         passwordMissMatch: 'Passwords mismatch',
+        wrongEmail: 'Entered Email is not valied'
     }
 ]
