@@ -12,8 +12,8 @@ import {isInvaliedPhoneNumber} from '../../utils/clientSideValidation.jsx'
 function Admin(props) {
     const [profile, setProfile] = useState({});
     const [logo,setLogo] = useState(null);
-    // let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3JJZCI6ImFkbWluIiwiYXV0aFR5cGUiOiIxIiwiaWF0IjoxNjc1MzY3NDA1LCJleHAiOjE2NzU0MTA2MDV9.shfeufCxbbO-VY09XR3rsiSw00U1qgDltvc6lEV224w';
-    // localStorage.setItem('token',token);
+    let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3JJZCI6ImFkbWluIiwiYXV0aFR5cGUiOiIxIiwiaWF0IjoxNjc1MzY3NDA1LCJleHAiOjE2NzU0MTA2MDV9.shfeufCxbbO-VY09XR3rsiSw00U1qgDltvc6lEV224w';
+    localStorage.setItem('token',token);
     useEffect(()=>{
         
     },[])
