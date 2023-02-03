@@ -211,7 +211,7 @@ export const homeContent = {
       title: "Lab report portal",
       content: "View your lab reports from one place",
       imgUrl: labReport,
-      path: '/lb-rpt-ptl'
+      path: (sessionStorage.getItem("usrId")?'/lb-rpt-ptl' : '/login')
     },
     {
       title: "Make an Appointment",

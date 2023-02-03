@@ -7,6 +7,7 @@ import store from "../../data-store/reducer/root-reducer";
 import {useSelector} from "react-redux";
 import {patientActions} from "../../data-store/actions/patient-actions";
 import { useEffect } from "react";
+import {useHistory} from "react-router-dom";
 
 const addLabReportListToStore = (data) => {
     store.dispatch(patientActions.addLabReportList(data.getLabReportList.payload))
@@ -16,17 +17,19 @@ const TestLabReportPortal = () => {
     const [isCollapsed, setIsCollapsed] = useState(true);
     const [selectedItem, setSelectedItem] = useState(null);
     const labReportList = useSelector(state => state.patientDS.labReportList);
+    const userId = useSelector(state => state.userDs.usrId);
+    const history = useHistory();
 
     const {loading} = useQuery(queries.getLabReportList, {
         onCompleted: addLabReportListToStore,
         variables: {
-            pId: "62c1dbdc8de3254ab1e020c2",
+            pId: userId,
         }
     });
 
     useEffect(()=>{
-        console.log(selectedItem)
-    },[selectedItem])
+        userId === undefined && history.push('/login');
+    },[])
 
     return (
       loading ? <Spinner isOverLay={true}/> :

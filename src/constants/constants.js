@@ -58,7 +58,7 @@ export const platform = {
 export const dataStore = {
     AddDoctors: "ADD_DOCTORS",
     AddSearchList: "ADD_SEARCH_LIST",
-    AddAvailableSearchList: "ADD_Available_SEARCH_LIST",
+    AddAvailableSearchList: "ADD_AVAILABLE_SEARCH_LIST",
     AuthResponse: "AUTH_RESPONSE",
     AddAppointmentList: "ADD_APPOINTMENT_LIST",
     AddLabReportList: "ADD_LABREPORT_LIST",
