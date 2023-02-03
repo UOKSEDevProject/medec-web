@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Button, Form} from "react-bootstrap";
 import Spinner from './Spinner';
 import {notifyMessage} from '../../utils/notification.js';
@@ -14,6 +14,9 @@ function Admin(props) {
     const [logo,setLogo] = useState(null);
     // let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c3JJZCI6ImFkbWluIiwiYXV0aFR5cGUiOiIxIiwiaWF0IjoxNjc1MzY3NDA1LCJleHAiOjE2NzU0MTA2MDV9.shfeufCxbbO-VY09XR3rsiSw00U1qgDltvc6lEV224w';
     // localStorage.setItem('token',token);
+    useEffect(()=>{
+        
+    },[])
 
     const [sendRegisterReq, {loading}] = useMutation(mutations.register);
     const onChange = (e) => {setProfile({...profile,[e.target.name]:e.target.value});}

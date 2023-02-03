@@ -24,13 +24,16 @@ const splitLink = split(
 );
 
 const authLink = setContext((_, {headers}) => {
-    let token = localStorage.getItem('token');
+const token = window.sessionStorage.getItem('tkn');
+const usrId = window.sessionStorage.getItem('usrId');
+
     return {
         headers: {
             ...headers,
             auth_type: concatHeaders().authType,
             platform_type: concatHeaders().platformType,
-            auth_tkn: token
+            auth_tkn: token ? token : '',
+            usrId: usrId
         }
     }
 });
