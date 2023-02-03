@@ -1,8 +1,8 @@
 import {gql} from "@apollo/client";
 
 const addDoctor = gql`
-    mutation Mutation($doctor: DoctorArgs!) {
-  addDoctor(doctor: $doctor) {
+    mutation Mutation($chId: String!, $doctor: DoctorArgs!) {
+  addDoctor(chId: $chId,doctor: $doctor) {
     payload {
       _id
       address

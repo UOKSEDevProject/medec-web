@@ -33,7 +33,7 @@ const usrId = window.sessionStorage.getItem('usrId');
             auth_type: concatHeaders().authType,
             platform_type: concatHeaders().platformType,
             auth_tkn: token ? token : '',
-            usrId: usrId
+            usrId: usrId ? usrId : ''
         }
     }
 });

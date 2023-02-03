@@ -22,7 +22,7 @@ function SessionCard(props) {
     });
 
     return (
-        <div className='session-card-body'>
+        <div className='session-card-body' hidden={(sessionStorage.getItem("usrId") !== props.hospitalId)}>
             <h3>{props.hospitalName}</h3>
             {props.sessionList?.map((item,index)=>(
                 <Session

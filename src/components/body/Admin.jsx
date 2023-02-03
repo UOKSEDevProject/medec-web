@@ -2,22 +2,22 @@ import React, {useEffect, useRef, useState} from 'react';
 import {Button, Form} from "react-bootstrap";
 import Spinner from './Spinner';
 import {notifyMessage} from '../../utils/notification.js';
-import {authConstants} from "../../constants/constants";
+import {authConstants,component} from "../../constants/constants";
 import {useMutation} from "@apollo/client";
 import mutations from "../../graphql/mutations";
 import FileUoloader from './FileUploader'
 import {ErrorMessage} from '../../constants/constants.js'
 import {isInvaliedPhoneNumber} from '../../utils/clientSideValidation.jsx'
 import {useHistory} from "react-router-dom";
+import {configuration} from '../../config.js';
 
 function Admin(props) {
     const [profile, setProfile] = useState({});
     const [logo,setLogo] = useState(null);
-    const history = useHistory();
-    console.log(window.sessionStorage.getItem('usrId'))
 
+    const history = useHistory();
     useEffect(()=>{
-        (window.sessionStorage.getItem('usrId') === undefined || window.sessionStorage.getItem('usrId') === null) && history.push('/login');
+        (window.sessionStorage.getItem('usrId') === undefined || window.sessionStorage.getItem('usrId') === null || configuration.component!==component.admin) && history.push('/login');
     },[])
 
     const [sendRegisterReq, {loading}] = useMutation(mutations.register);

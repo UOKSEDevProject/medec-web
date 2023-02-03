@@ -78,6 +78,7 @@ function DoctorRegistration(props) {
 
         sendDoctorRegistrationReq({
             variables:{
+                chId: sessionStorage.getItem("usrId"),
                 doctor: {
                     address: profile.address,
                     cntNo: profile.phoneNumber,
