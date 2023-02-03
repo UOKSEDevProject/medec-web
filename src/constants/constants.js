@@ -46,7 +46,8 @@ export const component = {
     chanCenter: 'CHAN_CENTER',
     laboratory: 'LABORATORY',
     user: 'USER',
-    doctor:'DOCTOR'
+    doctor:'DOCTOR',
+    admin: 'ADMIN',
 }
 
 export const platform = {
@@ -130,5 +131,18 @@ export const addPrescriptionsSections = [
             "MRI Hand",
             "MRI Knee",
         ]
+    }
+]
+
+export const ErrorMessage = [
+    {
+        emptyChannelCenterName: 'You didn\'t enter the Channel Center Name',
+        emptyAddress: 'You didn\'t enter the Address',
+        emptyPhoneNumber: 'You didn\'t enter the PhoneNumber',
+        wrongPhoneNumber: 'Entered Phone Number is not valied',
+        emptyUsername: 'You didn\'t enter the Username',
+        emptyLogoImage: 'You didn\'t select the image for the Logo',
+        emptyPassword: 'You didn\'t enter the password',
+        passwordMissMatch: 'Passwords mismatch',
     }
 ]

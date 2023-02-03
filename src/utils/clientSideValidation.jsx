@@ -79,6 +79,14 @@ export function validatePhone(phoneNumberValue, errors) {
     }
 }
 
+export function isInvaliedPhoneNumber(phoneNumberValue) {
+    if (!phoneNumberValue.match(/(\d{3} )(\d{3} )(\d{3})$/)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 export function validateEmail(emailValue, errors) {
     if (emailValue === '') {
         errors["email"] = "Please fill in your email";

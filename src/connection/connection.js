@@ -24,8 +24,8 @@ const splitLink = split(
 );
 
 const authLink = setContext((_, {headers}) => {
-    const token = window.sessionStorage.getItem('tkn');
-    const usrId = window.sessionStorage.getItem('usrId');
+const token = window.sessionStorage.getItem('tkn');
+const usrId = window.sessionStorage.getItem('usrId');
 
     return {
         headers: {
@@ -55,6 +55,8 @@ const concatHeaders = () => {
         authType = authConstants.authTypeLab
     } else if (configuration.component === component.doctor) {
         authType = authConstants.authTypeDoctor
+    }else if (configuration.component === component.admin) {
+        authType = authConstants.authTypeAdmin
     }
 
     if (configuration.platform === platform.web) {
