@@ -40,13 +40,11 @@ const Doctor = (props) => {
                 <Col xs={6} className='p-0 mt-3 dr-details'>
                     <p className='dr dr-name'>Dr. {disName}</p>
                     <p className='dr dr-profession'>{specialization}</p>
-                    <p className='dr dr-hospital'>{mediCenter}</p>
                     <Badge pill={true}
                            className={status ? 'badge-online' : 'badge-offline'}>{status ? 'Available @' : 'Unavailable'}</Badge>
-                    <Badge pill={true} className='badge-something'>{mediCenter}</Badge>
                 </Col>
             </Row>
-            <div className='switch mb-1 mx-3'>
+            {/*<div className='switch mb-1 mx-3'>
                 {configuration.component === component.chanCenter &&
                     <Switch
                         checked={status}
@@ -58,7 +56,7 @@ const Doctor = (props) => {
                         onChange={handelOnToggleChange}
                     />
                 }
-            </div>
+            </div>*/}
         </Col>
     );
 };
