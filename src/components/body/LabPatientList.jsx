@@ -1,21 +1,49 @@
 import React, {useState, useEffect} from 'react';
 import Drawer from "./Drawer";
-import {labPtList, ptList, qrCodeDetails} from "../../temp/data-store";
 import {Button, Image} from "react-bootstrap";
 import tickImg from "../../assets/images/tick.png";
 import uploadImg from "../../assets/images/upload.png";
 import unTickImg from "../../assets/images/untick.png"
+import Spinner from "./Spinner";
+import {useQuery} from "@apollo/client";
+import queries from "../../graphql/queries";
+import store from "../../data-store/reducer/root-reducer";
+import {laboratoryActions} from "../../data-store/actions/laboratory-actions";
+import {useSelector} from "react-redux";
+
+function addCustomerListToStore(customerList) {
+    store.dispatch(laboratoryActions.addCustomerList(customerList.getLabPatientList.payload))
+}
 
 function LabPatientList(props) {
-    const [index, setIndex] = useState(0);
+    const [index, setIndex] = useState(undefined);
     const [toggle, setToggle] = useState(false);
     const [reports,setReports] = useState();
+    const {loading} = useQuery(queries.GetLabPatientList, {
+        onCompleted: addCustomerListToStore,
+        variables: {lId: sessionStorage.getItem("usrId")}
+    });
+    const customerList = useSelector(state => state.laboratoryDs.customerList);
+    const [customersLst, setCustomersLst] = useState(undefined);
 
     useEffect(() => {
-       setReports(labPtList[index].reportList);
-    }, [index]);
-    
+        if(customerList){
+            setReports(customersLst && customersLst[index]?.reportList);
+        }
+    }, [index,customerList]);
 
+    useEffect(() => {
+        if (customerList) {
+            setCustomersLst(customerList);
+            setIndex(0);
+        }
+    }, [customerList]);
+
+
+const setHide = (length) => {
+    return index === length-1;
+
+}
     const upload = (index,report) =>{
         setReports(reports=>[...reports]);
         reports[index]= {
@@ -27,25 +55,26 @@ function LabPatientList(props) {
     }
 
     const toNext = () => {
-        index + 1 < 20 && setIndex((index) => (index = index + 1));
+       index+1 < setCustomersLst.length && setIndex((index) => (index = index + 1));
     };
 
     return (
         <div className="d-flex">
-            <Drawer title="Customers" items={labPtList} index={index} setIndex={setIndex} toggle={toggle}
+            {loading && <Spinner isOverLay={true}/>}
+            <Drawer title="Customers" items={customersLst} index={index} setIndex={setIndex} toggle={toggle}
                     setToggle={setToggle}/>
             <div className=' p-5 flex-grow-1 pt-report-req-body'>
                 <div  className='pt-report-req-details'>
                     <div  className='pt-report-req-details-info'>
                         <div className='pt-report-req-details-info-num'># {index+1}</div>
-                        <div className='pt-report-req-details-info-name'>{labPtList[index].firstName}&nbsp;{labPtList[index].lastName} </div>
+                        <div className='pt-report-req-details-info-name'>{customersLst && customersLst[index]?.name}</div>
                         <div className='pt-report-req-details-info-row3'>
-                            <div>{labPtList[index].age} &nbsp;years</div>
-                            <div>{labPtList[index].gender}</div>
+                            <div>{customersLst && customersLst[index]?.age} &nbsp;years</div>
+                            <div>{customersLst && customersLst[index]?.gender}</div>
                         </div>
-                        <div>{labPtList[index].tp}</div>
+                        <div>{customersLst && customersLst[index]?.tp}</div>
                     </div>
-                    <Image className='pt-report-req-pp' src={labPtList[index].profilePicture} roundedCircle={true}/>
+                    <Image className='pt-report-req-pp' src={customersLst && customersLst[index]?.profilePicture} roundedCircle={true}/>
                 </div>
                 <div  className='pt-report-req-list'>
                     <div className='pt-report-req-list-in'>
@@ -64,7 +93,7 @@ function LabPatientList(props) {
 
                 </div>
                 <div className='pt-report-req-finish'>
-                    <Button className='default-btn' variant='secondary' onClick={toNext}>Next</Button>
+                    <Button className='default-btn' variant='secondary' onClick={toNext} hidden={index !== setCustomersLst.length-1}>Next</Button>
                 </div>
             </div>
         </div>

@@ -150,6 +150,13 @@ const addAppointment = gql`
         }
     }
 `
+const onSelectingReportsRequired = gql`
+mutation UpdateSelectedLabReports($updateLabReportsInput: UpdateLabReportsInput!) {
+  updateSelectedLabReports(updateLabReportsInput: $updateLabReportsInput) {
+    statusCode
+    statusDetails
+  }
+}`
 const mutations = {
     addDoctor: addDoctor,
     updateDoctor: updateDoctor,
@@ -158,7 +165,8 @@ const mutations = {
     addSession: addSession,
     deleteSession: deleteSession,
     updateSession: updateSession,
-    addAppointment:addAppointment
+    addAppointment:addAppointment,
+    onSelectingReportsRequired: onSelectingReportsRequired
 };
 
 export default mutations;
