@@ -15,19 +15,20 @@ let collapseWidth = screenWidth / 3;
 let prescriptionImageHeight = collapseHeight;
 
 const addMedicalHistoryToStore = (data) => {
-    store.dispatch(patientActions.addMedicalHistory(data.getLabReportList.payload))
+    console.log("Sdad");
+    store.dispatch(patientActions.addMedicalHistory(data.getMedicalReportList.payload))
 };
 
 const MedicalHistory = () => {
-    const {loading} = useQuery(queries.getLabReportList, {
+    const {loading} = useQuery(queries.getMedicalReportList, {
         onCompleted: addMedicalHistoryToStore,
         variables: {
-            pId: "62c1dbdc8de3254ab1e020c2",
+            pId: sessionStorage.getItem("usrId"),
         }
     });
     const medicalHistoryList = useSelector(state => state.patientDS.medicalHistoryList);
     const [isShowCollapesView, setIsShowCollapesView] = useState(true);
-    const [selectedItem, setSelectedItem] = useState(null);
+    const [selectedItem, setSelectedItem] = useState(undefined);
 
     useEffect(() => {
         if (medicalHistoryList) {

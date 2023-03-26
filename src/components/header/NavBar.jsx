@@ -82,6 +82,12 @@ const NavBar = () => {
         )
     }
 
+    const renderOtherUserOptions = () => {
+        return( configuration.component !== component.user && location.pathname !=='/login' && location.pathname !=='/register' &&
+            <a className='nav-link' style={{cursor: 'pointer'}} onClick={onLogOut}>Log Out</a>
+        )
+    }
+
     return (
         <Navbar id='top-nav' className='navbar' collapseOnSelect expand='lg' variant='dark' fixed='top'>
             <Container>
@@ -95,6 +101,7 @@ const NavBar = () => {
                     <Nav>
                         <NavLink to='/home' className='nav-link' activeClassName='active'>Home</NavLink>
                         {renderUserOptions(location, userId)}
+                        {renderOtherUserOptions()}
                     </Nav>
                 </Navbar.Collapse>
             </Container>

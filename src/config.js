@@ -1,5 +1,5 @@
 export const configuration  = {
-    component: 'LABORATORY',  //  'CHAN_CENTER', 'USER' , 'LABORATORY','DOCTOR', 'ADMIN'
+    component: 'ADMIN',  //  'CHAN_CENTER', 'USER' , 'LABORATORY','DOCTOR', 'ADMIN'
     platform: 'WEB', // 'WEB', 'MOB'
     connectionParams: {
         url: 'http://localhost:4000',
