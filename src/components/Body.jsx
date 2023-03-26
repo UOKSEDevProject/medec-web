@@ -21,6 +21,7 @@ const MedicalCNumberSearch = lazy(() => import('./body/MedicalCNumberSearch'));
 const PatientReportRequirementList = lazy(() => import('./body/PatientReportRequirementList'));
 const MyAppointments = lazy(() => import('./body/MyAppointments'));
 const LabReportPortal = lazy(() => import('./body/LabReportPortal'));
+// const LabReportPortal = lazy(() => import('./body/OldLabReportPortal'));
 const MedicalHistory = lazy(() => import('./body/MedicalHistory'));
 const AddPrescriptions = lazy(() => import('./body/AddPrescriptions'));
 const LabPatientList = lazy(() => import('./body/LabPatientList'));

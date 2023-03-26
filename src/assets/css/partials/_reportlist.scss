@@ -1,3 +1,16 @@
+.reportLst{
+  margin: 0;
+}
+
+.list-container{
+  height: 83vh;
+  overflow-y: auto;
+}
+
+.lab-report{
+  margin-left: 50%;
+}
+
 .report-list {
   &-collapse-container {
     padding: 0;
@@ -13,16 +26,16 @@
     flex: row;
     padding-top: 10px;
     margin-bottom: 5px;
+    justify-content: flex-start;
+    border-bottom: 2px solid black;
   }
   &-backbutton-image {
     height: 35px;
     width: 35px;
     padding: 5px;
-    margin: auto;
   }
   &-collapse-title {
     text-align: center;
-    margin: auto;
     font-size: 1em;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
@@ -33,14 +46,16 @@
   &-collapse-body-subtitle {
     background-color: $reportlist-collapse-submodule-BG;
     color: $reportlist-collapse-submodule-title;
-    padding-left: 10px;
+    padding: 10px;
     font-size: 1em;
     font-family: "Roboto", sans-serif;
     font-weight: 500;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
   }
   &-collapse-body-row {
     display: flex;
-    border-block-color: $reportlist-collapse-row-boder;
+    border: 2px solid black;
     border-block-style: solid;
     border-block-width: 1px;
     padding: 5px;
@@ -64,5 +79,7 @@
     font-family: "Roboto", sans-serif;
     font-weight: 500;
     padding: 5px 20px;
+    border: 2px solid black;
+    background-color: rgba(1, 1, 1, 0.32);
   }
 }

@@ -22,8 +22,21 @@ const sessionListener = gql`
     }
 `;
 
+const authListener = gql`
+    subscription Subscription($userId: String!) {
+        authListener(userId: $userId) {
+            authSts
+            authType
+            tkn
+            usrId
+            message
+        }
+    }
+`;
+
 const subscriptions = {
-    sessionListener: sessionListener
+    sessionListener: sessionListener,
+    authListener: authListener
 }
 
 export default subscriptions;

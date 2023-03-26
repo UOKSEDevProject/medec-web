@@ -41,7 +41,7 @@ const DoctorTimeSchedule = () => {
         onCompleted: addDoctorSessionListToStore,
         variables: {
             getDoctorProfileForChannelCenterId: dctId,
-            chId: "62c0b0d10ae48667baa01a30"
+            chId: sessionStorage.getItem("usrId")
         }
     });
     const [sendCreateSessionReq] = useMutation(mutations.addSession);
@@ -91,7 +91,7 @@ const DoctorTimeSchedule = () => {
 
     const createSession = () => {
         const session = {
-            chId: "62c0b0d10ae48667baa01a30",
+            chId: sessionStorage.getItem("usrId"),
             dctId: dctId,
             date: convertDateObjectToStringDate(dateValue),
             maxApts: maxAppointmentValue,

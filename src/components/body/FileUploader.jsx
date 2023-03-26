@@ -3,7 +3,7 @@ import {notifyMessage} from '../../utils/notification';
 
 const App = (props) => {
 
-    const {sendImageData,cRef} = props;
+    const {sendImageData,cRef,item} = props;
 
     const onFilesChange = props => async files => {
         if (files.length !== 0) {
@@ -21,9 +21,9 @@ const App = (props) => {
             maxFileSize={12050000}
             minFileSize={0}
             onError={(e) => notifyMessage(e.message,'3')}
-            // clickable
+            clickable
         >
-            <button type={'button'} ref={(e) => cRef(e)} />
+            {typeof(item)==='undefined'?<button type={'button'} ref={(e) => cRef(e)} />:item}
         </Files>
     )
 }

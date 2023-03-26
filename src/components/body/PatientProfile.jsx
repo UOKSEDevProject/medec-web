@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Col, Image, Row} from 'react-bootstrap';
 import {userProfile} from '../../temp/data-store';
 import defaultProfilePicture from '../../assets/images/defaultprofilepic.png'
@@ -6,11 +6,24 @@ import EditProfileModal from "./editProfileModal";
 import {stringFormatter} from "../../utils/formUtility";
 import camera from "../../assets/images/camera.png";
 import {useHistory} from "react-router-dom";
+import qrcode from 'qrcode-generator'
 
 function PatientProfile(props) {
     const [modalShow, setModalShow] = useState(false);
     const history = useHistory();
     const [profile, setProfile] = useState(userProfile);
+    const ref = useRef(0)
+
+    useEffect(() => {
+            const typeNumber = 19;
+            const errorCorrectionLevel = 'H';
+            const qr = qrcode(typeNumber, errorCorrectionLevel);
+            qr.addData(sessionStorage.getItem('usrId'));
+            qr.make();
+            document.getElementById('qrPlaceholder').innerHTML = qr.createImgTag();
+    },[]);
+
+
 
     const openMedicalHistory = () => {
         history.push("/med-his")
@@ -45,7 +58,7 @@ function PatientProfile(props) {
                     <Image className='patient-profile-profilePicture-selectIcon' src={camera}
                            roundedCircle={true} onClick={dpUpload}/>
                     <div>
-                        <Image className='patient-profile-qr' src={profile.QRCode} alt='QR'/>
+                        <div id='qrPlaceholder' ref={ref} className='patient-profile-qr'/>
                         <div className='patient-profile-qrTopic'>MY QR</div>
                     </div>
                 </div>
