@@ -3,24 +3,22 @@ import {Button, Form, Image, Row} from "react-bootstrap";
 import docProfilePic from '../../assets/images/dp.png';
 import {genders, specializations} from "../../constants/constants";
 import camera from '../../assets/images/camera.png';
-import {
-    checkForm,
-    convertToNameWithInitials,
-    CreateDisplayName,
-    formatPhoneNumber,
-    setErrors
-} from "../../utils/formUtility";
+import {checkForm, convertToNameWithInitials, CreateDisplayName, formatPhoneNumber, setErrors} from "../../utils/formUtility";
 import {useMutation} from "@apollo/client";
 import mutations from "../../graphql/mutations";
 import Spinner from "./Spinner";
 import {useHistory} from "react-router-dom";
 import {notifyMessage} from "../../utils/notification";
+import ShowImgUploadModal from "./image-upload/ShowImgUploadModal";
+import {useSelector} from "react-redux";
 
 function DoctorRegistration(props) {
     const [profile, setProfile] = useState({});
     const [errors, seterrors] = useState({error: {}});
     const [hasEdit, setHasEdit] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const [sendDoctorRegistrationReq, {loading}] = useMutation(mutations.addDoctor);
+    const imgSrcData = useSelector(state => state.userDs.imgSrcData);
     const history = useHistory();
 
     const onChange = (e) => {
@@ -74,6 +72,10 @@ function DoctorRegistration(props) {
         }
     }
 
+    const onHideModal = () => {
+      setShowModal(false);
+    }
+
     function saveDoctorDetails() {
 
         sendDoctorRegistrationReq({
@@ -105,6 +107,7 @@ function DoctorRegistration(props) {
 
     function dpUpload() {
         profile.url='url'
+        setShowModal(true);
     }
 
     return (
@@ -113,10 +116,19 @@ function DoctorRegistration(props) {
                 {loading && <Spinner isOverLay={true}/>}
                 <Form className='doctor-registration-form'>
                     <div className='doctor-registration-form-section1'>
-                        <Image className='doctor-registration-form-section1-image' src={docProfilePic}
-                               roundedCircle={true}/>
-                        <Image className='doctor-registration-form-section1-image-selectIcon' src={camera}
-                               roundedCircle={true} onClick={dpUpload}/>
+                        {!imgSrcData &&
+                            <>
+                                <Image className='doctor-registration-form-section1-image' src={docProfilePic} roundedCircle={true}/>
+                                <Image className='doctor-registration-form-section1-image-selectIcon' src={camera} roundedCircle={true} onClick={dpUpload}/>
+                            </>
+                        }
+
+                        {imgSrcData &&
+                            <>
+                                <Image className='doctor-registration-form-section1-image' src={imgSrcData} roundedCircle={true}/>
+                                <Image className='doctor-registration-form-section1-image-selectIcon' src={camera} roundedCircle={true} onClick={dpUpload}/>
+                            </>
+                        }
                     </div>
                     <div className='doctor-registration-form-section2'>
                         <div className='doctor-registration-form-section2-part1'>
@@ -272,6 +284,7 @@ function DoctorRegistration(props) {
                         disabled={isSaveDisabled()}>Add Doctor</Button>
             </div>
 
+            {showModal && <ShowImgUploadModal show={true} onHide={onHideModal}/>}
         </div>
     );
 }

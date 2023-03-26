@@ -8,6 +8,13 @@ const userReducer = (state= initialState, action) => {
             return action.payload;
         }
 
+        case "IMG_HOLDER": {
+            return {
+                ...state,
+                imgSrcData: action.payload
+            }
+        }
+
         default: {
             return state;
         }

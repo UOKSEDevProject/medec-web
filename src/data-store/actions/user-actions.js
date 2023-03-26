@@ -7,6 +7,14 @@ const authResponse = (data) => {
     }
 };
 
+const addImgSrc = (data) => {
+    return {
+        type: "IMG_HOLDER",
+        payload: data
+    }
+};
+
 export const userActions = {
-    authResponse: authResponse
+    authResponse: authResponse,
+    addImgSrc: addImgSrc
 };
