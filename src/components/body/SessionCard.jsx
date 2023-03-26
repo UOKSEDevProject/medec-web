@@ -4,6 +4,7 @@ import store from "../../data-store/reducer/root-reducer";
 import {doctorActions} from "../../data-store/actions/doctor-actions";
 import {useSubscription} from "@apollo/client";
 import subscriptions from "../../graphql/subscriptions";
+import {configuration} from "../../config";
 
 const onSubsDataFeed = (res) => {
     if (res && res.subscriptionData && res.subscriptionData.data && res.subscriptionData.data.sessionListener) {
@@ -22,9 +23,10 @@ function SessionCard(props) {
     });
 
     return (
-        <div className='session-card-body' hidden={(sessionStorage.getItem("usrId") !== props.hospitalId)}>
+        <div className='session-card-body'
+             hidden={configuration.component === "CHAN_CENTER" && (sessionStorage.getItem("usrId") !== props.hospitalId)}>
             <h3>{props.hospitalName}</h3>
-            {props.sessionList?.map((item,index)=>(
+            {props.sessionList?.map((item, index) => (
                 <Session
                     key={index}
                     id={item.id}
@@ -34,7 +36,7 @@ function SessionCard(props) {
                     maximumAppointments={item.maximumAppointments}
                     text={props.buttonText}
                 />
-                ))}
+            ))}
         </div>
     );
 }
