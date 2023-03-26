@@ -24,7 +24,7 @@ const Drawer = (props) => {
                         <p className="drawer-number">
                             {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
                         </p>
-                        <p className="flex-grow-1">{`${pt?.tittle}. ${pt?.firstName} ${pt?.lastName}`}</p>
+                        <p className="flex-grow-1">{`${pt?.name}`}</p>
                     </div>
                 ))}
             </div>

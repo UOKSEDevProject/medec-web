@@ -68,7 +68,9 @@ export const dataStore = {
     UpdateSessionOfDoctorTimeSchedule:"UPDATE_SESSION_OF_DOCTOR_TIME_SCHEDULE",
     DeleteSessionFromDoctorSessionList:"DELETE_SESSION_FROM_DOCTOR_TIME_SCHEDULE",
     updateDoctorSession: "UPDATE_DOCTOR_SESSION",
-    Logout: "LOG_OUT"
+    Logout: "LOG_OUT",
+    addCustomerDetails: "ADD_CUSTOMER",
+    addCustomerList: "ADD_CUSTOMERS"
 }
 
 export const authConstants = {

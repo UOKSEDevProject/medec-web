@@ -142,7 +142,46 @@ const getDoctorList = gql`
       }
 }
 `
-
+const getPatientReportRequirementList = gql`
+query GetPatientReportRequirementList($pId: String!) {
+  getPatientReportRequirementList(pId: $pId) {
+    statusCode
+    statusDetails
+    payload {
+      patient {
+        cntNo
+        disName
+        sex
+        prfImgUrl
+      }
+      pendList {
+        id
+        name
+      }
+    }
+  }
+}
+`
+const GetLabPatientList = gql`
+query GetLabPatientList($lId: String!) {
+  getLabPatientList(lId: $lId) {
+    payload {
+      _id
+      birthDate
+      gender
+      name
+      profilePicture
+      tp
+      reportList {
+        id
+        name
+        status
+      }
+    }
+    statusCode
+    statusDetails
+  }
+}`
 const queries = {
     getDoctors: getDoctors,
     getAvailableDoctors: getAvailableDoctors,
@@ -152,7 +191,9 @@ const queries = {
     getAppointmentList: getAppointmentList,
     searchForDoctorByMedicalCouncilNumber: searchForDoctorByMedicalCouncilNumber,
     getLabReportList: getLabReportList,
-    getDoctorList:getDoctorList
+    getDoctorList:getDoctorList,
+    getPatientReportRequirementList: getPatientReportRequirementList,
+    GetLabPatientList: GetLabPatientList
 }
 
 export default queries;

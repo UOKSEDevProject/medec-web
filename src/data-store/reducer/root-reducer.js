@@ -1,6 +1,7 @@
 import {combineReducers, createStore} from "redux";
 import doctorReducer from "./doctor-reducer";
 import patientReducer from "./patient-reducer";
+import laboratoryReducer from "./laboratory-reducer";
 import {composeWithDevTools} from "redux-devtools-extension";
 import userReducer from "./user-reducer";
 import {authConstants} from "../../constants/constants";
@@ -10,7 +11,8 @@ import {notifyMessage} from "../../utils/notification";
 const mergerReducers = combineReducers({
     doctorDS: doctorReducer,
     patientDS: patientReducer,
-    userDs: userReducer
+    userDs: userReducer,
+    laboratoryDs: laboratoryReducer
 });
 
 const rootReducer = (state, action) => {

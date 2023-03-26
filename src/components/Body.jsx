@@ -6,8 +6,9 @@ import {doctorActions} from "../data-store/actions/doctor-actions";
 import Spinner from "./body/Spinner";
 import {Redirect, Route, Switch} from "react-router-dom";
 import {Suspense, lazy} from "react";
-import DoctorTimeSchedule from "./body/DoctorTimeSchedule";
 
+const DoctorTimeSchedule = lazy(() => import('./body/DoctorTimeSchedule'))
+const QrScanner = lazy(() => import('./body/QRScanner'))
 const Login = lazy(() => import('./body/Login'));
 const Register = lazy(() => import('./body/Register'));
 const Search = lazy(() => import('./body/Search'));
@@ -199,14 +200,21 @@ const Body = () => {
                                 <Admin/>
                             </Container>
                         </Route>
-
+                        <Route path='/qr'>
+                            <Container fluid={true}>
+                                <QrScanner />
+                            </Container>
+                        </Route>
+                        <Route path='/usr-req/:userId'>
+                            <Container fluid={true}>
+                                <PatientReportRequirementList />
+                            </Container>
+                        </Route>
                         <Route path='/'>
                             <Container fluid={true}>
                                 <Redirect to='/home'/>
                             </Container>
                         </Route>
-
-
                     </Switch>
                 </Suspense>
                 {/*<DoctorProfile/>
