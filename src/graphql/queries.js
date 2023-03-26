@@ -122,6 +122,26 @@ const getLabReportList = gql`
       }
     }
 `
+const getDoctorList = gql`
+    query GetDoctorList ($chId: String!) {
+      getDoctorList(chId: $chId) {
+        statusCode
+        statusDetails
+        payload {
+          _id
+          fullName
+          disName
+          nameWithInitials
+          cntNo
+          address
+          spec
+          prfImgUrl
+          email
+          sex
+        }
+      }
+}
+`
 
 const queries = {
     getDoctors: getDoctors,
@@ -131,7 +151,8 @@ const queries = {
     getDoctorProfileForChannelCenter: getDoctorProfileForChannelCenter,
     getAppointmentList: getAppointmentList,
     searchForDoctorByMedicalCouncilNumber: searchForDoctorByMedicalCouncilNumber,
-    getLabReportList: getLabReportList
+    getLabReportList: getLabReportList,
+    getDoctorList:getDoctorList
 }
 
 export default queries;
