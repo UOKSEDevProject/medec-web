@@ -13,6 +13,12 @@ const addSearchList = (doctors) => {
         payload: doctors
     };
 };
+const addSearchListWithStatus = (doctors) => {
+    return {
+        type: dataStore.AddAvailableSearchList,
+        payload: doctors
+    };
+};
 
 const addDoctorSessionList = (sessions) => {
     return {
@@ -52,6 +58,7 @@ const updateDoctorSession = (session) => {
 export const doctorActions = {
     createDoctorList: createDoctorList,
     addSearchList: addSearchList,
+    addSearchListWithStatus:addSearchListWithStatus,
     addDoctorSessionList: addDoctorSessionList,
     addNewSessionToDoctorSessionList: addNewSessionToDoctorSessionList,
     updateSessionOfDoctorSessionList: updateSessionOfDoctorSessionList,

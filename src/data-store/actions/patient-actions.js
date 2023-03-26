@@ -9,7 +9,7 @@ const createPatient = (data) => {
 
 const addAppointmentList = (data) => {
     return {
-        type: dataStore.AddLabReportList,
+        type: dataStore.AddAppointmentList,
         payload: data,
     }
 }

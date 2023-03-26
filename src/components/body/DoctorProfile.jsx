@@ -17,9 +17,10 @@ const addDoctorSessionListToStore = (sessionList) => {
 
 const DoctorProfile = () => {
     const {dctId} = useParams();
+    const [Id, setId] = useState(dctId);
     const {loading} = useQuery(queries.getDoctorProfile, {
         onCompleted: addDoctorSessionListToStore,
-        variables: {getDoctorProfileId: dctId}
+        variables: {getDoctorProfileId: Id}
     });
     const doctorProfile = useSelector(state => state.doctorDS.sessionList);
     const [doctor, setDoctor] = useState(undefined);
@@ -44,6 +45,7 @@ const DoctorProfile = () => {
                     {doctor?.channelCenters?.map((session,index)=>(
                         <SessionCard
                             key={index}
+                            hospitalId={session._id}
                             hospitalName={session.hospitalName}
                             sessionList={session.sessionsList}
                             buttonText={configuration.component === 'DOCTOR' ? 'View' : 'Channel' }

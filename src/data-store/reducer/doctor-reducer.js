@@ -121,6 +121,26 @@ const doctorReducer = (state = initialState, action) => {
             }
         }
 
+        case dataStore.AddAvailableSearchList: {
+
+
+            return {
+                ...state,
+                searchList: action.payload.map((dr)=>{
+                    const doc = {
+                        _id: dr._id,
+                        disName: dr.disName,
+                        imageSrc: dr.imageSrc,
+                        mediCenter: dr.mediCenter,
+                        specialization: dr.specialization,
+                        __typename: dr.__typename,
+                        status: true
+                    }
+                    return doc;
+                })
+            }
+        }
+
         default: {
             return state;
         }

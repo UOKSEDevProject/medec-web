@@ -8,13 +8,25 @@ import {doctorActions} from "../../data-store/actions/doctor-actions";
 import Spinner from "./Spinner";
 import {useSelector} from "react-redux";
 import DataNotAvailable from "./DataNotAvailable";
+import {configuration} from "../../config";
+import {component} from "../../constants/constants";
 
 const addDoctorsToStore = (doctors) => {
-    store.dispatch(doctorActions.addSearchList(doctors.getDoctors));
+    console.log(doctors);
+    configuration.component === component.user?
+         store.dispatch(doctorActions.addSearchListWithStatus(doctors.getAvailableDoctors))
+
+        : store.dispatch(doctorActions.addSearchList(doctors.getDoctorList.payload));
 };
 
 const DctList = () => {
-    const {loading, error} = useQuery(queries.getDoctors, {onCompleted: addDoctorsToStore});
+    const userId = useSelector(state => state.userDs.usrId);
+    const {loading, error} = useQuery(configuration.component === component.user? queries.getAvailableDoctors
+        :queries.getDoctorList, {onCompleted: addDoctorsToStore,
+        variables: {
+            chId: userId,
+        }
+    });
     const searchList = useSelector(state => state.doctorDS.searchList);
     const [doctors, setDoctors] = useState(undefined);
 
@@ -32,7 +44,6 @@ const DctList = () => {
                     key={index}
                     id={dr._id}
                     disName={dr.disName}
-                    mediCenter={dr.mediCenter}
                     specialization={dr.specialization}
                     status={dr.status}
                     imageSrc={dr.imageSrc}

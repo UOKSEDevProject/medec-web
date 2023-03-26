@@ -4,10 +4,15 @@ import {useEffect, useState} from "react";
 import {configuration} from "../../config";
 import {component} from "../../constants/constants";
 import {useHistory} from "react-router-dom";
+import {useSelector} from "react-redux";
+
+
 
 const Home = () => {
     const [menuList, setMenuList] = useState(null);
+    const userId = useSelector(state => state.userDs.usrId);
     const history = useHistory();
+    const isLogged = userId !== undefined;
 
     useEffect(() => {
         switch (configuration.component) {
@@ -15,13 +20,16 @@ const Home = () => {
                 setMenuList(homeContent.user);
                 break;
             case component.chanCenter:
-                setMenuList(homeContent.chanCenter);
+                isLogged? setMenuList(homeContent.chanCenter):  history.push("/login");
                 break;
             case component.laboratory:
-                setMenuList(homeContent.lab);
+                isLogged? setMenuList(homeContent.lab) : history.push("/login");
                 break;
             case component.doctor:
-                history.push("/dct-prf/MBBS230943B");
+                isLogged? history.push(`/dct-prf/${userId}`):  history.push("/login");
+                break;
+            case component.admin:
+                isLogged? history.push("/ad"):  history.push("/login");
                 break;
             default:
                 break;
