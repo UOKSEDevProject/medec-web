@@ -29,7 +29,7 @@ export const ShowImgUploadModal = (props) => {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <DropZoneArea onCropImage={onCropImage} onDeleteImage={onDeleteImage}/>
+                    <DropZoneArea onCropImage={onCropImage} onDeleteImage={onDeleteImage} isCropperEnabled={props && props.isCropperEnabled ? props.isCropperEnabled : false}/>
                 </Modal.Body>
             </Modal>
         </Container>

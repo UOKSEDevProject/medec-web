@@ -11,6 +11,9 @@ import {useHistory} from "react-router-dom";
 import {notifyMessage} from "../../utils/notification";
 import ShowImgUploadModal from "./image-upload/ShowImgUploadModal";
 import {useSelector} from "react-redux";
+import {blogToFile} from "../../utils/ProcessCroppedImage";
+import axios from "axios";
+import * as AWS from "aws-sdk";
 
 function DoctorRegistration(props) {
     const [profile, setProfile] = useState({});
@@ -108,6 +111,29 @@ function DoctorRegistration(props) {
     function dpUpload() {
         profile.url='url'
         setShowModal(true);
+    }
+
+    const upLoadImage = async () => {
+        if (!imgSrcData) {
+            return;
+        }
+        const file = blogToFile(imgSrcData);
+        const s3 = new AWS.S3();
+
+        const options = {
+            headers: {
+                'Content-Type': file.type
+            }
+        };
+
+        const presignedGETURL = s3.getSignedUrl('putObject', {
+            Bucket: '',
+            Key: '',
+            Expires: 100,
+            ContentType: file.type
+        });
+
+        await axios.put(presignedGETURL, file, options).then((response) => {});
     }
 
     return (
@@ -284,7 +310,7 @@ function DoctorRegistration(props) {
                         disabled={isSaveDisabled()}>Add Doctor</Button>
             </div>
 
-            {showModal && <ShowImgUploadModal show={true} onHide={onHideModal}/>}
+            {showModal && <ShowImgUploadModal show={true} onHide={onHideModal} isCropperEnabled={true}/>}
         </div>
     );
 }

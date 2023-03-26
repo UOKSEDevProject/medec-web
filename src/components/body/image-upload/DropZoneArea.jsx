@@ -6,70 +6,88 @@ import {useDispatch} from "react-redux";
 import {userActions} from "../../../data-store/actions/user-actions";
 
 const DropZoneArea = (props) => {
-  const [image, setImage] = useState(null);
-  const [cropData, setCropData] = useState(null);
-  const [cropper, setCropper] = useState();
-  const dispatch = useDispatch();
+    const [image, setImage] = useState(null);
+    const [cropData, setCropData] = useState(null);
+    const [cropper, setCropper] = useState();
+    const dispatch = useDispatch();
 
-  useEffect(() => {
-    if (cropData) {
-      dispatch(userActions.addImgSrc(cropData));
-      props.onCropImage();
+    useEffect(() => {
+        if (cropData) {
+            dispatch(userActions.addImgSrc(cropData));
+            props.onCropImage();
+        }
+    }, [cropData]);
+
+    const dropOrSelectImage = (files) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+            setImage(reader.result);
+        };
+        reader.readAsDataURL(files[0]);
     }
-  }, [cropData]);
 
-  const dropOrSelectImage = (files) => {
-    const reader = new FileReader();
-    reader.onload = () => {
-      setImage(reader.result);
+    const getCropData = async () => {
+        if (typeof cropper !== "undefined") {
+            setCropData(cropper.getCroppedCanvas().toDataURL('image/webp', 0.92));
+        }
     };
-    reader.readAsDataURL(files[0]);
-  }
 
-  const getCropData = async () => {
-    if (typeof cropper !== "undefined") {
-      setCropData(cropper.getCroppedCanvas().toDataURL('image/webp', 0.92));
+    const handleOnDelete = () => {
+        setImage(null);
+        setCropData(null);
+        setCropData(null);
+
+        props.onDeleteImage();
     }
-  };
 
-  const handleOnDelete = () => {
-    setImage(null);
-    setCropData(null);
-    setCropData(null);
+    const onClickDone = () => {
+        if (props && !props.isCropperEnabled) {
+            dispatch(userActions.addImgSrc(image));
+        }
 
-    props.onDeleteImage();
-  }
+        props.onCropImage();
+    }
 
-  return (
-      <Row>
-        <Col md={12} xs={12} className='px-4'>
-          <Row>
-            {!image && <DropZone onDropOrSelectImage={dropOrSelectImage}/>}
-            {image && <Cropper
-                className='cropper'
-                zoomTo={0.5}
-                initialAspectRatio={1}
-                preview=".img-preview"
-                src={image ? image : ''}
-                viewMode={1}
-                minCropBoxHeight={10}
-                minCropBoxWidth={10}
-                background={false}
-                responsive={true}
-                autoCropArea={1}
-                checkOrientation={false}
-                guides={true}
-                onInitialized={(instance) => {
-                  setCropper(instance);
-                }}
-                style={{ height: 200, width: "100%" }}
-            />}
-            <Button onClick={getCropData} className='mx-2 mt-3' variant="primary">Crop Image</Button>
-            <Button onClick={handleOnDelete} className='mx-2 mt-3' variant="danger">Delete Image</Button>
-          </Row>
-        </Col>
-      </Row>
-  );
+    return (
+        <Row>
+            <Col md={12} xs={12} className='px-4'>
+                <Row>
+                    {!image && <DropZone onDropOrSelectImage={dropOrSelectImage}/>}
+                    {image && <Cropper
+                        className='cropper'
+                        zoomTo={0.5}
+                        initialAspectRatio={1}
+                        preview=".img-preview"
+                        src={image ? image : ''}
+                        viewMode={1}
+                        minCropBoxHeight={10}
+                        minCropBoxWidth={10}
+                        disabled={!(props && props.isCropperEnabled)}
+                        background={false}
+                        responsive={true}
+                        autoCropArea={1}
+                        checkOrientation={false}
+                        guides={true}
+                        onInitialized={(instance) => {
+                            setCropper(instance);
+                        }}
+                        style={{height: 200, width: "100%"}}
+                    />}
+                    {props && props.isCropperEnabled &&
+                        <>
+                            <Button onClick={getCropData} className='mx-2 mt-3' variant="primary">Crop Image</Button>
+                            <Button onClick={handleOnDelete} className='mx-2 mt-3' variant="danger">Delete
+                                Image</Button>
+                        </>
+                    }
+
+                    {props && !props.isCropperEnabled &&
+                        <Button onClick={onClickDone} className='mx-2 mt-3' variant="primary">Done</Button>
+                    }
+                </Row>
+            </Col>
+        </Row>
+    );
 }
 
 export default DropZoneArea;
