@@ -32,6 +32,7 @@ function PatientProfile(props) {
     const updateProfile = (profile) => {
         setModalShow(false);
         setProfile(profile);
+        //todo update the patient profile
     }
 
     const openModal = () => {
@@ -40,10 +41,6 @@ function PatientProfile(props) {
 
     const closeModal = () => {
         setModalShow(false);
-    }
-
-    function dpUpload() {
-        //image upload
     }
 
     return (
@@ -55,8 +52,6 @@ function PatientProfile(props) {
                         src={profile.profilePicture ? profile.profilePicture : defaultProfilePicture}
                         roundedCircle={true}
                         alt='Profile'/>
-                    <Image className='patient-profile-profilePicture-selectIcon' src={camera}
-                           roundedCircle={true} onClick={dpUpload}/>
                     <div>
                         <div id='qrPlaceholder' ref={ref} className='patient-profile-qr'/>
                         <div className='patient-profile-qrTopic'>MY QR</div>
