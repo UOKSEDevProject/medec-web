@@ -8,7 +8,7 @@ import mutations from "../../graphql/mutations";
 import Spinner from "./Spinner";
 import store from "../../data-store/reducer/root-reducer";
 import {userActions} from "../../data-store/actions/user-actions";
-import {authConstants} from "../../constants/constants";
+import {authConstants,sessionStore} from "../../constants/constants";
 import {notifyMessage} from "../../utils/notification";
 import client from "../../connection/connection";
 import subscriptions from "../../graphql/subscriptions";
@@ -69,7 +69,8 @@ function Login() {
         sendLoginReq({
             variables: {
                 usr: credentials.email,
-                pwd: credentials.password
+                pwd: credentials.password,
+                deviceId: sessionStorage.getItem(sessionStore.FCMToken),
             }, fetchPolicy: "no-cache",
             onCompleted: onAuthResponse
         }).then(r => {

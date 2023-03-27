@@ -149,3 +149,7 @@ export const ErrorMessage = [
         wrongEmail: 'Entered Email is not valied'
     }
 ]
+
+export const sessionStore = {
+    FCMToken: 'FCMToken',
+}

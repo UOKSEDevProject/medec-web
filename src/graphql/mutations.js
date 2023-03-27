@@ -102,8 +102,8 @@ const updateSession = gql`
 `
 
 const login = gql`
-    mutation Login($usr: String!, $pwd: String!) {
-        login(usr: $usr, pwd: $pwd) {
+    mutation Login($usr: String!, $pwd: String!, $deviceId: String) {
+        login(usr: $usr, pwd: $pwd, deviceId: $deviceId) {
             authSts
             authType
             tkn
