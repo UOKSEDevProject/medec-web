@@ -122,7 +122,7 @@ const Body = () => {
                             </Container>
                         </Route>
 
-                        <Route path='/pnt-lst'>
+                        <Route path='/pnt-lst/:sessionId'>
                             <Container fluid={true}>
                                 <PatientList/>
                             </Container>
@@ -158,13 +158,13 @@ const Body = () => {
                             </Container>
                         </Route>
 
-                        <Route path='/add-pre'>
+                        <Route path='/add-pre/:userId/:sessionId/:index'>
                             <Container fluid={true}>
                                 <AddPrescriptions/>
                             </Container>
                         </Route>
 
-                        <Route path='/med-his'>
+                        <Route path='/med-his/:userId'>
                             <Container fluid={true}>
                                 <MedicalHistory/>
                             </Container>

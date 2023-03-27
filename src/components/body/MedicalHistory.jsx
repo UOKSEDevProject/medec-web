@@ -6,6 +6,7 @@ import {useQuery} from "@apollo/client";
 import queries from "../../graphql/queries";
 import {useSelector} from "react-redux";
 import Spinner from "./Spinner";
+import {useParams} from "react-router-dom";
 
 let screenHeight = window.screen.height;
 let screenWidth = window.screen.width;
@@ -15,15 +16,15 @@ let collapseWidth = screenWidth / 3;
 let prescriptionImageHeight = collapseHeight;
 
 const addMedicalHistoryToStore = (data) => {
-    console.log("Sdad");
     store.dispatch(patientActions.addMedicalHistory(data.getMedicalReportList.payload))
 };
 
 const MedicalHistory = () => {
+    const userId = useParams();
     const {loading} = useQuery(queries.getMedicalReportList, {
         onCompleted: addMedicalHistoryToStore,
         variables: {
-            pId: sessionStorage.getItem("usrId"),
+            pId: userId,
         }
     });
     const medicalHistoryList = useSelector(state => state.patientDS.medicalHistoryList);

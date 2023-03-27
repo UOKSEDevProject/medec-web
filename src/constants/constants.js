@@ -94,6 +94,7 @@ export const platformConstants = {
 
 export const addPrescriptionsSections = [
     {
+        id:1,
         title: "Laboratory Investigations",
         options: [
             "FBS",
@@ -115,6 +116,7 @@ export const addPrescriptionsSections = [
         ]
     },
     {
+        id:2,
         title: "MRI/CT Requisitions",
         options: [
             "Brain",
