@@ -70,7 +70,8 @@ export const dataStore = {
     updateDoctorSession: "UPDATE_DOCTOR_SESSION",
     Logout: "LOG_OUT",
     addCustomerDetails: "ADD_CUSTOMER",
-    addCustomerList: "ADD_CUSTOMERS"
+    addCustomerList: "ADD_CUSTOMERS",
+    UpdateAppointmentList: "UPDATE_APPOINTMENT_LIST"
 }
 
 export const authConstants = {
