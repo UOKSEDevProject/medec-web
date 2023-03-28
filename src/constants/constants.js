@@ -71,6 +71,7 @@ export const dataStore = {
     Logout: "LOG_OUT",
     addCustomerDetails: "ADD_CUSTOMER",
     addCustomerList: "ADD_CUSTOMERS",
+    addPatientProfileData: "ADD_PATIENT_PROFILE_DATA",
     UpdateAppointmentList: "UPDATE_APPOINTMENT_LIST"
 }
 

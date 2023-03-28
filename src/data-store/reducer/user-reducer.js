@@ -14,7 +14,12 @@ const userReducer = (state= initialState, action) => {
                 imgSrcData: action.payload
             }
         }
-
+        case dataStore.addPatientProfileData: {
+            return {
+                ...state,
+                PatientProfileData: action.payload
+            }
+        }
         default: {
             return state;
         }

@@ -1,29 +1,53 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Col, Image, Row} from 'react-bootstrap';
-import {userProfile} from '../../temp/data-store';
 import defaultProfilePicture from '../../assets/images/defaultprofilepic.png'
 import EditProfileModal from "./editProfileModal";
 import {stringFormatter} from "../../utils/formUtility";
-import camera from "../../assets/images/camera.png";
+import Spinner from "./Spinner";
 import {useHistory} from "react-router-dom";
+import {useSelector} from "react-redux";
 import qrcode from 'qrcode-generator'
 
 function PatientProfile(props) {
+    const userProfile = useSelector(state => state.userDs.PatientProfileData);
+    const [usrId,setUsrId] = useState(sessionStorage.getItem('usrId'));
     const [modalShow, setModalShow] = useState(false);
     const history = useHistory();
-    const [profile, setProfile] = useState(userProfile);
-    const ref = useRef(0)
+    const [profile, setProfile] = useState(null);
+    const ref = useRef(0);
+
+    useEffect(() => {
+        if(usrId === null || usrId === ''){
+            history.push("/login");
+        }
+    },[]);
 
     useEffect(() => {
             const typeNumber = 19;
             const errorCorrectionLevel = 'H';
             const qr = qrcode(typeNumber, errorCorrectionLevel);
-            qr.addData(sessionStorage.getItem('usrId'));
-            qr.make();
-            document.getElementById('qrPlaceholder').innerHTML = qr.createImgTag();
-    },[]);
+            if(usrId){
+                qr.addData(usrId);
+                qr.make();
+                if(document.getElementById('qrPlaceholder')){
+                    document.getElementById('qrPlaceholder').innerHTML = qr.createImgTag();
+                };
+            }
+    },[profile]);
 
-
+    useEffect(()=>{
+        if(userProfile){
+            setProfile({
+                profilePicture: userProfile.profileImgSrc,
+                birthDate: userProfile.dob,
+                bloodGroup: userProfile.bldGrp,
+                address: userProfile.address,
+                disName: userProfile.disName,
+                phoneNumber: userProfile.cntNo,
+                description: userProfile.des,
+            });
+        }
+    },[userProfile])
 
     const openMedicalHistory = () => {
         history.push(`/med-his/${sessionStorage.getItem("usrId")}`)
@@ -32,6 +56,7 @@ function PatientProfile(props) {
     const updateProfile = (profile) => {
         setModalShow(false);
         setProfile(profile);
+        //todo update the patient profile
     }
 
     const openModal = () => {
@@ -42,11 +67,8 @@ function PatientProfile(props) {
         setModalShow(false);
     }
 
-    function dpUpload() {
-        //image upload
-    }
-
     return (
+        profile?
         <div className='patient-profile'>
             <div className='patient-profile-body'>
                 <div className='patient-profile-image-section'>
@@ -55,8 +77,6 @@ function PatientProfile(props) {
                         src={profile.profilePicture ? profile.profilePicture : defaultProfilePicture}
                         roundedCircle={true}
                         alt='Profile'/>
-                    <Image className='patient-profile-profilePicture-selectIcon' src={camera}
-                           roundedCircle={true} onClick={dpUpload}/>
                     <div>
                         <div id='qrPlaceholder' ref={ref} className='patient-profile-qr'/>
                         <div className='patient-profile-qrTopic'>MY QR</div>
@@ -112,7 +132,8 @@ function PatientProfile(props) {
                     </div>
                 </div>
             </div>
-        </div>
+        </div>:
+        <Spinner />
     );
 }
 
