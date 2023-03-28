@@ -16,7 +16,6 @@ const myBucket = new AWS.S3({
 })
 
 export const uploadFile = (file,Request) => {
-    console.log('upload file',file);
     const params = {
         ACL: 'public-read',
         Body: file,
@@ -38,7 +37,7 @@ export const fileURL = (fileName) => {
         })
     return url;
     }catch(e){
-        console.log(e);
+        // console.log(e);
         return false;
     }
 }

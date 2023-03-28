@@ -142,7 +142,7 @@ const DoctorTimeSchedule = () => {
                 notifyMessage("Session has been updated successfully", '1');
             }
         }).catch((e) => {
-            console.log(e)
+            // console.log(e)
             notifyMessage("Something went wrong", '3');
         }).finally(() => {
             setIsLoading(false);

@@ -11,7 +11,7 @@ import {laboratoryActions} from "../../data-store/actions/laboratory-actions";
 import {useSelector} from "react-redux";
 
 const addCustomerDetailsToStore = (customer) => {
-    console.log(customer)
+    // console.log(customer)
     store.dispatch(laboratoryActions.addCustomerDetails(customer))
 }
 

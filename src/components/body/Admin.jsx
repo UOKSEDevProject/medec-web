@@ -73,7 +73,7 @@ function Admin(props) {
         }
 
     const submitButtonHandler = () => {
-        console.log(profile)
+        // console.log(profile)
         validation();
     }
 

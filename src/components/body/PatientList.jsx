@@ -21,7 +21,6 @@ const PatientList = () => {
     const { search } = useLocation()
     let query = React.useMemo(() => new URLSearchParams(search), [search]);
     const lastIndex = parseInt(query.get('index'));
-    console.log(lastIndex);
     const [index, setIndex] = useState(lastIndex ? lastIndex: 0);
     const [toggle, setToggle] = useState(false);
     const history = useHistory();
