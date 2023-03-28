@@ -67,7 +67,7 @@ const Search = (props) => {
     }, []);
 
     const promiseOptions = (value) => {
-        console.error(value)
+        // console.error(value)
         return new Promise((resolve) => {
             setTimeout(() => {
                 if (typeof onInputChange === 'function') {
