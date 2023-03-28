@@ -15,9 +15,9 @@ const TestCollapseView = (props) => {
 
     let platform='WEB';
 
-    useEffect(()=>{
-        console.log(items)
-    },[isCollapsed])
+    // useEffect(()=>{
+    //     console.log(items)
+    // },[isCollapsed])
 
     return isCollapsed ?
     <div className="lab-report-portal">
@@ -29,7 +29,6 @@ const TestCollapseView = (props) => {
             <div className="drawer-details flex-grow-1">
                 {items?.map((item, idx) => (
                     <div key={idx}>
-                        {console.log(item.month)}
                         <div className='report-list-collapse-body-subtitle'>{item.month}</div>
                         {item && item.reports && item.reports.length && item.reports.length > 0 ? (
                             item.reports.map((item, key) => {
