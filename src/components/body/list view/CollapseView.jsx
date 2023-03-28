@@ -26,9 +26,10 @@ const TestCollapseView = (props) => {
                 <h1 className="drawer-title">{title}</h1>
                 <IoIosArrowBack className="drawer-icon" onClick={() => setIsCollapsed(false)}/>
             </div>
-            <div className="drawer-bottom flex-grow-1">
+            <div className="drawer-details flex-grow-1">
                 {items?.map((item, idx) => (
                     <div key={idx}>
+                        {console.log(item.month)}
                         <div className='report-list-collapse-body-subtitle'>{item.month}</div>
                         {item && item.reports && item.reports.length && item.reports.length > 0 ? (
                             item.reports.map((item, key) => {

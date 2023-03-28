@@ -24,16 +24,19 @@ const MedicalHistory = () => {
     const {loading} = useQuery(queries.getMedicalReportList, {
         onCompleted: addMedicalHistoryToStore,
         variables: {
-            pId: userId,
+            pId: userId.userId,
         }
     });
     const medicalHistoryList = useSelector(state => state.patientDS.medicalHistoryList);
+    const [medHis, setMedHis] = useState(undefined);
     const [isShowCollapesView, setIsShowCollapesView] = useState(true);
     const [selectedItem, setSelectedItem] = useState(undefined);
 
     useEffect(() => {
         if (medicalHistoryList) {
-            setSelectedItem(medicalHistoryList[0]?.reports[0]);
+            setMedHis()
+            setSelectedItem(0);
+            // setSelectedItem(medicalHistoryList[0]?.reports[0]);
         }
     }, [medicalHistoryList])
 
@@ -61,13 +64,20 @@ const MedicalHistory = () => {
                 }}
             >
                 <CollapseView
+                    // title={"Medical History"}
+                    // listData={medHis && medHis}
+                    // setIsShowCollapesView={setIsShowCollapesView}
+                    // isShowCollapesView={isShowCollapesView}
+                    // collapseHeight={collapseHeight}
+                    // setSelectedItem={setSelectedItem}
+                    // selectedItem={selectedItem && selectedItem}
+
                     title={"Medical History"}
-                    listData={medicalHistoryList}
-                    setIsShowCollapesView={setIsShowCollapesView}
-                    isShowCollapesView={isShowCollapesView}
-                    collapseHeight={collapseHeight}
-                    setSelectedItem={setSelectedItem}
-                    selectedItem={selectedItem}
+                    items={medicalHistoryList}
+                    index={selectedItem && selectedItem}
+                    setIndex={setSelectedItem}
+                    isCollapsed={isShowCollapesView}
+                    setIsCollapsed={setIsShowCollapesView}
                 />
             </div>
 
@@ -79,15 +89,15 @@ const MedicalHistory = () => {
                     height: prescriptionImageHeight,
                 }}
             >
-                <center>
-                    <img
-                        src={selectedItem.imgURL}
-                        loading='lazy'
-                        height={prescriptionImageHeight}
-                        width={"auto"}
-                        alt={"prescription"}
-                    />
-                </center>
+                {/*<center>*/}
+                {/*    <img*/}
+                {/*        src={medicalHistoryList[selectedItem]?.imgURL}*/}
+                {/*        loading='lazy'*/}
+                {/*        height={prescriptionImageHeight}*/}
+                {/*        width={"auto"}*/}
+                {/*        alt={"prescription"}*/}
+                {/*    />*/}
+                {/*</center>*/}
             </div>
         </div>;
 };
