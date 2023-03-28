@@ -165,22 +165,21 @@ const getPatientReportRequirementList = gql`
 `
 
 const getPatientList = gql`
-    query ExampleQuery($sessionId: String!) {
-      getPatientList(sessionId: $sessionId) {
-        payload {
-          _id
-          address
-          birthDate
-          bloodGroup
-          description
-          disName
-          prfImgUrl
-        }
-        statusCode
-        statusDetails
-      }
+query ExampleQuery($sessionId: String!) {
+  getPatientList(sessionId: $sessionId) {
+    payload {
+      _id
+      address
+      birthDate
+      bloodGroup
+      description
+      name
+      prfImgUrl
     }
-`
+    statusCode
+    statusDetails
+  }
+}`
 
 const getLabPatientList = gql`
 query GetLabPatientList($lId: String!) {
@@ -202,7 +201,21 @@ query GetLabPatientList($lId: String!) {
     statusDetails
   }
 }`
-
+const getMedicalReportList= gql`
+query ExampleQuery($pId: String!) {
+  getMedicalReportList(pId: $pId) {
+    payload {
+      month
+      reports {
+        day
+        id
+        imgUrl
+      }
+    }
+    statusCode
+    statusDetails
+  }
+}`
 const queries = {
     getDoctors: getDoctors,
     getAvailableDoctors: getAvailableDoctors,
@@ -215,7 +228,8 @@ const queries = {
     getDoctorList: getDoctorList,
     getPatientReportRequirementList: getPatientReportRequirementList,
     getLabPatientList: getLabPatientList,
-    getPatientList: getPatientList
+    getPatientList: getPatientList,
+    getMedicalReportList: getMedicalReportList
 }
 
 export default queries;

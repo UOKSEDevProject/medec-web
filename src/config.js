@@ -1,9 +1,9 @@
 export const configuration  = {
-    component: 'USER',  //  'CHAN_CENTER', 'USER' , 'LABORATORY','DOCTOR', 'ADMIN'
+    component: 'DOCTOR',  //  'CHAN_CENTER', 'USER' , 'LABORATORY','DOCTOR', 'ADMIN'
     platform: 'WEB', // 'WEB', 'MOB'
     connectionParams: {
-        url: 'http://13.127.56.96:4000',
-        ws: 'ws://13.127.56.96:4000',
+        url: 'http://localhost:4000',
+        ws: 'ws://localhost:4000',
         path: '/graphql',
         subsPath: '/subscriptions'
     },

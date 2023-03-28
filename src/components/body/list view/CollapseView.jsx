@@ -15,9 +15,9 @@ const TestCollapseView = (props) => {
 
     let platform='WEB';
 
-    useEffect(()=>{
-        console.log(items)
-    },[isCollapsed])
+    // useEffect(()=>{
+    //     console.log(items)
+    // },[isCollapsed])
 
     return isCollapsed ?
     <div className="lab-report-portal">
@@ -26,7 +26,7 @@ const TestCollapseView = (props) => {
                 <h1 className="drawer-title">{title}</h1>
                 <IoIosArrowBack className="drawer-icon" onClick={() => setIsCollapsed(false)}/>
             </div>
-            <div className="drawer-bottom flex-grow-1">
+            <div className="drawer-details flex-grow-1">
                 {items?.map((item, idx) => (
                     <div key={idx}>
                         <div className='report-list-collapse-body-subtitle'>{item.month}</div>
