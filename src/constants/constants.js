@@ -71,7 +71,8 @@ export const dataStore = {
     Logout: "LOG_OUT",
     addCustomerDetails: "ADD_CUSTOMER",
     addCustomerList: "ADD_CUSTOMERS",
-    addPatientProfileData: "ADD_PATIENT_PROFILE_DATA"
+    addPatientProfileData: "ADD_PATIENT_PROFILE_DATA",
+    UpdateAppointmentList: "UPDATE_APPOINTMENT_LIST"
 }
 
 export const authConstants = {
@@ -95,6 +96,7 @@ export const platformConstants = {
 
 export const addPrescriptionsSections = [
     {
+        id:1,
         title: "Laboratory Investigations",
         options: [
             "FBS",
@@ -116,6 +118,7 @@ export const addPrescriptionsSections = [
         ]
     },
     {
+        id:2,
         title: "MRI/CT Requisitions",
         options: [
             "Brain",

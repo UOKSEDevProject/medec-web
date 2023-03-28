@@ -1,23 +1,24 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import tickImage from "../../assets/images/tick.png";
 import unTickImage from "../../assets/images/untick.png";
 
 const PrescriptionCard = (props) => {
-    const {title, items} = props;
+    const {title, items, onChangeSelected} = props;
     const [selected, setSelected] = useState([]);
 
     const handleClick = (item) => {
         if (selected.includes(item)) {
-            let tempArray = selected.slice();
-            let itemIndex = tempArray.indexOf(item);
-            tempArray.splice(itemIndex, 1);
-            setSelected(tempArray);
+            setSelected(selected.filter(function(a) {
+                    return a !== item;
+                }));
+            onChangeSelected(selected.filter(function(a) {
+                return a !== item;
+            }));
         } else {
-            let tempArray = [item];
-            let newArray = selected.concat(tempArray);
-            setSelected(newArray);
+            setSelected([...selected,item]);
+            onChangeSelected([...selected,item]);
         }
-    }
+    };
 
     return (
         <div className="my-5">
@@ -27,9 +28,10 @@ const PrescriptionCard = (props) => {
                 {items?.map((item, index) => (
                     <div className="add-pres-section-item d-flex align-items-center p-3" key={index}>
                         <img className="add-pres-section-item-img"
-                             src={selected.includes(item) ? tickImage : unTickImage}
+                             src={selected?.includes(item) ? tickImage : unTickImage}
                              alt={item}
                              onClick={() => handleClick(item)}/>
+
                         <h1 className="add-pres-section-item-label flex-grow-1">{item}</h1>
                     </div>
                 ))}

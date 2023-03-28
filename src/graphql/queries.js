@@ -48,6 +48,7 @@ const getAppointmentList = gql`
         aptNo
         refNo
         currAptNo
+        _id
       }
     }
 `;

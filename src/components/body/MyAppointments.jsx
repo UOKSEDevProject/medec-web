@@ -1,15 +1,21 @@
 import React, {useEffect} from "react";
 import {useState} from "react";
-import {useQuery} from "@apollo/client";
+import {useQuery, useSubscription} from "@apollo/client";
 import queries from "../../graphql/queries";
 import {useSelector} from "react-redux";
 import store from "../../data-store/reducer/root-reducer";
-import {doctorActions} from "../../data-store/actions/doctor-actions";
 import {patientActions} from "../../data-store/actions/patient-actions";
 import DataNotAvailable from "./DataNotAvailable";
+import subscriptions from "../../graphql/subscriptions";
 
 const addAppoinmentListToStore = (appoinments) => {
     store.dispatch(patientActions.addAppointmentList(appoinments.getAppointments));
+};
+
+const onSubsDataFeed = (res) => {
+    if (res && res.subscriptionData && res.subscriptionData.data && res.subscriptionData.data.sessionListener) {
+        store.dispatch(patientActions.updateAppointmentList(res.subscriptionData.data.sessionListener));
+    }
 };
 
 const MyAppointments = () => {
@@ -19,12 +25,20 @@ const MyAppointments = () => {
     });
     const appointmentList = useSelector(state => state.patientDS.appointmentList);
     const [appointments, setAppointments] = useState(undefined);
+    const [sessionIdList, setSessionIdList] = useState(undefined);
 
     useEffect(() => {
         if (appointmentList) {
             setAppointments(appointmentList);
+            setSessionIdList(appointmentList.map((value) => {return value._id;}));
         }
-    }, [appointmentList])
+    }, [appointmentList]);
+
+    useSubscription(subscriptions.sessionListener, {
+        variables: {sessionId: sessionIdList ? sessionIdList.join('|') : ''},
+        onSubscriptionData: onSubsDataFeed
+    });
+
     const renderTabRow = () => {
         let row = [];
         appointments?.map((item, key) => {

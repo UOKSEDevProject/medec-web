@@ -50,7 +50,7 @@ function PatientProfile(props) {
     },[userProfile])
 
     const openMedicalHistory = () => {
-        history.push("/med-his")
+        history.push(`/med-his/${sessionStorage.getItem("usrId")}`)
     }
 
     const updateProfile = (profile) => {
