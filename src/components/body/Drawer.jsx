@@ -4,6 +4,7 @@ import {IoIosArrowForward, IoIosArrowBack} from "react-icons/io";
 
 const Drawer = (props) => {
     const {title, items, index, setIndex,toggle,setToggle} = props;
+    console.log(items);
 
     return toggle ?
         <div className="left-tab d-flex align-items-center">

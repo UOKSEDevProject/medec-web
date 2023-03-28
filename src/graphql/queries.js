@@ -165,22 +165,21 @@ const getPatientReportRequirementList = gql`
 `
 
 const getPatientList = gql`
-    query ExampleQuery($sessionId: String!) {
-      getPatientList(sessionId: $sessionId) {
-        payload {
-          _id
-          address
-          birthDate
-          bloodGroup
-          description
-          disName
-          prfImgUrl
-        }
-        statusCode
-        statusDetails
-      }
+query ExampleQuery($sessionId: String!) {
+  getPatientList(sessionId: $sessionId) {
+    payload {
+      _id
+      address
+      birthDate
+      bloodGroup
+      description
+      name
+      prfImgUrl
     }
-`
+    statusCode
+    statusDetails
+  }
+}`
 
 const getLabPatientList = gql`
 query GetLabPatientList($lId: String!) {

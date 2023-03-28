@@ -2,7 +2,6 @@ import React, {useEffect, useState} from "react";
 import {Image} from "react-bootstrap";
 import Drawer from "./Drawer";
 import {useHistory, useLocation, useParams} from "react-router-dom";
-import {useQuery} from "../../utils/utill";
 import {useQuery} from "@apollo/client";
 import queries from "../../graphql/queries";
 import Spinner from "./Spinner";
@@ -16,26 +15,37 @@ const addPatientListToStore = (data) => {
 
 const PatientList = () => {
     const sessionId = useParams();
-    let query = useQuery();
+    const { search } = useLocation()
+    let query = React.useMemo(() => new URLSearchParams(search), [search]);
     const lastIndex = parseInt(query.get('index'));
+    console.log(lastIndex);
     const [index, setIndex] = useState(lastIndex ? lastIndex: 0);
     const [toggle, setToggle] = useState(false);
     const history = useHistory();
     const {loading} = useQuery(queries.getPatientList, {
         onCompleted: addPatientListToStore,
-        variables: {sessionId: sessionId}
+        variables: {sessionId: sessionId.sessionId}
     });
     const patientList = useSelector(state => state.doctorDS.patientList);
     const [patientsList, setPatientsList] = useState([]);
 
     const onComplete = () => {
-        index + 1 < 20 && setIndex((index) => (index = index + 1));
+        index === 0
+            ? startSession()
+            : patientsList.length - 1 === index
+            ? completeSession()
+            : index + 1 < patientsList.length && setIndex((index) => (index = index + 1));
     };
 
+    const startSession = () => {
+        console.log("start session");
+    }
+    const completeSession = () => {
+        console.log("complete session");
+    }
     useEffect(() => {
         if (patientList) {
             setPatientsList(patientList);
-            setIndex(0);
         }
     }, [patientList]);
 
@@ -51,7 +61,7 @@ const PatientList = () => {
                             #{index + 1 < 10 ? `0${index + 1}` : index + 1}
                         </h2>
                         <h1 className="pt-name">
-                            {patientsList[index]?.disName}
+                            {patientsList[index]?.name}
                         </h1>
                         <button className="button px-3 py-2" id="show-button" onClick={() => setToggle(false)}>View All
                             Appointments
@@ -104,7 +114,7 @@ const PatientList = () => {
                             onClick={() => history.push(`/med-his/${patientsList[index]?._id}`)}>View
                         Medical History
                     </button>
-                    <button className="button px-3 py-2" onClick={() => onComplete()}>Complete</button>
+                    <button className="button px-3 py-2" onClick={() => onComplete()}>{index === 0 ?'Start': patientsList.length - 1 === index ?'Complete':'Next'}</button>
                 </div>
             </div>
         </div>
