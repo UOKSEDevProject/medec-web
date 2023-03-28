@@ -3,7 +3,6 @@ import Drawer from "./Drawer";
 import {Button, Image} from "react-bootstrap";
 import tickImg from "../../assets/images/tick.png";
 import uploadImg from "../../assets/images/upload.png";
-import unTickImg from "../../assets/images/untick.png"
 import Spinner from "./Spinner";
 import {useQuery} from "@apollo/client";
 import queries from "../../graphql/queries";
@@ -15,11 +14,11 @@ function addCustomerListToStore(customerList) {
     store.dispatch(laboratoryActions.addCustomerList(customerList.getLabPatientList.payload))
 }
 
-function LabPatientList(props) {
+function LabPatientList() {
     const [index, setIndex] = useState(undefined);
     const [toggle, setToggle] = useState(false);
     const [reports,setReports] = useState();
-    const {loading} = useQuery(queries.GetLabPatientList, {
+    const {loading} = useQuery(queries.getLabPatientList, {
         onCompleted: addCustomerListToStore,
         variables: {lId: sessionStorage.getItem("usrId")}
     });
