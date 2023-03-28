@@ -182,6 +182,21 @@ query GetLabPatientList($lId: String!) {
     statusDetails
   }
 }`
+const getMedicalReportList= gql`
+query ExampleQuery($pId: String!) {
+  getMedicalReportList(pId: $pId) {
+    payload {
+      month
+      reports {
+        day
+        id
+        imgUrl
+      }
+    }
+    statusCode
+    statusDetails
+  }
+}`
 const queries = {
     getDoctors: getDoctors,
     getAvailableDoctors: getAvailableDoctors,
@@ -193,7 +208,8 @@ const queries = {
     getLabReportList: getLabReportList,
     getDoctorList:getDoctorList,
     getPatientReportRequirementList: getPatientReportRequirementList,
-    GetLabPatientList: GetLabPatientList
+    GetLabPatientList: GetLabPatientList,
+    getMedicalReportList: getMedicalReportList
 }
 
 export default queries;

@@ -18,7 +18,7 @@ function Session(props) {
                 break;
             }
             case "DOCTOR": {
-                history.push(`/pnt-lst/:${props.id}`);
+                history.push(`/pnt-lst/${props.id}`);
                 break;
             }
             case "USER": {

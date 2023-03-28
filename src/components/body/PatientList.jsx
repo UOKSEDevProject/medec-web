@@ -2,11 +2,15 @@ import React, {useState} from "react";
 import {Image} from "react-bootstrap";
 import {ptList} from "../../temp/data-store";
 import Drawer from "./Drawer";
-import {useHistory, useParams} from "react-router-dom";
+import {useHistory, useLocation, useParams} from "react-router-dom";
+import {useQuery} from "../../utils/utill";
+
 
 const PatientList = () => {
     const sessionId = useParams();
-    const [index, setIndex] = useState(1);
+    let query = useQuery();
+    const lastIndex = parseInt(query.get('index'));
+    const [index, setIndex] = useState(lastIndex ? lastIndex: 0);
     const [toggle, setToggle] = useState(false);
     const history = useHistory();
 
@@ -70,8 +74,8 @@ const PatientList = () => {
                     </div>
                 </div>
                 <div className="d-flex flex-wrap align-items-center justify-content-around">
-                    <button className="button px-3 py-2" onClick={() => history.push(`/add-pre/62ebf1773feec0c8e214dcf6/${sessionId}/${index}`)}>Add Prescription</button>
-                    <button className="button px-3 py-2" onClick={() => history.push(`/med-his/${ptList[index]?.userId}`)}>View Medical History</button>
+                    <button className="button px-3 py-2" onClick={() => history.push(`/add-pre/62ebf1773feec0c8e214dcf6/${sessionId.sessionId}/${index}`)}>Add Prescription</button>
+                    <button className="button px-3 py-2" onClick={() => history.push(`/med-his/62ebf1773feec0c8e214dcf6`)}>View Medical History</button>
                     <button className="button px-3 py-2" onClick={() => onComplete()}>Complete</button>
                 </div>
             </div>

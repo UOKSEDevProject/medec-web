@@ -39,7 +39,7 @@ const AddPrescriptions = () => {
         }).then((res) => {
             if(res.data.addDoctorRecommendation.statusCode === 'S0000'){
                 notifyMessage("Successfully Added", '1');
-                history.push(`/pnt-lst/${sessionId}/${index}`)
+                history.push(`/pnt-lst/${sessionId}?index=${index}`)
             }});
 
     }
