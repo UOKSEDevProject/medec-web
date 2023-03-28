@@ -14,7 +14,15 @@ const addImgSrc = (data) => {
     }
 };
 
+const addPatientProfileData = (data) => {
+    return {
+        type: dataStore.addPatientProfileData,
+        payload: data
+    }
+}
+
 export const userActions = {
     authResponse: authResponse,
-    addImgSrc: addImgSrc
+    addImgSrc: addImgSrc,
+    addPatientProfileData: addPatientProfileData
 };

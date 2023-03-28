@@ -28,9 +28,17 @@ const addMedicalHistory = (data) => {
     }
 }
 
+const updateAppointmentList = (data) => {
+    return {
+        type: dataStore.UpdateAppointmentList,
+        payload: data,
+    }
+}
+
 export const patientActions = {
     createPatient: createPatient,
     addAppointmentList: addAppointmentList,
     addLabReportList: addLabReportList,
-    addMedicalHistory: addMedicalHistory
+    addMedicalHistory: addMedicalHistory,
+    updateAppointmentList: updateAppointmentList
 }

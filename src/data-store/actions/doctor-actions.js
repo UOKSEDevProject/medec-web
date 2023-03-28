@@ -55,13 +55,21 @@ const updateDoctorSession = (session) => {
     }
 }
 
+const addPatientList = (patientList) => {
+    return {
+        type: dataStore.addPatientList,
+        payload: patientList
+    }
+}
+
 export const doctorActions = {
     createDoctorList: createDoctorList,
     addSearchList: addSearchList,
-    addSearchListWithStatus:addSearchListWithStatus,
+    addSearchListWithStatus: addSearchListWithStatus,
     addDoctorSessionList: addDoctorSessionList,
     addNewSessionToDoctorSessionList: addNewSessionToDoctorSessionList,
     updateSessionOfDoctorSessionList: updateSessionOfDoctorSessionList,
     deleteSessionFromDoctorSessionList: deleteSessionFromDoctorSessionList,
-    updateDoctorSession: updateDoctorSession
+    updateDoctorSession: updateDoctorSession,
+    addPatientList: addPatientList
 };

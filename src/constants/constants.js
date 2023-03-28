@@ -70,7 +70,10 @@ export const dataStore = {
     updateDoctorSession: "UPDATE_DOCTOR_SESSION",
     Logout: "LOG_OUT",
     addCustomerDetails: "ADD_CUSTOMER",
-    addCustomerList: "ADD_CUSTOMERS"
+    addCustomerList: "ADD_CUSTOMERS",
+    addPatientList: "ADD_PATIENT_LIST",
+    addPatientProfileData: "ADD_PATIENT_PROFILE_DATA",
+    UpdateAppointmentList: "UPDATE_APPOINTMENT_LIST"
 }
 
 export const authConstants = {
@@ -151,3 +154,7 @@ export const ErrorMessage = [
         wrongEmail: 'Entered Email is not valied'
     }
 ]
+
+export const sessionStore = {
+    FCMToken: 'FCMToken',
+}

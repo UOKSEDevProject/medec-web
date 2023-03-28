@@ -5,6 +5,7 @@ import {checkForm, formatPhoneNumber, setErrors} from "../../utils/formUtility";
 import defaultProfilePicture from "../../assets/images/defaultprofilepic.png";
 import camera from "../../assets/images/camera.png";
 import FileUpLoader from './FileUploader';
+import {uploadFile,fileURL} from '../../utils/awsFunctions';
 
 
 function EditProfileModal(props) {
@@ -69,9 +70,22 @@ function EditProfileModal(props) {
       }
     }
 
-    function dpUpload(file) {
-        console.log(file);
-        profile.imageUrl="url";
+    async function dpUpload(file) {
+        uploadFile(file)
+            .on('httpUploadProgress', (evt) => {
+                console.log(Math.round((evt.loaded / evt.total) * 100));
+            })
+            .send((e,data) => {
+                if (e) {
+                    console.log(e);
+                }else if(data){
+                    // console.log(`https://medec-content.s3.ap-south-1.amazonaws.com/${file.name}`); 
+                }
+            });
+            let profilePicture = await fileURL(file.name);
+            profile.imageUrl=`${profilePicture}`;
+            setProfile({...profile,profilePicture,});
+            console.log(profile.profilePicture);
     }
 
     function imageSelectingHandler () {
@@ -98,7 +112,8 @@ function EditProfileModal(props) {
                                 cRef={(e)=>inputFileRef=e}
                             />
                         </div>
-                        <Image className='edit-profile-modal-profilePicture' src={profile.profilePicture ? profile.profilePicture : defaultProfilePicture} fluid={true}/>
+                        <Image className='edit-profile-modal-profilePicture' src={profile.profilePicture ? profile.profilePicture : defaultProfilePicture} 
+                                fluid={true}  roundedCircle={true}/>
                     </div>
                     <Form>
                         <Form.Group as={Row} className="mb-3">

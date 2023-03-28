@@ -48,6 +48,7 @@ const getAppointmentList = gql`
         aptNo
         refNo
         currAptNo
+        _id
       }
     }
 `;
@@ -143,26 +144,45 @@ const getDoctorList = gql`
 }
 `
 const getPatientReportRequirementList = gql`
-query GetPatientReportRequirementList($pId: String!) {
-  getPatientReportRequirementList(pId: $pId) {
-    statusCode
-    statusDetails
-    payload {
-      patient {
-        cntNo
-        disName
-        sex
-        prfImgUrl
-      }
-      pendList {
-        id
-        name
+    query GetPatientReportRequirementList($pId: String!) {
+      getPatientReportRequirementList(pId: $pId) {
+        statusCode
+        statusDetails
+        payload {
+          patient {
+            cntNo
+            disName
+            sex
+            prfImgUrl
+          }
+          pendList {
+            id
+            name
+          }
+        }
       }
     }
-  }
-}
 `
-const GetLabPatientList = gql`
+
+const getPatientList = gql`
+    query ExampleQuery($sessionId: String!) {
+      getPatientList(sessionId: $sessionId) {
+        payload {
+          _id
+          address
+          birthDate
+          bloodGroup
+          description
+          disName
+          prfImgUrl
+        }
+        statusCode
+        statusDetails
+      }
+    }
+`
+
+const getLabPatientList = gql`
 query GetLabPatientList($lId: String!) {
   getLabPatientList(lId: $lId) {
     payload {
@@ -206,9 +226,10 @@ const queries = {
     getAppointmentList: getAppointmentList,
     searchForDoctorByMedicalCouncilNumber: searchForDoctorByMedicalCouncilNumber,
     getLabReportList: getLabReportList,
-    getDoctorList:getDoctorList,
+    getDoctorList: getDoctorList,
     getPatientReportRequirementList: getPatientReportRequirementList,
-    GetLabPatientList: GetLabPatientList,
+    getLabPatientList: getLabPatientList,
+    getPatientList: getPatientList,
     getMedicalReportList: getMedicalReportList
 }
 

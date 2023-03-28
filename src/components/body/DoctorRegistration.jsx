@@ -12,6 +12,7 @@ import {notifyMessage} from "../../utils/notification";
 import ShowImgUploadModal from "./image-upload/ShowImgUploadModal";
 import {useSelector} from "react-redux";
 import {blogToFile} from "../../utils/ProcessCroppedImage";
+import {configuration} from '../../config';
 import axios from "axios";
 import * as AWS from "aws-sdk";
 
@@ -127,8 +128,8 @@ function DoctorRegistration(props) {
         };
 
         const presignedGETURL = s3.getSignedUrl('putObject', {
-            Bucket: '',
-            Key: '',
+            Bucket: configuration.aws.S3_BUCKET,
+            Key: configuration.aws.accessKeyId,
             Expires: 100,
             ContentType: file.type
         });
