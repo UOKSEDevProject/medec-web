@@ -77,7 +77,7 @@ function EditProfileModal(props) {
             })
             .send((e,data) => {
                 if (e) {
-                    console.log(e);
+                    // console.log(e);
                 }else if(data){
                     // console.log(`https://medec-content.s3.ap-south-1.amazonaws.com/${file.name}`); 
                 }

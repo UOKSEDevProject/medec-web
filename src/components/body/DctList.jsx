@@ -12,7 +12,7 @@ import {configuration} from "../../config";
 import {component} from "../../constants/constants";
 
 const addDoctorsToStore = (doctors) => {
-    console.log(doctors);
+    // console.log(doctors);
     configuration.component === component.user?
          store.dispatch(doctorActions.addSearchListWithStatus(doctors.getAvailableDoctors))
 
