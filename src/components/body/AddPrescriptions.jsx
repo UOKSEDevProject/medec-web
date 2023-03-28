@@ -6,6 +6,7 @@ import {notifyMessage} from "../../utils/notification";
 import {useMutation} from "@apollo/client";
 import mutations from "../../graphql/mutations";
 import {useHistory, useParams} from "react-router-dom";
+import FileUpLoader from "./FileUploader";
 
 const AddPrescriptions = () => {
     const {userId, sessionId, index} = useParams();
@@ -15,15 +16,16 @@ const AddPrescriptions = () => {
     const [list1, setList1] = useState([]);
     const [list2, setList2] = useState([]);
     const [UpdateLabReportsOnCompletion] = useMutation(mutations.UpdateLabReportsOnCompletion);
-    const fileInput = useRef();
+    let fileInput = useRef();
 
     const onFileSelect = () => {
         setIsUploading(true);
         setImage(null);
-        setTimeout(() => {
-            setIsUploading(false);
-            setImage("https://docs.google.com/uc?id=1XAYQhbkPYLvuWlf2Lad0TuSjIbbKVkub");
-        }, [2000]);
+        fileInput.click();
+    }
+    async function setProfileImages(url) {
+        setIsUploading(false);
+        setImage(url);
     }
 
     const onSubmitClick = () => {
@@ -48,9 +50,16 @@ const AddPrescriptions = () => {
         <div className="add-pres py-5">
             <div className="d-flex align-items-center">
                 <h1>Medical Prescription</h1>
-                {!isUploading &&  <button className="button px-3 py-2 mx-4" onClick={() => fileInput.current?.click()}>{image === undefined ? "Select" : "Edit" } </button>}
+                {!isUploading &&  <button className="button px-3 py-2 mx-4" onClick={onFileSelect}>{image === undefined ? "Select" : "Edit" } </button>}
                 <input type="file" className="visually-hidden" accept="image/*" ref={fileInput}
                        onChange={onFileSelect}/>
+                <FileUpLoader
+                    setProfileImages={(url) => {
+                        setProfileImages(url);
+                    }}
+                    accepts={["image/png", "image/jpg", "image/jpeg"]}
+                    cRef={(e)=>fileInput=e}
+                />
                 {isUploading && <div className="d-flex align-items-center mx-4">
                     <Spinner animation="border" role="status"/>
                     <span className="mx-2">Uploading</span>

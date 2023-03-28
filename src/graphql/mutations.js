@@ -164,6 +164,22 @@ mutation UpdateLabReportsOnCompletion($doctorRecommendation: DoctorRecommendatio
     statusDetails
   }
 }`
+
+const UpdateSessionStatus = gql`
+mutation UpdateSessionStatus($sessionId: String!, $status: String!, $curAptNo: Int!, $aptId: String!) {
+  updateSessionStatus(sessionId: $sessionId, status: $status, curAptNo: $curAptNo, aptId: $aptId) {
+    statusCode
+    statusDetails
+  }
+}`
+
+const UpdateLabReports = gql`
+mutation UpdateLabReportsOnCompletion($updateLabReportsOnCompletionId: String!, $imgUrl: String!) {
+  updateLabReportsOnCompletion(id: $updateLabReportsOnCompletionId, imgUrl: $imgUrl) {
+    statusCode
+    statusDetails
+  }
+}`
 const mutations = {
     addDoctor: addDoctor,
     updateDoctor: updateDoctor,
@@ -174,7 +190,9 @@ const mutations = {
     updateSession: updateSession,
     addAppointment:addAppointment,
     onSelectingReportsRequired: onSelectingReportsRequired,
-    UpdateLabReportsOnCompletion: UpdateLabReportsOnCompletion
+    UpdateLabReportsOnCompletion: UpdateLabReportsOnCompletion,
+    UpdateSessionStatus: UpdateSessionStatus,
+    UpdateLabReports: UpdateLabReports
 };
 
 export default mutations;
