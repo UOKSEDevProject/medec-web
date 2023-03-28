@@ -25,6 +25,12 @@ const MedicalHistory = () => {
     const [selectedItem, setSelectedItem] = useState(undefined);
 
     useEffect(() => {
+        return(()=>{
+            setSelectedItem(undefined);
+        })
+    },[])
+
+    useEffect(() => {
         //select first report
         if (medicalHistoryList && medicalHistoryList.length>0) {
             for(let i=0; i<medicalHistoryList.length; i++){
