@@ -15,14 +15,30 @@ const myBucket = new AWS.S3({
     region: REGION,
 })
 
-export const uploadFile = (file) => {
+export const uploadFile = (file,Request) => {
     console.log('upload file',file);
     const params = {
         ACL: 'public-read',
         Body: file,
         Bucket: S3_BUCKET,
-        Key: file.name
+        Key: file.name,
+        ContentType:'image/jpeg',
     };
 
-    return myBucket.putObject(params);
+    return myBucket.putObject(params,Request);
+}
+
+export const fileURL = (fileName) => {
+    let url;
+    try{
+        url = myBucket.getSignedUrl('getObject', {
+            Bucket: S3_BUCKET,
+            Key: fileName,
+            Expires: 10000
+        })
+    return url;
+    }catch(e){
+        console.log(e);
+        return false;
+    }
 }

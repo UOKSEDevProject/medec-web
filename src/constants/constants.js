@@ -20,16 +20,16 @@ export const CHECKOUT_FIELDS = {
     PHONE_NUMBER: 'phoneNumber',
     Full_Name: 'fullName',
     Email: 'email',
-    Gender: 'gender',
-    Specialization: 'specialization',
-    MedicalCouncilNumber: 'medicalCouncilNumber',
-    Title: 'tittle',
-    Birthdate: 'birthDate',
-    Country: 'country',
-    BloodGroup: 'bloodGroup',
-    Name: "name",
-    Age: "age",
-    PASSWORD: 'password'
+    Gender:'gender',
+    Specialization:'specialization',
+    MedicalCouncilNumber:'medicalCouncilNumber',
+    Title:'tittle',
+    Birthdate:'birthDate',
+    Country:'country',
+    BloodGroup:'bloodGroup',
+    Name:"name",
+    Age:"age",
+    PASSWORD:'password'
 }
 
 export const genders = [
@@ -46,7 +46,7 @@ export const component = {
     chanCenter: 'CHAN_CENTER',
     laboratory: 'LABORATORY',
     user: 'USER',
-    doctor: 'DOCTOR',
+    doctor:'DOCTOR',
     admin: 'ADMIN',
 }
 
@@ -64,14 +64,16 @@ export const dataStore = {
     AddLabReportList: "ADD_LABREPORT_LIST",
     AddMedicalHistory: "ADD_MEDICAL_HISTORY",
     AddDoctorTimeSchedule: "ADD_DOCTOR_TIME_SCHEDULE",
-    AddSessionToDoctorTimeSchedule: "ADD_SESSION_TO_DOCTOR_TIME_SCHEDULE",
-    UpdateSessionOfDoctorTimeSchedule: "UPDATE_SESSION_OF_DOCTOR_TIME_SCHEDULE",
-    DeleteSessionFromDoctorSessionList: "DELETE_SESSION_FROM_DOCTOR_TIME_SCHEDULE",
+    AddSessionToDoctorTimeSchedule:"ADD_SESSION_TO_DOCTOR_TIME_SCHEDULE",
+    UpdateSessionOfDoctorTimeSchedule:"UPDATE_SESSION_OF_DOCTOR_TIME_SCHEDULE",
+    DeleteSessionFromDoctorSessionList:"DELETE_SESSION_FROM_DOCTOR_TIME_SCHEDULE",
     updateDoctorSession: "UPDATE_DOCTOR_SESSION",
     Logout: "LOG_OUT",
     addCustomerDetails: "ADD_CUSTOMER",
     addCustomerList: "ADD_CUSTOMERS",
-    addPatientList: "ADD_PATIENT_LIST"
+    addPatientList: "ADD_PATIENT_LIST",
+    addPatientProfileData: "ADD_PATIENT_PROFILE_DATA",
+    UpdateAppointmentList: "UPDATE_APPOINTMENT_LIST"
 }
 
 export const authConstants = {
@@ -95,7 +97,7 @@ export const platformConstants = {
 
 export const addPrescriptionsSections = [
     {
-        id: 1,
+        id:1,
         title: "Laboratory Investigations",
         options: [
             "FBS",
@@ -117,7 +119,7 @@ export const addPrescriptionsSections = [
         ]
     },
     {
-        id: 2,
+        id:2,
         title: "MRI/CT Requisitions",
         options: [
             "Brain",
