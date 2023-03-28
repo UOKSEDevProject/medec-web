@@ -170,6 +170,7 @@ query ExampleQuery($sessionId: String!) {
     payload {
       _id
       address
+      aptId
       birthDate
       bloodGroup
       description

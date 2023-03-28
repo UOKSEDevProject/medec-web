@@ -10,6 +10,7 @@ import {ErrorMessage} from '../../constants/constants.js'
 import {isInvaliedPhoneNumber} from '../../utils/clientSideValidation.jsx'
 import {useHistory} from "react-router-dom";
 import {configuration} from '../../config.js';
+import FileUpLoader from "./FileUploader";
 
 function Admin(props) {
     const [profile, setProfile] = useState({});
@@ -22,7 +23,14 @@ function Admin(props) {
 
     const [sendRegisterReq, {loading}] = useMutation(mutations.register);
     const onChange = (e) => {setProfile({...profile,[e.target.name]:e.target.value});}
+    let fileInput = useRef();
 
+    const onFileSelect = () => {
+        fileInput.click();
+    }
+    async function setProfileImages(url) {
+        setLogo(url);
+    }
     const UpdateServer = (data) => {
         sendRegisterReq({
             variables: {
@@ -32,7 +40,7 @@ function Admin(props) {
                   chanCenterArgs: {
                     address: profile.address,
                     cntNo: profile.cntNo,
-                    logoUrl: logo.name,
+                    logoUrl: logo,
                     name: profile.name,
                   }
                 }
@@ -58,7 +66,7 @@ function Admin(props) {
             notifyMessage(ErrorMessage[0].emptyUsername,3);
         else if(!(profile.usrName.match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)))
             notifyMessage(ErrorMessage[0].wrongEmail,3);
-        else if (logo===null || typeof(logo.name)==='undefined')
+        else if (logo===null || typeof(logo)==='undefined')
             notifyMessage(ErrorMessage[0].emptyLogoImage,3);
         else
             UpdateServer();
@@ -71,41 +79,43 @@ function Admin(props) {
 
     return (
         <div className='admin'>
-            {false?
-                <Spinner isOverLay={true}/> : 
-                <Form style={{width:'60vw',margin:'auto', padding:'10px'}}>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Channel Center Name</Form.Label>
-                        <Form.Control type="text" name='name' placeholder="Enter name"  aria-required={true} onChange={onChange}/>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Address</Form.Label>
-                        <Form.Control type="address" name='address' placeholder="Enter address" aria-required={true} onChange={onChange}/>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Phone Number</Form.Label>
-                        <Form.Control type="number" name='cntNo' placeholder="Enter phone number" aria-required={true} onChange={onChange}/>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Email</Form.Label>
-                        <Form.Control type="email" name='usrName' placeholder="Enter valied email" aria-required={true} onChange={onChange}/>
-                    </Form.Group>
-                    <Form.Group className="mb-3">
-                        <Form.Label>Logo</Form.Label>
-                        <FileUoloader
-                                sendImageData={(file) => {
-                                    setLogo(file);
-                                }}
-                                accepts={["image/png", "image/jpg", "image/jpeg"]}
-                                item={
-                                    <Form.Control type="text" placeholder="Select the image" aria-required={true} value={logo && logo.name} disabled/>
-                                }
-                            />
-                    </Form.Group>
-                    <Button variant="primary" type="button" onClick={()=>submitButtonHandler()}>
-                        Submit
-                    </Button>
-                </Form>
+            {<Form style={{width: '60vw', margin: 'auto', padding: '10px'}}>
+                <Form.Group className="mb-3">
+                    <Form.Label>Channel Center Name</Form.Label>
+                    <Form.Control type="text" name='name' placeholder="Enter name" aria-required={true}
+                                  onChange={onChange}/>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Address</Form.Label>
+                    <Form.Control type="address" name='address' placeholder="Enter address" aria-required={true}
+                                  onChange={onChange}/>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Phone Number</Form.Label>
+                    <Form.Control type="number" name='cntNo' placeholder="Enter phone number" aria-required={true}
+                                  onChange={onChange}/>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Email</Form.Label>
+                    <Form.Control type="email" name='usrName' placeholder="Enter valied email" aria-required={true}
+                                  onChange={onChange}/>
+                </Form.Group>
+                <Form.Group className="mb-3">
+                    <Form.Label>Logo</Form.Label>
+                    <input type="file" accept="image/*" ref={fileInput}
+                           onChange={onFileSelect}/>
+                    <FileUpLoader
+                        setProfileImages={(url) => {
+                            setProfileImages(url);
+                        }}
+                        accepts={["image/png", "image/jpg", "image/jpeg"]}
+                        cRef={(e)=>fileInput=e}
+                    />
+                </Form.Group>
+                <Button variant="primary" type="button" onClick={() => submitButtonHandler()}>
+                    Submit
+                </Button>
+            </Form>
             }
         </div>
     );
