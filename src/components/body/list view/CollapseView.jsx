@@ -15,10 +15,6 @@ const TestCollapseView = (props) => {
 
     let platform='WEB';
 
-    // useEffect(()=>{
-    //     console.log(items)
-    // },[isCollapsed])
-
     return isCollapsed ?
     <div className="lab-report-portal">
         <div className="collapse-view d-flex" id={configuration.platform === "WEB" ? "fix-width" : "full-width"} >
