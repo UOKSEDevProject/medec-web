@@ -2,10 +2,10 @@ export const configuration  = {
     component: 'USER',  //  'CHAN_CENTER', 'USER' , 'LABORATORY','DOCTOR', 'ADMIN'
     platform: 'MOB', // 'WEB', 'MOB'
     connectionParams: {
-        url: 'http://localhost:4000',
-        ws: 'ws://localhost:4000',
-        // url: 'http://3.111.168.225:4000',
-        // ws: 'ws://3.111.168.225:4000',
+        // url: 'http://localhost:4000',
+        // ws: 'ws://localhost:4000',
+        url: 'http://3.111.168.225:4000',
+        ws: 'ws://3.111.168.225:4000',
         path: '/graphql',
         subsPath: '/subscriptions'
     },
