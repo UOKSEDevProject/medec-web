@@ -176,6 +176,7 @@ query ExampleQuery($sessionId: String!) {
       description
       name
       prfImgUrl
+      cntNo
     }
     statusCode
     statusDetails
