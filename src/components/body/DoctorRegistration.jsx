@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {Button, Form, Image, Row} from "react-bootstrap";
 import docProfilePic from '../../assets/images/dp.png';
 import {genders, specializations} from "../../constants/constants";
@@ -10,20 +10,21 @@ import Spinner from "./Spinner";
 import {useHistory} from "react-router-dom";
 import {notifyMessage} from "../../utils/notification";
 import ShowImgUploadModal from "./image-upload/ShowImgUploadModal";
-import {useSelector} from "react-redux";
-import {blogToFile} from "../../utils/ProcessCroppedImage";
-import {configuration} from '../../config';
-import axios from "axios";
-import * as AWS from "aws-sdk";
+import FileUpLoader from "./FileUploader";
 
 function DoctorRegistration(props) {
     const [profile, setProfile] = useState({});
+    const [dpSrc,setDpSrc] = useState(undefined);
     const [errors, seterrors] = useState({error: {}});
     const [hasEdit, setHasEdit] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [sendDoctorRegistrationReq, {loading}] = useMutation(mutations.addDoctor);
-    const imgSrcData = useSelector(state => state.userDs.imgSrcData);
     const history = useHistory();
+    let fileInput = useRef();
+
+    const onFileSelect = () => {
+        fileInput.click();
+    }
 
     const onChange = (e) => {
         setProfile({...profile, [e.target.name]: e.target.value});
@@ -79,7 +80,9 @@ function DoctorRegistration(props) {
     const onHideModal = () => {
       setShowModal(false);
     }
-
+    async function setProfileImages(url) {
+        setDpSrc(url);
+    }
     function saveDoctorDetails() {
 
         sendDoctorRegistrationReq({
@@ -109,53 +112,24 @@ function DoctorRegistration(props) {
         ).catch(()=>notifyMessage("Something Went Wrong", '3'));
     }
 
-    function dpUpload() {
-        profile.url='url'
-        setShowModal(true);
-    }
-
-    const upLoadImage = async () => {
-        if (!imgSrcData) {
-            return;
-        }
-        const file = blogToFile(imgSrcData);
-        const s3 = new AWS.S3();
-
-        const options = {
-            headers: {
-                'Content-Type': file.type
-            }
-        };
-
-        const presignedGETURL = s3.getSignedUrl('putObject', {
-            Bucket: configuration.aws.S3_BUCKET,
-            Key: configuration.aws.accessKeyId,
-            Expires: 100,
-            ContentType: file.type
-        });
-
-        await axios.put(presignedGETURL, file, options).then((response) => {});
-    }
-
     return (
         <div className='doctor-registration'>
             <div className='doctor-registration-form-container'>
                 {loading && <Spinner isOverLay={true}/>}
                 <Form className='doctor-registration-form'>
                     <div className='doctor-registration-form-section1'>
-                        {!imgSrcData &&
                             <>
-                                <Image className='doctor-registration-form-section1-image' src={docProfilePic} roundedCircle={true}/>
-                                <Image className='doctor-registration-form-section1-image-selectIcon' src={camera} roundedCircle={true} onClick={dpUpload}/>
+                                <Image className='doctor-registration-form-section1-image' src={dpSrc!==undefined?dpSrc:docProfilePic} roundedCircle={true}/>
+                                <Image className='doctor-registration-form-section1-image-selectIcon' src={camera} roundedCircle={true} onClick={onFileSelect}/>
+                                <FileUpLoader
+                                    setProfileImages={(url) => {
+                                        setProfileImages(url);
+                                    }}
+                                    accepts={["image/png", "image/jpg", "image/jpeg"]}
+                                    cRef={(e)=>fileInput=e}
+                                />
                             </>
-                        }
 
-                        {imgSrcData &&
-                            <>
-                                <Image className='doctor-registration-form-section1-image' src={imgSrcData} roundedCircle={true}/>
-                                <Image className='doctor-registration-form-section1-image-selectIcon' src={camera} roundedCircle={true} onClick={dpUpload}/>
-                            </>
-                        }
                     </div>
                     <div className='doctor-registration-form-section2'>
                         <div className='doctor-registration-form-section2-part1'>
