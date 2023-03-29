@@ -17,14 +17,14 @@ const App = (props) => {
             .on('httpUploadProgress', async (evt) => {
                 console.log(Math.round((evt.loaded / evt.total) * 100));
                 if (evt.loaded === evt.total) {
-                    setProfileImages(await fileURL(file.name));
+                    setProfileImages(`https://medec-content.s3.ap-south-1.amazonaws.com/${file.name}`);
                 }
             })
             .send((e,data) => {
                 if (e) {
                     console.log(e);
                 }else if(data){
-                    // console.log(`https://medec-content.s3.ap-south-1.amazonaws.com/${file.name}`);
+                    console.log(`https://medec-content.s3.ap-south-1.amazonaws.com/${file.name}`);
                 }
             });
     }
