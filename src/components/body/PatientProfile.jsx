@@ -106,7 +106,7 @@ function PatientProfile(props) {
                         <Row className="mb-3">
                             <Col className='patient-profile-details-labels' xs={12} md={6} lg={4}>Phone Number</Col>
                             <Col className='patient-profile-details' xs={12} md={6} lg={4}>
-                                <div>{profile.country} {profile.phoneNumber}</div>
+                                <div>{profile.country} {profile?.cntNo}</div>
                             </Col>
                         </Row>
                         <Row className="mb-3">

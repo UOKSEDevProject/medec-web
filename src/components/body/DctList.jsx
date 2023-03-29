@@ -37,7 +37,7 @@ const DctList = () => {
     }, [searchList]);
 
     return (
-        <Row className='dct-list'>
+        <Row className='dct-list scroll-view'>
             {loading && <Spinner isOverLay={true}/>}
             {doctors && doctors.map((dr, index) => (
                 <Doctor

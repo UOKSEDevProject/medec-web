@@ -1,12 +1,11 @@
 import {Button, Container, Image, Nav, Navbar, Overlay, Popover} from 'react-bootstrap';
 import logo from '../../assets/images/MEDEC logo  nav.png';
-import {userProfile} from '../../temp/data-store';
 import defaultProfilePicture from '../../assets/images/defaultprofilepic.png'
 import {Link, NavLink, useHistory, useLocation} from "react-router-dom";
 import {configuration} from "../../config";
 import {component} from "../../constants/constants";
 import {useSelector} from "react-redux";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {rootActions} from "../../data-store/actions/root-actions";
 import store from "../../data-store/reducer/root-reducer";
 import {notifyMessage} from "../../utils/notification";
@@ -15,10 +14,12 @@ const NavBar = () => {
     const location = useLocation();
     const userId = useSelector(state => state.userDs.usrId);
     const authStatus = useSelector(state => state.userDs.authSts);
+    const userProfile = useSelector(state => state.userDs.PatientProfileData);
     const [show, setShow] = useState(false);
     const [target, setTarget] = useState(null);
     const ref = useRef(null);
     const history = useHistory();
+
     const handleClick = (event) => {
         if (userId) {
             setShow(!show);
@@ -52,7 +53,7 @@ const NavBar = () => {
                     className='profile-picture'
                     fluid={true}
                     roundedCircle={true}
-                    src={userProfile.profilePicture != null ? userProfile.profilePicture : defaultProfilePicture}
+                    src={userProfile?.profileImgSrc != null ? userProfile?.profileImgSrc : defaultProfilePicture}
                     alt='Profile'
                     onClick={handleClick}
                 />
