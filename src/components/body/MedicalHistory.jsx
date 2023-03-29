@@ -54,7 +54,7 @@ const MedicalHistory = () => {
             <div className="lab-report-portal">
                 <div className="pt-container d-flex lab-container" id={isShowCollapesView ? "pt-container-overlay" : "empty"}>
                     <TestCollapseView
-                        title={"Lab Report List"}
+                        title={"Medical History"}
                         items={medicalHistoryList}
                         index={selectedItem}
                         setIndex={setSelectedItem}
