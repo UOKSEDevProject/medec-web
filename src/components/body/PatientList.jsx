@@ -10,6 +10,8 @@ import store from "../../data-store/reducer/root-reducer";
 import {useSelector} from "react-redux";
 import mutations from "../../graphql/mutations";
 import {notifyMessage} from "../../utils/notification";
+import {getAge} from "../../utils/commonFunctions";
+
 
 const addPatientListToStore = (data) => {
     store.dispatch(doctorActions.addPatientList(data.getPatientList.payload));
@@ -60,6 +62,7 @@ const PatientList = () => {
     useEffect(() => {
         if (patientList) {
             setPatientsList(patientList);
+            console.log(patientsList)
         }
     }, [patientList]);
 
@@ -85,6 +88,7 @@ const PatientList = () => {
                     <Image
                         src={patientsList[index]?.prfImgUrl}
                         fluid={true}
+                        roundedCircle
                         className="pt-image"
                     />
                 </div>
@@ -92,7 +96,7 @@ const PatientList = () => {
                     <div className="d-flex align-items-center mb-3">
                         <p className="pt-detail-label">Age</p>
                         <p className="pt-detail-value d-flex px-4 py-2">
-                            {new Date(Date.now()).getFullYear() - new Date(patientsList[index]?.birthDate).getFullYear()}
+                            {patientsList[index]?.birthDate && getAge(patientsList[index]?.birthDate)}
                         </p>
                     </div>
                     <div className="d-flex align-items-center mb-3">
@@ -103,13 +107,13 @@ const PatientList = () => {
                     </div>
                     <div className="d-flex align-items-center mb-3">
                         <p className="pt-detail-label">Phone Number</p>
-                        <p className="pt-detail-value d-flex px-4 py-2 ">
+                        <p className="pt-detail-value d-flex px-4 py-2 " style={{minWidth: '200px'}}>
                             {patientsList[index]?.phoneNumber}
                         </p>
                     </div>
                     <div className="d-flex align-items-center mb-3">
                         <p className="pt-detail-label">Address</p>
-                        <p className="pt-detail-value d-flex px-4 py-2 flex-grow-1">
+                        <p className="pt-detail-value d-flex px-4 py-2 flex-grow-1" style={{minHeight: '100px'}}>
                             {patientsList[index]?.address}
                         </p>
                     </div>

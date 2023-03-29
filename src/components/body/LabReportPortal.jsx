@@ -28,8 +28,9 @@ const TestLabReportPortal = () => {
     });
 
     useEffect(()=>{
-        userId === undefined && history.push('/login');
-    },[])
+
+        sessionStorage.getItem('usrId') === undefined && history.push('/login');
+    },[sessionStorage.getItem('usrId')])
 
     return (
       loading ? <Spinner isOverLay={true}/> :
