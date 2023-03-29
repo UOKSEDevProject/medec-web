@@ -94,19 +94,19 @@ function PatientProfile(props) {
                         <Row className="mb-3">
                             <Col className='patient-profile-details-labels' xs={12} md={6} lg={4}>Date Of Birth</Col>
                             <Col className='patient-profile-details' xs={12} md={6} lg={4}>
-                                <div>{profile.birthDate}</div>
+                                <div>{profile?.birthDate}</div>
                             </Col>
                         </Row>
                         <Row className="mb-3">
                             <Col className='patient-profile-details-labels' xs={12} md={6} lg={4}>Blood Group</Col>
                             <Col className='patient-profile-details' xs={6} md={3} lg={2}>
-                                <div>{profile.bloodGroup}</div>
+                                <div>{profile?.bloodGroup}</div>
                             </Col>
                         </Row>
                         <Row className="mb-3">
                             <Col className='patient-profile-details-labels' xs={12} md={6} lg={4}>Phone Number</Col>
                             <Col className='patient-profile-details' xs={12} md={6} lg={4}>
-                                <div>{profile.country} {profile?.cntNo}</div>
+                                <div>{profile.country} {profile?.phoneNumber}</div>
                             </Col>
                         </Row>
                         <Row className="mb-3">
