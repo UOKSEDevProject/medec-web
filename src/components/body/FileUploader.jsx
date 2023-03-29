@@ -1,18 +1,35 @@
 import Files from "react-files";
 import {notifyMessage} from '../../utils/notification';
+import {fileURL, uploadFile} from "../../utils/awsFunctions";
 
 const App = (props) => {
 
-    const {sendImageData,cRef,item} = props;
+    const {setProfileImages,cRef,item} = props;
 
     const onFilesChange = props => async files => {
         if (files.length !== 0) {
             let fileObj = files[0];
-            sendImageData(fileObj);
+            dpUpload(fileObj);
         };
     }
-
+    async function dpUpload(file) {
+        uploadFile(file)
+            .on('httpUploadProgress', async (evt) => {
+                console.log(Math.round((evt.loaded / evt.total) * 100));
+                if (evt.loaded === evt.total) {
+                    setProfileImages(await fileURL(file.name));
+                }
+            })
+            .send((e,data) => {
+                if (e) {
+                    console.log(e);
+                }else if(data){
+                    // console.log(`https://medec-content.s3.ap-south-1.amazonaws.com/${file.name}`);
+                }
+            });
+    }
     return (
+        <div style={{display:'none'}}>
         <Files
             className='files-dropzone-file'
             onChange={onFilesChange(props)}
@@ -25,6 +42,8 @@ const App = (props) => {
         >
             {typeof(item)==='undefined'?<button type={'button'} ref={(e) => cRef(e)} />:item}
         </Files>
+
+        </div>
     )
 }
 

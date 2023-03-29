@@ -2,12 +2,14 @@ import React, {useEffect, useState} from "react";
 import {Image} from "react-bootstrap";
 import Drawer from "./Drawer";
 import {useHistory, useLocation, useParams} from "react-router-dom";
-import {useQuery} from "@apollo/client";
+import {useMutation, useQuery} from "@apollo/client";
 import queries from "../../graphql/queries";
 import Spinner from "./Spinner";
 import {doctorActions} from "../../data-store/actions/doctor-actions";
 import store from "../../data-store/reducer/root-reducer";
 import {useSelector} from "react-redux";
+import mutations from "../../graphql/mutations";
+import {notifyMessage} from "../../utils/notification";
 
 const addPatientListToStore = (data) => {
     store.dispatch(doctorActions.addPatientList(data.getPatientList.payload));
@@ -15,6 +17,7 @@ const addPatientListToStore = (data) => {
 
 const PatientList = () => {
     const sessionId = useParams();
+    const [isShow, setIsShow] = useState(true);
     const { search } = useLocation()
     let query = React.useMemo(() => new URLSearchParams(search), [search]);
     const lastIndex = parseInt(query.get('index'));
@@ -27,20 +30,32 @@ const PatientList = () => {
     });
     const patientList = useSelector(state => state.doctorDS.patientList);
     const [patientsList, setPatientsList] = useState([]);
+    const [sendSessionStatusUpdate] = useMutation(mutations.UpdateSessionStatus);
 
     const onComplete = () => {
-        index === 0
-            ? startSession()
-            : patientsList.length - 1 === index
-            ? completeSession()
-            : index + 1 < patientsList.length && setIndex((index) => (index = index + 1));
+      patientsList.length - 1 === index
+            ? sessionUpdate('finished')
+            : sessionUpdate('ongoing');
+        index + 1 < patientsList.length && setIndex((index) => (index = index + 1))
     };
 
-    const startSession = () => {
-        console.log("start session");
-    }
-    const completeSession = () => {
-        console.log("complete session");
+    const sessionUpdate = (status) => {
+        sendSessionStatusUpdate({
+            variables: {
+                sessionId: sessionId.sessionId,
+                status: status,
+                curAptNo: index + 1,
+                aptId: patientsList[index].aptId
+            }, fetchPolicy: "no-cache"
+        }).then(r => {
+            if (status === 'active' && r.data.updateSessionStatus.statusCode === 'S0000') {
+                setIsShow(false);
+                notifyMessage("Session Started", '1');
+            }
+            if (status === 'finished' && r.data.updateSessionStatus.statusCode === 'S0000') {
+                notifyMessage("Session completed", '1');
+            }
+        })
     }
     useEffect(() => {
         if (patientList) {
@@ -54,6 +69,7 @@ const PatientList = () => {
             <Drawer title="Appointments" items={patientsList} index={index} setIndex={setIndex} toggle={toggle}
                     setToggle={setToggle}/>
             <div className="pt p-5 flex-grow-1">
+                <button className="button px-3 py-2" hidden={index !== 0 || !isShow} onClick={() => sessionUpdate('active')}>Start</button>
                 <div className="d-flex flex-wrap justify-content-between align-items-center">
                     <div className="pt-content">
                         <h2 className="pt-number">
@@ -113,7 +129,7 @@ const PatientList = () => {
                             onClick={() => history.push(`/med-his/${patientsList[index]?._id}`)}>View
                         Medical History
                     </button>
-                    <button className="button px-3 py-2" onClick={() => onComplete()}>{index === 0 ?'Start': patientsList.length - 1 === index ?'Complete':'Next'}</button>
+                    <button className="button px-3 py-2" onClick={() => onComplete()}>{patientsList.length - 1 === index ?'Complete':'Next'}</button>
                 </div>
             </div>
         </div>

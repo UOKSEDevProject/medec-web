@@ -170,6 +170,7 @@ query ExampleQuery($sessionId: String!) {
     payload {
       _id
       address
+      aptId
       birthDate
       bloodGroup
       description
@@ -201,6 +202,7 @@ query GetLabPatientList($lId: String!) {
     statusDetails
   }
 }`
+
 const getMedicalReportList= gql`
 query ExampleQuery($pId: String!) {
   getMedicalReportList(pId: $pId) {
@@ -216,6 +218,26 @@ query ExampleQuery($pId: String!) {
     statusDetails
   }
 }`
+
+const getUserData = gql`
+query getPatientProfile($id: String!) {
+  getPatientProfile(id: $id) {
+    payload {
+      _id
+      prfImgUrl
+      address
+      birthDate
+      bldGrp
+      des
+      sex
+      cntNo
+      disName
+      fullName
+      nameWithInitials
+    }
+  }
+}`
+
 const queries = {
     getDoctors: getDoctors,
     getAvailableDoctors: getAvailableDoctors,
@@ -229,7 +251,8 @@ const queries = {
     getPatientReportRequirementList: getPatientReportRequirementList,
     getLabPatientList: getLabPatientList,
     getPatientList: getPatientList,
-    getMedicalReportList: getMedicalReportList
+    getMedicalReportList: getMedicalReportList,
+    getUserData: getUserData
 }
 
 export default queries;

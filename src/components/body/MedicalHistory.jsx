@@ -18,7 +18,8 @@ const MedicalHistory = () => {
         onCompleted: addMedicalHistoryToStore,
         variables: {
             pId: userId.userId,
-        }
+        },
+        fetchPolicy: 'network-only'
     });
     const medicalHistoryList = useSelector(state => state.patientDS.medicalHistoryList);
     const [isShowCollapesView, setIsShowCollapesView] = useState(true);

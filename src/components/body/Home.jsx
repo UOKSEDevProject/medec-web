@@ -7,9 +7,25 @@ import {useHistory} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {userActions} from "../../data-store/actions/user-actions";
 import store from "../../data-store/reducer/root-reducer";
-const imgTest = 'https://medec-content.s3.ap-south-1.amazonaws.com/1654020760868.jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWZ5URD3XFM7RNTB2%2F20230328%2Fap-south-1%2Fs3%2Faws4_request&X-Amz-Date=20230328T094440Z&X-Amz-Expires=10000&X-Amz-Signature=8a031fda12a90e9170236803e8770af560c3408d3618a31f31c08bf5b7af43cd&X-Amz-SignedHeaders=host'
+import {useQuery} from "@apollo/client";
+import queries from "../../graphql/queries";
 
+const addUserDataToStore = (response) => {
+    if (configuration.component === component.user && response && response.getPatientProfile && response.getPatientProfile.payload) {
+        let data = response.getPatientProfile.payload;
 
+        store.dispatch(userActions.addPatientProfileData({
+            profileImgSrc: data.prfImgUrl ? data.prfImgUrl : '',
+            disName: data.disName ? data.disName : '',
+            dob: data.birthDate ? data.birthDate : '',
+            sex: data.sex ? data.sex : '',
+            des: data.des ? data.des : '',
+            bldGrp: data.bldGrp ? data.bldGrp : '',
+            cntNo: data.cntNo ? data.cntNo : '',
+            address: data.address ? data.address : ''
+        }));
+    }
+}
 
 const Home = () => {
     const [menuList, setMenuList] = useState(null);
@@ -17,10 +33,14 @@ const Home = () => {
     const history = useHistory();
     const isLogged = userId !== undefined;
 
+    useQuery(queries.getUserData, {
+        onCompleted: addUserDataToStore,
+        variables: {id: userId}
+    });
+
     useEffect(() => {
         switch (configuration.component) {
             case component.user:
-                store.dispatch(userActions.addPatientProfileData({profileImgSrc: imgTest,disName: 'Ovundu',dob: '1998-02-03',sex:'Male',des:'hkjhkhj',bldGrp:'O+',cntNo:'+94779740107',address: 'Gabada weediya'}));
                 setMenuList(homeContent.user);
                 break;
             case component.chanCenter:

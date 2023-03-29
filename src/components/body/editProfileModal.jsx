@@ -5,7 +5,6 @@ import {checkForm, formatPhoneNumber, setErrors} from "../../utils/formUtility";
 import defaultProfilePicture from "../../assets/images/defaultprofilepic.png";
 import camera from "../../assets/images/camera.png";
 import FileUpLoader from './FileUploader';
-import {uploadFile,fileURL} from '../../utils/awsFunctions';
 
 
 function EditProfileModal(props) {
@@ -70,21 +69,9 @@ function EditProfileModal(props) {
       }
     }
 
-    async function dpUpload(file) {
-        uploadFile(file)
-            .on('httpUploadProgress', (evt) => {
-                console.log(Math.round((evt.loaded / evt.total) * 100));
-            })
-            .send((e,data) => {
-                if (e) {
-                    // console.log(e);
-                }else if(data){
-                    // console.log(`https://medec-content.s3.ap-south-1.amazonaws.com/${file.name}`); 
-                }
-            });
-            let profilePicture = await fileURL(file.name);
-            profile.imageUrl=`${profilePicture}`;
-            setProfile({...profile,profilePicture,});
+    async function setProfileImages(url) {
+            profile.imageUrl=`${url}`;
+            setProfile({...profile,profilePicture: url,});
             console.log(profile.profilePicture);
     }
 
@@ -102,16 +89,14 @@ function EditProfileModal(props) {
                     <div className='dev'>
                         <Image className='edit-profile-modal-profilePicture-selectIcon' src={camera}
                                                 roundedCircle={true} onClick={imageSelectingHandler}/>
-                        <div style={{display:'none'}}>
+
                             <FileUpLoader
-                                pageType
-                                sendImageData={(file) => {
-                                    dpUpload(file);
+                                setProfileImages={(url) => {
+                                    setProfileImages(url);
                                 }}
                                 accepts={["image/png", "image/jpg", "image/jpeg"]}
                                 cRef={(e)=>inputFileRef=e}
                             />
-                        </div>
                         <Image className='edit-profile-modal-profilePicture' src={profile.profilePicture ? profile.profilePicture : defaultProfilePicture} 
                                 fluid={true}  roundedCircle={true}/>
                     </div>

@@ -1,14 +1,17 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import Drawer from "./Drawer";
 import {Button, Image} from "react-bootstrap";
 import tickImg from "../../assets/images/tick.png";
 import uploadImg from "../../assets/images/upload.png";
 import Spinner from "./Spinner";
-import {useQuery} from "@apollo/client";
+import {useMutation, useQuery} from "@apollo/client";
 import queries from "../../graphql/queries";
 import store from "../../data-store/reducer/root-reducer";
 import {laboratoryActions} from "../../data-store/actions/laboratory-actions";
 import {useSelector} from "react-redux";
+import FileUpLoader from "./FileUploader";
+import mutations from "../../graphql/mutations";
+import {notifyMessage} from "../../utils/notification";
 
 function addCustomerListToStore(customerList) {
     store.dispatch(laboratoryActions.addCustomerList(customerList.getLabPatientList.payload))
@@ -24,6 +27,8 @@ function LabPatientList() {
     });
     const customerList = useSelector(state => state.laboratoryDs.customerList);
     const [customersLst, setCustomersLst] = useState(undefined);
+    let fileInput = useRef();
+    const [UpdateLabReports] = useMutation(mutations.UpdateLabReports);
 
     useEffect(() => {
         if(customerList){
@@ -45,16 +50,28 @@ const setHide = (length) => {
 }
     const upload = (index,report) =>{
         setReports(reports=>[...reports]);
+
         reports[index]= {
             name: report.name,
-            isRequired: report.isRequired,
-            isUpload:true,
+            id: report.id
         };
-        // have to add functions for upload
+        fileInput.click();
+    }
+    async function setProfileImages(url,report) {
+        UpdateLabReports({
+            variables: {
+                updateLabReportsOnCompletionId: report.id,
+                imgUrl:url
+            }, fetchPolicy: "no-cache"
+        }).then((res) => {
+            if(res.data.updateLabReportsOnCompletion.statusCode === 'S0000'){
+                notifyMessage("Successfully Added", '1');
+            }});
+
     }
 
     const toNext = () => {
-       index+1 < setCustomersLst.length && setIndex((index) => (index = index + 1));
+       index+1 <= setCustomersLst.length && setIndex((index) => (index = index + 1));
     };
 
     return (
@@ -82,9 +99,16 @@ const setHide = (length) => {
                                 <div key={index} className='pt-report-req-list-item'>
                                     <div>{report.name}</div>
                                     <div className={'list-item-images'}>
-                                        <div><Image src={report.isUpload?tickImg:uploadImg}
-                                                    height={30} onClick={()=>!report.isUpload && upload(index,report) }/></div>
+                                        <div><Image src={report.status==="requested"?uploadImg:report.status==="completed"&&tickImg}
+                                                    height={30} onClick={()=>report.status!=="completed"&& report.status==="requested" && upload(index,report) } ref={fileInput}/></div>
                                     </div>
+                                    <FileUpLoader
+                                        setProfileImages={(url) => {
+                                            setProfileImages(url,report);
+                                        }}
+                                        accepts={["image/png", "image/jpg", "image/jpeg"]}
+                                        cRef={(e)=>fileInput=e}
+                                    />
                                    </div>
                             ))
                         }
