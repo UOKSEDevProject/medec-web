@@ -30,28 +30,55 @@ function Admin(props) {
     async function setProfileImages(url) {
         setLogo(url);
     }
+    
     const UpdateServer = (data) => {
-        sendRegisterReq({
-            variables: {
-                usr: profile.usrName,
-                pwd: " ",
-                userArgs: {
-                  chanCenterArgs: {
-                    address: profile.address,
-                    cntNo: profile.cntNo,
-                    logoUrl: logo,
-                    name: profile.name,
-                    type:profile.type||'ChannelCenter'
-                  }
+
+        if(profile.type === 'Laboratory'){
+            sendRegisterReq({
+                variables: {
+                    usr: profile.usrName,
+                    pwd: " ",
+                    type:'Laboratory',
+                    userArgs: {
+                        labArgs: {
+                            address: profile.address,
+                            cntNo: profile.cntNo,
+                            logoUrl: logo,
+                            name: profile.name,
+                        }
+                    }
+                }, fetchPolicy: "no-cache"
+            }).then(r =>{
+                if(r.data.register.authSts === authConstants.authRegisteredSuccess){
+                    notifyMessage("Successfully Registered", '1');
+                } else{
+                    notifyMessage(r.data.register.message, '3');
                 }
-              }, fetchPolicy: "no-cache"
-        }).then(r =>{
-            if(r.data.register.authSts === authConstants.authRegisteredSuccess){
-                notifyMessage("Successfully Registered", '1');
-            } else{
-                notifyMessage(r.data.register.message, '3');
-            }
-        }).catch(()=>notifyMessage("Something Went Wrong", '3'));
+            }).catch(()=>notifyMessage("Something Went Wrong", '3'));
+        }else {
+            sendRegisterReq({
+                variables: {
+                    usr: profile.usrName,
+                    pwd: " ",
+                    type:'ChannelCenter',
+                    userArgs: {
+                        chanCenterArgs: {
+                            address: profile.address,
+                            cntNo: profile.cntNo,
+                            logoUrl: logo,
+                            name: profile.name
+                        },
+                    }
+                }, fetchPolicy: "no-cache"
+            }).then(r =>{
+                if(r.data.register.authSts === authConstants.authRegisteredSuccess){
+                    notifyMessage("Successfully Registered", '1');
+                } else{
+                    notifyMessage(r.data.register.message, '3');
+                }
+            }).catch(()=>notifyMessage("Something Went Wrong", '3'));
+        }
+        
     };
 
     const validation = () => {
@@ -92,7 +119,7 @@ function Admin(props) {
                     />
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Channel Center Name</Form.Label>
+                    <Form.Label>Name</Form.Label>
                     <Form.Control type="text" name='name' placeholder="Enter name" aria-required={true}
                                   onChange={onChange}/>
                 </Form.Group>
@@ -116,7 +143,7 @@ function Admin(props) {
                         Type <span>*</span>
                     </Form.Label><br/>
                     <Form.Select
-                        defaultValue={true}
+                        defaultValue={'ChannelCenter'}
                         name='type'
                         aria-required={true}
                         onChange={onChange}>
