@@ -1,16 +1,15 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Button, Form} from "react-bootstrap";
-import Spinner from './Spinner';
+import {Button, Col, Form, Row} from "react-bootstrap";
 import {notifyMessage} from '../../utils/notification.js';
-import {authConstants,component} from "../../constants/constants";
+import {authConstants, component, gender} from "../../constants/constants";
 import {useMutation} from "@apollo/client";
 import mutations from "../../graphql/mutations";
-import FileUoloader from './FileUploader'
 import {ErrorMessage} from '../../constants/constants.js'
 import {isInvaliedPhoneNumber} from '../../utils/clientSideValidation.jsx'
 import {useHistory} from "react-router-dom";
 import {configuration} from '../../config.js';
 import FileUpLoader from "./FileUploader";
+import {AiFillFolderAdd} from "react-icons/ai";
 
 function Admin(props) {
     const [profile, setProfile] = useState({});
@@ -42,6 +41,7 @@ function Admin(props) {
                     cntNo: profile.cntNo,
                     logoUrl: logo,
                     name: profile.name,
+                    type:profile.type||'ChannelCenter'
                   }
                 }
               }, fetchPolicy: "no-cache"
@@ -81,6 +81,17 @@ function Admin(props) {
         <div className='admin'>
             {<Form style={{width: '60vw', margin: 'auto', padding: '10px'}}>
                 <Form.Group className="mb-3">
+                    <Form.Label>Logo</Form.Label><br/>
+                    <AiFillFolderAdd size={50} onClick={onFileSelect}/>
+                    <FileUpLoader
+                        setProfileImages={(url) => {
+                            setProfileImages(url);
+                        }}
+                        accepts={["image/png", "image/jpg", "image/jpeg"]}
+                        cRef={(e)=>fileInput=e}
+                    />
+                </Form.Group>
+                <Form.Group className="mb-3">
                     <Form.Label>Channel Center Name</Form.Label>
                     <Form.Control type="text" name='name' placeholder="Enter name" aria-required={true}
                                   onChange={onChange}/>
@@ -101,16 +112,17 @@ function Admin(props) {
                                   onChange={onChange}/>
                 </Form.Group>
                 <Form.Group className="mb-3">
-                    <Form.Label>Logo</Form.Label>
-                    <input type="file" accept="image/*" ref={fileInput}
-                           onChange={onFileSelect}/>
-                    <FileUpLoader
-                        setProfileImages={(url) => {
-                            setProfileImages(url);
-                        }}
-                        accepts={["image/png", "image/jpg", "image/jpeg"]}
-                        cRef={(e)=>fileInput=e}
-                    />
+                    <Form.Label>
+                        Type <span>*</span>
+                    </Form.Label><br/>
+                    <Form.Select
+                        defaultValue={true}
+                        name='type'
+                        aria-required={true}
+                        onChange={onChange}>
+                        <option key={0} value={'ChannelCenter'}>Channel Center</option>
+                        <option key={1} value={'Laboratory'}>Laboratory</option>
+                    </Form.Select>
                 </Form.Group>
                 <Button variant="primary" type="button" onClick={() => submitButtonHandler()}>
                     Submit
