@@ -114,8 +114,8 @@ const login = gql`
 `;
 
 const register = gql`
-    mutation Register($usr: String!, $userArgs: UserArgs, $pwd: String!) {
-      register(usr: $usr, userArgs: $userArgs, pwd: $pwd) {
+    mutation Register($usr: String!, $userArgs: UserArgs, $pwd: String!, $type: String!) {
+      register(usr: $usr, userArgs: $userArgs, pwd: $pwd, type: $type) {
         authSts
         authType
         message

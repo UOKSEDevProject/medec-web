@@ -213,6 +213,7 @@ query ExampleQuery($pId: String!) {
         day
         id
         imgUrl
+        description
       }
     }
     statusCode
