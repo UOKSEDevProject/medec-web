@@ -108,7 +108,7 @@ const PatientList = () => {
                     <div className="d-flex align-items-center mb-3">
                         <p className="pt-detail-label">Phone Number</p>
                         <p className="pt-detail-value d-flex px-4 py-2 " style={{minWidth: '200px'}}>
-                            {patientsList[index]?.phoneNumber}
+                            {patientsList[index]?.cntNo}
                         </p>
                     </div>
                     <div className="d-flex align-items-center mb-3">
