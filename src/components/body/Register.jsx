@@ -97,6 +97,7 @@ function Register() {
             variables: {
                 usr: credentials.email,
                 pwd: credentials.password,
+                type: '',
                 userArgs: {
                     patientArgs: {
                         fullName: profile.fullName,

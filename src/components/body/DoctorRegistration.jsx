@@ -96,7 +96,7 @@ function DoctorRegistration(props) {
                     fullName: profile.fullName,
                     mcNumber: profile.medicalCouncilNumber,
                     nameWithInitials: convertToNameWithInitials(profile.fullName),
-                    prfImgUrl: profile.url,
+                    prfImgUrl: dpSrc,
                     sex: profile.gender,
                     spec: profile.specialization
             }
