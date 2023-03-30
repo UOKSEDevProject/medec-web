@@ -157,6 +157,7 @@ mutation UpdateSelectedLabReports($updateLabReportsInput: UpdateLabReportsInput!
     statusDetails
   }
 }`
+
 const UpdateLabReportsOnCompletion = gql`
 mutation UpdateLabReportsOnCompletion($doctorRecommendation: DoctorRecommendation!) {
   addDoctorRecommendation(doctorRecommendation: $doctorRecommendation) {
@@ -180,6 +181,7 @@ mutation UpdateLabReportsOnCompletion($updateLabReportsOnCompletionId: String!, 
     statusDetails
   }
 }`
+
 const mutations = {
     addDoctor: addDoctor,
     updateDoctor: updateDoctor,
